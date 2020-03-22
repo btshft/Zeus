@@ -373,4 +373,4 @@ Thumbs.db
 # track these files, if they exist
 !.gitignore
 !.gitattributes
-!.templates/**
+!.templates/
