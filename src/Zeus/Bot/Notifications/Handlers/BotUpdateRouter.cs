@@ -38,7 +38,9 @@ namespace Zeus.Bot.Notifications.Handlers
             {
                 var s when string.Equals(s, "/subscribe", StringComparison.InvariantCultureIgnoreCase) => new SubscribeOnNotifications(update),
                 var s when string.Equals(s, "/unsubscribe", StringComparison.InvariantCultureIgnoreCase) => new UnsubscribeFromNotifications(update),
-                var s when string.Equals(s, "/echo", StringComparison.InvariantCultureIgnoreCase) => new EchoRequest(update),
+                var s when string.Equals(s, "/chat", StringComparison.InvariantCultureIgnoreCase) => new CurrentChatInfoRequest(update),
+                var s when string.Equals(s, "/me", StringComparison.InvariantCultureIgnoreCase) => new CurrentUserInfoRequest(update),
+
                 _ => new ProcessUnrecognizedUpdate(update)
             };
 

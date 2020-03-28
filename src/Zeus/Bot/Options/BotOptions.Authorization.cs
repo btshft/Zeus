@@ -2,12 +2,12 @@
 {
     public partial class BotOptions
     {
-        public class SecurityOptions
+        public class AuthorizationOptions
         {
             /// <summary>
             /// Usernames without '@';
             /// </summary>
-            public string[] Administrators { get; set; }
+            public string[] Users { get; set; }
         }
     }
 }

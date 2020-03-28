@@ -9,7 +9,7 @@ namespace Zeus.Extensions
         public static TOptions GetOptions<TOptions>(this IServiceProvider provider)
             where TOptions : class, new()
         {
-            return provider.GetRequiredService<IOptions<TOptions>>().Value;
+            return provider.GetService<IOptions<TOptions>>()?.Value;
         }
     }
 }

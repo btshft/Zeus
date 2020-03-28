@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
-using System.Reflection;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using MihaZupan;
 using Telegram.Bot;
+using Zeus.Bot.Authorization;
 using Zeus.Bot.Options;
 using Zeus.Bot.Requests;
 using Zeus.Bot.Requests.Abstractions;
-using Zeus.Bot.Security;
 using Zeus.Bot.Services;
 using Zeus.Bot.State;
 using Zeus.Extensions;
 
 namespace Zeus.Bot.Registration
 {
-    public static class BotServiceCollectionExtensions
+    public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddBot(this IServiceCollection services, Action<BotOptions> configure)
         {
@@ -67,7 +66,7 @@ namespace Zeus.Bot.Registration
             {
                 services.TryAddTransient(
                     typeof(IPipelineBehavior<,>).MakeGenericType(type, typeof(Unit)), 
-                    typeof(AuthorizeBotCommandRequestBehavior<>).MakeGenericType(type));
+                    typeof(UsernameBasedAuthorizationBehavior<>).MakeGenericType(type));
             }
 
             return services;

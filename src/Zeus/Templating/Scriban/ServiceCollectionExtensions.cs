@@ -4,7 +4,7 @@ using Zeus.Templating.Abstraction;
 
 namespace Zeus.Templating.Scriban
 {
-    public static class ScribanRegistrationExtensions
+    public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddScriban(this IServiceCollection services, Action<ScribanOptions> configureOptions)
         {

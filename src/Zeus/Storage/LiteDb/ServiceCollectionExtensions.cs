@@ -4,7 +4,7 @@ using Zeus.Storage.Abstraction;
 
 namespace Zeus.Storage.LiteDb
 {
-    public static class LiteDbServiceCollectionExtensions
+    public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddLiteDb(this IServiceCollection services, Action<LiteDbOptions> configure)
         {

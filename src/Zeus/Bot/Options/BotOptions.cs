@@ -6,6 +6,6 @@
 
         public ProxyOptions Proxy { get; set; }
 
-        public SecurityOptions Security { get; set; }
+        public AuthorizationOptions Authorization { get; set; }
     }
 }

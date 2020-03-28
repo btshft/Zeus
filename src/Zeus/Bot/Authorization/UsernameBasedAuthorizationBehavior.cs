@@ -10,15 +10,17 @@ using Zeus.Bot.Logging;
 using Zeus.Bot.Options;
 using Zeus.Bot.Requests.Abstractions;
 
-namespace Zeus.Bot.Security
+namespace Zeus.Bot.Authorization
 {
-    public class AuthorizeBotCommandRequestBehavior<TRequest> : IPipelineBehavior<TRequest, Unit>
+    public class UsernameBasedAuthorizationBehavior<TRequest> : IPipelineBehavior<TRequest, Unit>
         where TRequest : class, IBotCommandRequest
     {
         private readonly IOptions<BotOptions> _optionsProvider;
-        private readonly ILogger<AuthorizeBotCommandRequestBehavior<TRequest>> _logger;
+        private readonly ILogger<UsernameBasedAuthorizationBehavior<TRequest>> _logger;
 
-        public AuthorizeBotCommandRequestBehavior(IOptions<BotOptions> optionsProvider, ILogger<AuthorizeBotCommandRequestBehavior<TRequest>> logger)
+        public UsernameBasedAuthorizationBehavior(
+            IOptions<BotOptions> optionsProvider, 
+            ILogger<UsernameBasedAuthorizationBehavior<TRequest>> logger)
         {
             _optionsProvider = optionsProvider;
             _logger = logger;
@@ -27,10 +29,10 @@ namespace Zeus.Bot.Security
         /// <inheritdoc />
         public Task<Unit> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<Unit> next)
         {
-            var security = _optionsProvider.Value.Security;
-            if (security?.Administrators != null)
+            var security = _optionsProvider.Value.Authorization;
+            if (security?.Users != null)
             {
-                var isAllowed = security.Administrators.Contains(request.Update.Message.From.Username);
+                var isAllowed = security.Users.Contains(request.Update.Message.From.Username);
                 if (!isAllowed)
                 {
                     var json = JsonConvert.SerializeObject(request.Update, Formatting.Indented);
