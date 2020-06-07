@@ -19,15 +19,16 @@ namespace Zeus.Handlers.Bot.Actions.Unsubscribe
             {
                 action = null;
 
-                var matchedByStart = message.StartsWith("/unsubscribe", StringComparison.InvariantCultureIgnoreCase);
-                if (!matchedByStart)
-                    return false;
-
                 var commandParts = message.Split(' ', count: 2, StringSplitOptions.RemoveEmptyEntries);
                 if (commandParts.Length < 2)
                     return false;
 
+                var command = commandParts[0].Trim();
                 var channel = commandParts[1].Trim();
+
+                var matchedByCommand = command.Equals("/unsubscribe", StringComparison.InvariantCultureIgnoreCase);
+                if (!matchedByCommand)
+                    return false;
 
                 action = new UnsubscribeAction(channel);
                 return true;

@@ -10,7 +10,6 @@ using Zeus.BackgroundServices;
 using Zeus.Features.Bot.Authorize;
 using Zeus.Handlers.Bot.Context;
 using Zeus.Handlers.Bot.Reply;
-using Zeus.Services.Telegram.Messaging;
 using Zeus.Shared.AppFeature;
 using Zeus.Shared.Extensions;
 using Zeus.Shared.Features.Extensions;
@@ -55,8 +54,8 @@ namespace Zeus.Features.Bot
 
             services.AddHostedService<BotUpdatesPollingService>();
 
-            services.AddSingleton<ITelegramMessageSender, TelegramMessageSender>();
-            services.AddSingleton<IBotActionContextAccessor, BotActionContextAccessor>();
+            services.AddTransient<IBotActionContextAccessor, BotActionContextAccessor>();
+            services.AddTransient<IBotUserProvider, BotUserProvider>();
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(BotActionContextInitBehavior<,>));
             features.AddFromConfiguration<BotAuthorizationFeature, BotAuthorizationFeatureOptions>(

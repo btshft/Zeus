@@ -12,7 +12,7 @@ using Zeus.Storage.Stores.Abstractions;
 
 namespace Zeus.Handlers.Bot.Actions.Subscribe
 {
-    [AllowReply]
+    [ReplyOnException]
     public class SubscribeActionHandler : BotActionHandler<SubscribeAction>
     {
         private readonly ISubscriptionsStore _subscriptionsStore;

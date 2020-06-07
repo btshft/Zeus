@@ -11,7 +11,7 @@ using Zeus.Storage.Stores.Abstractions;
 
 namespace Zeus.Handlers.Bot.Actions.Unsubscribe
 {
-    [AllowReply]
+    [ReplyOnException]
     public class UnsubscribeActionHandler : BotActionHandler<UnsubscribeAction>
     {
         private readonly IChannelStore _channelStore;

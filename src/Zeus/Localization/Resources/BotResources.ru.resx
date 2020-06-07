@@ -123,6 +123,17 @@
   <data name="CommandNotSupportedOrIncomplete" xml:space="preserve">
     <value>Команда не поддерживается или имеет неправильный формат.</value>
   </data>
+  <data name="StartText" xml:space="preserve">
+    <value>Я занимаюсь отправкой уведомлений из [Alertmanager](https://prometheus.io/docs/alerting/alertmanager/) в Telegram.
+
+Вы можете использовать следующие команды:
+
+/echo - отображает сведения о запросе.
+/subscribe _channel_ - подписывает чат на получение уведомлений из канала _channel_. 
+/unsubscribe _channel_ - отписывает чат от уведомлений из канала _channel_.
+
+Подробнее про бота можете посмотреть в документации к [проекту](https://github.com/btshft/Zeus).</value>
+  </data>
   <data name="SubscribeFailedAlreadySubscribed" xml:space="preserve">
     <value>Вы уже подписаны на уведомления от указанного канала.</value>
   </data>

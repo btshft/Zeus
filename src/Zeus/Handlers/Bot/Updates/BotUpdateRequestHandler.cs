@@ -8,10 +8,12 @@ using Telegram.Bot.Types.Enums;
 using Zeus.Handlers.Bot.Abstractions;
 using Zeus.Handlers.Bot.Actions;
 using Zeus.Handlers.Bot.Actions.Echo;
+using Zeus.Handlers.Bot.Actions.Start;
 using Zeus.Handlers.Bot.Actions.Subscribe;
-using Zeus.Handlers.Bot.Actions.Subscriptions;
 using Zeus.Handlers.Bot.Actions.Unsubscribe;
+using Zeus.Handlers.Bot.Context;
 using Zeus.Handlers.Bot.Notifications;
+using Zeus.Shared.Extensions;
 
 namespace Zeus.Handlers.Bot.Updates
 {
@@ -20,12 +22,14 @@ namespace Zeus.Handlers.Bot.Updates
         private readonly IMediator _mediator;
         private readonly ITelegramBotClient _botClient;
         private readonly IStringLocalizer<BotResources> _localizer;
+        private readonly IBotUserProvider _botUserProvider;
 
-        public BotUpdateRequestHandler(IMediator mediator, ITelegramBotClient botClient, IStringLocalizer<BotResources> localizer)
+        public BotUpdateRequestHandler(IMediator mediator, ITelegramBotClient botClient, IStringLocalizer<BotResources> localizer, IBotUserProvider botUserProvider)
         {
             _mediator = mediator;
             _botClient = botClient;
             _localizer = localizer;
+            _botUserProvider = botUserProvider;
         }
 
         /// <inheritdoc />
@@ -38,8 +42,7 @@ namespace Zeus.Handlers.Bot.Updates
                 await _mediator.Send(actionRequest, cancellationToken);
             }
 
-            if (request.Update.Type != UpdateType.Message ||
-                request.Update.Message.Type != MessageType.Text)
+            if (!request.Update.IsCommand())
             {
                 await _mediator.Publish(new BotUnsupportedUpdateReceived(request.Update), cancellationToken);
                 return;
@@ -48,16 +51,19 @@ namespace Zeus.Handlers.Bot.Updates
             var parser = BotActionParser.Builder()
                 .WhenParsed<SubscribeAction.Format, SubscribeAction>(SendActionRequest)
                 .WhenParsed<EchoAction.Format, EchoAction>(SendActionRequest)
-                .WhenParsed<SubscriptionsAction.Format, SubscriptionsAction>(SendActionRequest)
                 .WhenParsed<UnsubscribeAction.Format, UnsubscribeAction>(SendActionRequest)
+                .WhenParsed<StartAction.Format, StartAction>(SendActionRequest)
                 .Create();
 
-            var parsed = await parser.ParseAsync(request.Update.Message.Text, cancellationToken);
+            var bot = await _botUserProvider.GetAsync(cancellationToken);
+            var message = request.Update.Message.Text.ReplaceFirst($"@{bot.Username}", string.Empty);
+
+            var parsed = await parser.ParseAsync(message, cancellationToken);
             if (!parsed)
             {
-                var message = _localizer.GetString(BotResources.CommandNotSupportedOrIncomplete);
+                var replyText = _localizer.GetString(BotResources.CommandNotSupportedOrIncomplete);
                 await _botClient.SendTextMessageAsync(new ChatId(request.Update.Message.Chat.Id),
-                    message, replyToMessageId: request.Update.Message.MessageId, cancellationToken: cancellationToken);
+                    replyText, replyToMessageId: request.Update.Message.MessageId, cancellationToken: cancellationToken);
 
                 await _mediator.Publish(new BotUnknownCommandReceived(request.Update), cancellationToken);
             }

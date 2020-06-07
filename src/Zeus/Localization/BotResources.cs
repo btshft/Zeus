@@ -18,5 +18,7 @@ namespace Zeus
 
         public const string SubscriptionsChannelSubscribers = nameof(SubscriptionsChannelSubscribers);
         public const string SubscriptionsNotFound = nameof(SubscriptionsNotFound);
+
+        public const string StartText = nameof(StartText);
     }
 }

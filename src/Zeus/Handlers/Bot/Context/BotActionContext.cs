@@ -6,6 +6,8 @@ namespace Zeus.Handlers.Bot.Context
     {
         public Update Update { get; set; }
 
+        public User Bot { get; set; }
+
         public string TraceId { get; set; }
 
         public bool IsAuthorized { get; set; }

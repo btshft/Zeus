@@ -3,7 +3,7 @@
 namespace Zeus.Handlers.Bot.Reply
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited =  false)]
-    public class AllowReplyAttribute : Attribute
+    public class ReplyOnExceptionAttribute : Attribute
     {
 
     }
