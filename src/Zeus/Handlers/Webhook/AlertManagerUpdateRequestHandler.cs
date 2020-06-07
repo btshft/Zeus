@@ -9,6 +9,7 @@ using Zeus.Models.Extensions;
 using Zeus.Services.Telegram;
 using Zeus.Services.Templating;
 using Zeus.Shared.Exceptions;
+using Zeus.Shared.Extensions;
 using Zeus.Shared.Try;
 using Zeus.Storage.Models.Alerts;
 using Zeus.Storage.Stores.Abstractions;
@@ -74,7 +75,7 @@ namespace Zeus.Handlers.Webhook
 
             var sendTasks = subscriptions
                 .Select(s => _botClient
-                    .SendTextMessageAsync(new ChatId(s.ChatId), 
+                    .SendTextMessageSplitAsync(new ChatId(s.ChatId), 
                         safeMessage, parseMode, 
                         disableWebPagePreview: true, 
                         disableNotification: s.DisableNotifications, cancellationToken: cancellationToken));
