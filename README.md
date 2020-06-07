@@ -18,7 +18,7 @@ See [examples]() directory to get started with Zeus.
 
 ## Commands
 1. `/echo` - displays information about incoming request. Use this command to get Telegram metadata like chat or user identifier.
-2. `/subscibe {channel}` - subscribe current chat to receive notifications sent to the appropriate channel.
+2. `/subscribe {channel}` - subscribe current chat to receive notifications sent to the appropriate channel.
 3. `/unsubscribe {channel}` - unsubscribe current chat from receiving notifications.
 
 ## Third-party software
