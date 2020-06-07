@@ -6,12 +6,13 @@ using MediatR;
 using Microsoft.Extensions.Localization;
 using Telegram.Bot;
 using Telegram.Bot.Types;
-using Zeus.v2.Handlers.Bot.Abstractions;
-using Zeus.v2.Handlers.Bot.Context;
-using Zeus.v2.Localization;
-using Zeus.v2.Shared.Mediatr;
+using Zeus.Handlers.Bot.Abstractions;
+using Zeus.Handlers.Bot.Context;
+using Zeus.Localization;
+using Zeus.Shared.Mediatr;
+using Zeus.v2;
 
-namespace Zeus.v2.Handlers.Bot.Reply
+namespace Zeus.Handlers.Bot.Reply
 {
     public class ReplyOnExceptionBehavior<TRequest, TResult> : IPipelineBehavior<TRequest, TResult>
     {

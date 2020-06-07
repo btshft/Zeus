@@ -7,10 +7,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-using Zeus.v2.Localization;
-using Zeus.v2.Shared.AppFeature;
+using Zeus.Localization;
+using Zeus.Shared.AppFeature;
 
-namespace Zeus.v2.Features.Api.Localization
+namespace Zeus.Features.Api.Localization
 {
     public class LocalizationFeature : AppFeature<LocalizationFeatureOptions>
     {

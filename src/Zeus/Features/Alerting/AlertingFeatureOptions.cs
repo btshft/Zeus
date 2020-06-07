@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Zeus.v2.Features.Alerting.Channels;
-using Zeus.v2.Features.Alerting.Subscriptions;
-using Zeus.v2.Features.Alerting.Templates;
+using Zeus.Features.Alerting.Channels;
+using Zeus.Features.Alerting.Subscriptions;
+using Zeus.Features.Alerting.Templates;
 
-namespace Zeus.v2.Features.Alerting
+namespace Zeus.Features.Alerting
 {
     public class AlertingFeatureOptions
     {

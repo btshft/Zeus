@@ -3,10 +3,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Zeus.v2.Handlers.Bot.Notifications;
-using Zeus.v2.Shared.Extensions;
+using Zeus.Handlers.Bot.Notifications;
+using Zeus.Shared.Extensions;
 
-namespace Zeus.v2.Handlers.Logging
+namespace Zeus.Handlers.Logging
 {
     public class BotNotificationsLoggingHandler : 
         INotificationHandler<BotUnknownCommandReceived>, 

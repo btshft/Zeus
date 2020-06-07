@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Zeus.v2.Shared.Mediatr
+namespace Zeus.Shared.Mediatr
 {
     public interface IRequestHandlerFinder
     {

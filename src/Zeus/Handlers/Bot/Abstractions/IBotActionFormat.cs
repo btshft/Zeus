@@ -1,4 +1,4 @@
-﻿namespace Zeus.v2.Handlers.Bot.Abstractions
+﻿namespace Zeus.Handlers.Bot.Abstractions
 {
     public interface IBotActionFormat<TAction>
         where TAction : IBotAction

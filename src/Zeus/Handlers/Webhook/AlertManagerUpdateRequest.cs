@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Zeus.Storage.Models.External;
 
-namespace Zeus.v2.Handlers.Webhook
+namespace Zeus.Handlers.Webhook
 {
     public class AlertManagerUpdateRequest : IRequest
     {

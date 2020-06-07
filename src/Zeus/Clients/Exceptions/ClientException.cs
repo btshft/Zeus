@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Zeus.v2.Clients.Exceptions
+namespace Zeus.Clients.Exceptions
 {
     [Serializable]
     public class ClientException : Exception

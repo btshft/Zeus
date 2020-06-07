@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Zeus.v2.Features.Bot
+namespace Zeus.Features.Bot
 {
     public class BotFeatureOptions
     {

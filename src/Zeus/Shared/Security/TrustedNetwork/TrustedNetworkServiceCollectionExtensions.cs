@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace Zeus.v2.Shared.Security.TrustedNetwork
+namespace Zeus.Shared.Security.TrustedNetwork
 {
     public static class TrustedNetworkServiceCollectionExtensions
     {

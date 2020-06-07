@@ -1,7 +1,7 @@
 ﻿
 
 // ReSharper disable once CheckNamespace
-namespace Zeus.v2
+namespace Zeus
 {
     public class BotResources
     {

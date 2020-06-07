@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Telegram.Bot.Types;
 
-namespace Zeus.v2.Handlers.Bot.Notifications
+namespace Zeus.Handlers.Bot.Notifications
 {
     public class BotUnknownCommandReceived : INotification
     {

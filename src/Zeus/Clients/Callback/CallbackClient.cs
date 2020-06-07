@@ -3,11 +3,11 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot.Types;
-using Zeus.v2.Clients.Exceptions;
-using Zeus.v2.Shared.Extensions;
-using Zeus.v2.Shared.Json;
+using Zeus.Clients.Exceptions;
+using Zeus.Shared.Extensions;
+using Zeus.Shared.Json;
 
-namespace Zeus.v2.Clients.Callback
+namespace Zeus.Clients.Callback
 {
     public class CallbackClient : ICallbackClient
     {

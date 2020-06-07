@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Zeus.v2.Shared.AppFeature.Internal
+namespace Zeus.Shared.AppFeature.Internal
 {
     internal class AppFeatureCollection : IAppFeatureCollection
     {

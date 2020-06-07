@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.Options;
 
-namespace Zeus.v2.Shared.AppFeature.Internal
+namespace Zeus.Shared.AppFeature.Internal
 {
     internal class AppFeatureOptions<TOptions> : IOptions<TOptions> 
         where TOptions : class, new()

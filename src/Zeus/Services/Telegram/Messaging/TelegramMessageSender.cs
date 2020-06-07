@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using Zeus.v2.Services.Telegram.Messaging.Requests;
+using Zeus.Services.Telegram.Messaging.Requests;
 
-namespace Zeus.v2.Services.Telegram.Messaging
+namespace Zeus.Services.Telegram.Messaging
 {
     public class TelegramMessageSender : ITelegramMessageSender
     {

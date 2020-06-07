@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using MediatR;
 using StackExchange.Profiling;
 
-namespace Zeus.v2.Features.Profiling.Behaviors
+namespace Zeus.Features.Profiling.Behaviors
 {
     public class ProfilingBehavior<TRequest, TResult> : IPipelineBehavior<TRequest, TResult>
     {

@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Net.Http;
 using Microsoft.Extensions.DiagnosticAdapter;
 using StackExchange.Profiling;
-using Zeus.v2.Shared.Diagnostics;
+using Zeus.Shared.Diagnostics;
 
-namespace Zeus.v2.Features.Profiling.Diagnostics
+namespace Zeus.Features.Profiling.Diagnostics
 {
     /// <summary>
     /// https://github.com/dotnet/corefx/blob/master/src/System.Net.Http/src/HttpDiagnosticsGuide.md

@@ -3,10 +3,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Zeus.v2.Shared.AppFeature.Internal;
-using Zeus.v2.Shared.Extensions;
+using Zeus.Shared.AppFeature.Internal;
+using Zeus.Shared.Extensions;
 
-namespace Zeus.v2.Shared.AppFeature.Extensions
+namespace Zeus.Shared.AppFeature.Extensions
 {
     public static class AppFeatureBuilderExtensions
     {

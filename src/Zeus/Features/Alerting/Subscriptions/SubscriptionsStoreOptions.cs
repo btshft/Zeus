@@ -1,4 +1,4 @@
-﻿namespace Zeus.v2.Features.Alerting.Subscriptions
+﻿namespace Zeus.Features.Alerting.Subscriptions
 {
     public class SubscriptionsStoreOptions
     {

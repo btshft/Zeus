@@ -2,7 +2,7 @@
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
-namespace Zeus.v2.Services.Telegram.Messaging.Requests
+namespace Zeus.Services.Telegram.Messaging.Requests
 {
     public class TelegramMessageSendRequest
     {

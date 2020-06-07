@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using IPNetwork = Microsoft.AspNetCore.HttpOverrides.IPNetwork;
 
-namespace Zeus.v2.Shared.Security.TrustedNetwork
+namespace Zeus.Shared.Security.TrustedNetwork
 {
     /// <summary>
     /// Attribute to manage trusted networks.
@@ -19,11 +19,6 @@ namespace Zeus.v2.Shared.Security.TrustedNetwork
         private readonly ILogger<AuthorizeTrustedNetworkAttribute> _logger;
 
         private string Policy { get; set; }
-
-        public AuthorizeTrustedNetworkAttribute()
-        {
-
-        }
 
         public AuthorizeTrustedNetworkAttribute(string policy)
         {
@@ -55,6 +50,9 @@ namespace Zeus.v2.Shared.Security.TrustedNetwork
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             var options = _optionsMonitor.Get(Policy);
+            if (!options.Networks.Any())
+                return;
+
             var networks = options.Networks.Select(s =>
             {
                 var typedNetwork = System.Net.IPNetwork.Parse(s);

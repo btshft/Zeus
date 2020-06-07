@@ -5,15 +5,16 @@ using Microsoft.Extensions.Localization;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using Zeus.v2.Handlers.Bot.Abstractions;
-using Zeus.v2.Handlers.Bot.Actions;
-using Zeus.v2.Handlers.Bot.Actions.Echo;
-using Zeus.v2.Handlers.Bot.Actions.Subscribe;
-using Zeus.v2.Handlers.Bot.Actions.Subscriptions;
-using Zeus.v2.Handlers.Bot.Actions.Unsubscribe;
-using Zeus.v2.Handlers.Bot.Notifications;
+using Zeus.Handlers.Bot.Abstractions;
+using Zeus.Handlers.Bot.Actions;
+using Zeus.Handlers.Bot.Actions.Echo;
+using Zeus.Handlers.Bot.Actions.Subscribe;
+using Zeus.Handlers.Bot.Actions.Subscriptions;
+using Zeus.Handlers.Bot.Actions.Unsubscribe;
+using Zeus.Handlers.Bot.Notifications;
+using Zeus.v2;
 
-namespace Zeus.v2.Handlers.Bot.Updates
+namespace Zeus.Handlers.Bot.Updates
 {
     public class BotUpdateRequestHandler : AsyncRequestHandler<BotUpdateRequest>
     {

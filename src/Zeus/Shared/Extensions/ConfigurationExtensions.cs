@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
-using Zeus.v2.Shared.Exceptions;
+using Zeus.Shared.Exceptions;
 
-namespace Zeus.v2.Shared.Extensions
+namespace Zeus.Shared.Extensions
 {
     public static class ConfigurationExtensions
     {

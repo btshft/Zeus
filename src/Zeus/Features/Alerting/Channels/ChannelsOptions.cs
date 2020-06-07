@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Zeus.v2.Features.Alerting.Channels
+namespace Zeus.Features.Alerting.Channels
 {
     public class ChannelsOptions
     {

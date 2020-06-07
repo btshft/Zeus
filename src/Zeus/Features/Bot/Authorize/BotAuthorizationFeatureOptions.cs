@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Zeus.v2.Features.Bot.Authorize
+namespace Zeus.Features.Bot.Authorize
 {
     public class BotAuthorizationFeatureOptions
     {

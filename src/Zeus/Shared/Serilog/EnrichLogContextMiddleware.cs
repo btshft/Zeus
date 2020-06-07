@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog.Context;
 using Serilog.Core;
-using Zeus.v2.Shared.Serilog.Enrichers;
+using Zeus.Shared.Serilog.Enrichers;
 
-namespace Zeus.v2.Shared.Serilog
+namespace Zeus.Shared.Serilog
 {
     public class EnrichLogContextMiddleware
     {

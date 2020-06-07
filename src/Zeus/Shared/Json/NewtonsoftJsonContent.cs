@@ -2,7 +2,7 @@
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Zeus.v2.Shared.Json
+namespace Zeus.Shared.Json
 {
     public class NewtonsoftJsonContent : StringContent
     {

@@ -5,17 +5,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Extensions.Logging;
-using Zeus.v2.Features.Alerting;
-using Zeus.v2.Features.Api;
-using Zeus.v2.Features.Bot;
-using Zeus.v2.Features.Clients;
-using Zeus.v2.Features.Profiling;
-using Zeus.v2.Handlers.Webhook;
-using Zeus.v2.Shared.AppFeature.Extensions;
-using Zeus.v2.Shared.Features.Extensions;
-using Zeus.v2.Shared.Serilog;
+using Zeus.Features.Alerting;
+using Zeus.Features.Api;
+using Zeus.Features.Bot;
+using Zeus.Features.Clients;
+using Zeus.Features.Profiling;
+using Zeus.Handlers.Webhook;
+using Zeus.Shared.AppFeature.Extensions;
+using Zeus.Shared.Features.Extensions;
+using Zeus.Shared.Serilog;
 
-namespace Zeus.v2
+namespace Zeus
 {
     public class Startup
     {

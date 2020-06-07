@@ -4,14 +4,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-using Zeus.v2.Features.Api.Authorization;
-using Zeus.v2.Features.Api.Localization;
-using Zeus.v2.Features.Api.Swagger;
-using Zeus.v2.Shared.AppFeature;
-using Zeus.v2.Shared.AppFeature.Extensions;
-using Zeus.v2.Shared.Features.Extensions;
+using Zeus.Features.Api.Authorization;
+using Zeus.Features.Api.Localization;
+using Zeus.Features.Api.Swagger;
+using Zeus.Shared.AppFeature;
+using Zeus.Shared.AppFeature.Extensions;
+using Zeus.Shared.Features.Extensions;
 
-namespace Zeus.v2.Features.Api
+namespace Zeus.Features.Api
 {
     public class ApiFeature : AppFeature<ApiFeatureOptions>
     {
@@ -24,7 +24,7 @@ namespace Zeus.v2.Features.Api
         public override void Configure(IServiceCollection services, IAppFeatureCollection features)
         {
             features.AddFromConfiguration<LocalizationFeature, LocalizationFeatureOptions>("Api:Localization")
-                .AddFromConfiguration<AuthorizationFeature, AuthorizationFeatureOptions>("Api:Authorization")
+                .AddFromConfiguration<AuthorizationFeature, AuthorizationFeatureOptions>("Api:Authorization", required: false)
                 .AddFromConfiguration<SwaggerFeature, SwaggerFeatureOptions>("Api:Swagger", required: false);
 
             services
@@ -51,7 +51,6 @@ namespace Zeus.v2.Features.Api
                 .UseFeature<LocalizationFeature>();
 
             builder.UseRouting();
-            builder.UseFeature<AuthorizationFeature>();
             builder.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

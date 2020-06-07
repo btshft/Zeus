@@ -1,6 +1,6 @@
 ﻿using Zeus.Storage.Consul;
 
-namespace Zeus.v2.Features.Alerting.Subscriptions
+namespace Zeus.Features.Alerting.Subscriptions
 {
     public class SubscriptionsConsulStoreOptions : ConsulOptions
     {

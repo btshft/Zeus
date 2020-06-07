@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 
-namespace Zeus.v2.Shared.AppFeature
+namespace Zeus.Shared.AppFeature
 {
     public abstract class AppFeature<TOptions> : IAppFeature<TOptions>
         where TOptions : class, new()

@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
 using Microsoft.Extensions.Options;
 
-namespace Zeus.v2.Shared.Json
+namespace Zeus.Shared.Json
 {
     public class NewtonsoftJsonModelBinder : IModelBinder
     {

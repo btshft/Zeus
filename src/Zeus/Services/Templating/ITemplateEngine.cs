@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace Zeus.v2.Services.Templating
+namespace Zeus.Services.Templating
 {
     public interface ITemplateEngine
     {

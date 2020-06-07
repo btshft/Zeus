@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Telegram.Bot.Types;
 
-namespace Zeus.v2.Clients.Callback
+namespace Zeus.Clients.Callback
 {
     public interface ICallbackClient
     {

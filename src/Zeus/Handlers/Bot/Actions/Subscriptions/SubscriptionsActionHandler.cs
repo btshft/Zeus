@@ -6,13 +6,14 @@ using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using Zeus.Handlers.Bot.Abstractions;
+using Zeus.Handlers.Bot.Reply;
+using Zeus.Localization;
+using Zeus.Shared.Extensions;
 using Zeus.Storage.Stores.Abstractions;
-using Zeus.v2.Handlers.Bot.Abstractions;
-using Zeus.v2.Handlers.Bot.Reply;
-using Zeus.v2.Localization;
-using Zeus.v2.Shared.Extensions;
+using Zeus.v2;
 
-namespace Zeus.v2.Handlers.Bot.Actions.Subscriptions
+namespace Zeus.Handlers.Bot.Actions.Subscriptions
 {
     [AllowReply]
     public class SubscriptionsActionHandler : BotActionHandler<SubscriptionsAction>

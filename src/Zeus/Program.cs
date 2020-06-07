@@ -1,13 +1,12 @@
 using System;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
-using Zeus.v2.Shared.Serilog.Enrichers;
+using Zeus.Shared.Serilog.Enrichers;
 
-namespace Zeus.v2
+namespace Zeus
 {
     public class Program
     {

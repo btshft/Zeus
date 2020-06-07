@@ -7,12 +7,12 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Zeus.v2.Features.Bot.Authorize;
-using Zeus.v2.Handlers.Bot.Abstractions;
-using Zeus.v2.Handlers.Bot.Context;
-using Zeus.v2.Shared.Mediatr;
+using Zeus.Features.Bot.Authorize;
+using Zeus.Handlers.Bot.Abstractions;
+using Zeus.Handlers.Bot.Context;
+using Zeus.Shared.Mediatr;
 
-namespace Zeus.v2.Handlers.Bot.Authorization
+namespace Zeus.Handlers.Bot.Authorization
 {
     public class AuthorizeBotActionRequestBehavior<TRequest, TResult> : IPipelineBehavior<TRequest, TResult>
     {

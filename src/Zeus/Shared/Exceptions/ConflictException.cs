@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Zeus.v2.Shared.Exceptions
+namespace Zeus.Shared.Exceptions
 {
     public class ConflictException : Exception
     {

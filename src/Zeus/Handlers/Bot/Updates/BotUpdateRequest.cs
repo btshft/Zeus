@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Telegram.Bot.Types;
 
-namespace Zeus.v2.Handlers.Bot.Updates
+namespace Zeus.Handlers.Bot.Updates
 {
     public class BotUpdateRequest : IRequest
     {

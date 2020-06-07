@@ -2,7 +2,7 @@
 using Serilog.Core;
 using Serilog.Events;
 
-namespace Zeus.v2.Shared.Serilog.Enrichers
+namespace Zeus.Shared.Serilog.Enrichers
 {
     public class DemistifyExceptionEnricher : ILogEventEnricher
     {

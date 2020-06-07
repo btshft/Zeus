@@ -4,7 +4,7 @@ using System.Globalization;
 using Microsoft.Extensions.Localization;
 using StackExchange.Profiling;
 
-namespace Zeus.v2.Features.Profiling.Decorators
+namespace Zeus.Features.Profiling.Decorators
 {
     public class ProfilingStringLocalizerFactory : IStringLocalizerFactory
     {

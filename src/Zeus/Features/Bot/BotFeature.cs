@@ -6,17 +6,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Telegram.Bot;
-using Zeus.v2.BackgroundServices;
-using Zeus.v2.Features.Bot.Authorize;
-using Zeus.v2.Handlers.Bot.Context;
-using Zeus.v2.Handlers.Bot.Reply;
-using Zeus.v2.Services.Telegram.Messaging;
-using Zeus.v2.Shared.AppFeature;
-using Zeus.v2.Shared.Extensions;
-using Zeus.v2.Shared.Features.Extensions;
-using Zeus.v2.Shared.Mediatr;
+using Zeus.BackgroundServices;
+using Zeus.Features.Bot.Authorize;
+using Zeus.Handlers.Bot.Context;
+using Zeus.Handlers.Bot.Reply;
+using Zeus.Services.Telegram.Messaging;
+using Zeus.Shared.AppFeature;
+using Zeus.Shared.Extensions;
+using Zeus.Shared.Features.Extensions;
+using Zeus.Shared.Mediatr;
 
-namespace Zeus.v2.Features.Bot
+namespace Zeus.Features.Bot
 {
     public class BotFeature : AppFeature<BotFeatureOptions>
     {

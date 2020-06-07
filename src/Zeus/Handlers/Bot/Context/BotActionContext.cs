@@ -1,6 +1,6 @@
 ﻿using Telegram.Bot.Types;
 
-namespace Zeus.v2.Handlers.Bot.Context
+namespace Zeus.Handlers.Bot.Context
 {
     public class BotActionContext
     {

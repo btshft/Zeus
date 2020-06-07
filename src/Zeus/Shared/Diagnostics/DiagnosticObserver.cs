@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Zeus.v2.Shared.Diagnostics
+namespace Zeus.Shared.Diagnostics
 {
     public abstract class DiagnosticObserver : IObserver<DiagnosticListener>
     {

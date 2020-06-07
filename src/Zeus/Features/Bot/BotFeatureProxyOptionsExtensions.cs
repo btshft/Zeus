@@ -2,7 +2,7 @@
 using System.Net;
 using MihaZupan;
 
-namespace Zeus.v2.Features.Bot
+namespace Zeus.Features.Bot
 {
     public static class BotFeatureProxyOptionsExtensions
     {

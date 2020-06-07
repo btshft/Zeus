@@ -1,10 +1,11 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using Telegram.Bot;
-using Zeus.v2.Handlers.Bot.Actions;
-using Zeus.v2.Localization;
+using Zeus.Handlers.Bot.Actions;
+using Zeus.Localization;
+using Zeus.v2;
 
-namespace Zeus.v2.Handlers.Bot.Abstractions
+namespace Zeus.Handlers.Bot.Abstractions
 {
     public abstract class BotActionHandler<TAction> : AsyncRequestHandler<BotActionRequest<TAction>> 
         where TAction : IBotAction

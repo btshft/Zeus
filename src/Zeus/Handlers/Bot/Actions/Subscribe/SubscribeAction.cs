@@ -1,7 +1,7 @@
 ﻿using System;
-using Zeus.v2.Handlers.Bot.Abstractions;
+using Zeus.Handlers.Bot.Abstractions;
 
-namespace Zeus.v2.Handlers.Bot.Actions.Subscribe
+namespace Zeus.Handlers.Bot.Actions.Subscribe
 {
     /// <summary>
     /// Subscribe to channel notifications.

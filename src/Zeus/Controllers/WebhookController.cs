@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Zeus.Handlers.Webhook;
 using Zeus.Storage.Models.External;
-using Zeus.v2.Handlers.Webhook;
 
-namespace Zeus.v2.Controllers
+namespace Zeus.Controllers
 {
     [ApiController, ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/webhook/alerts")]

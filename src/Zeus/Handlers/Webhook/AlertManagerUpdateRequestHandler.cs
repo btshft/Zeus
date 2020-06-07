@@ -4,16 +4,16 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Telegram.Bot.Types;
+using Zeus.Models.Extensions;
+using Zeus.Services.Telegram.Messaging;
+using Zeus.Services.Telegram.Messaging.Requests;
+using Zeus.Services.Templating;
+using Zeus.Shared.Exceptions;
+using Zeus.Shared.Try;
 using Zeus.Storage.Models.Alerts;
 using Zeus.Storage.Stores.Abstractions;
-using Zeus.v2.Models.Extensions;
-using Zeus.v2.Services.Telegram.Messaging;
-using Zeus.v2.Services.Telegram.Messaging.Requests;
-using Zeus.v2.Services.Templating;
-using Zeus.v2.Shared.Exceptions;
-using Zeus.v2.Shared.Try;
 
-namespace Zeus.v2.Handlers.Webhook
+namespace Zeus.Handlers.Webhook
 {
     public class AlertManagerUpdateRequestHandler : AsyncRequestHandler<AlertManagerUpdateRequest>
     {

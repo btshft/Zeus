@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Http;
-using Zeus.v2.Handlers.Bot.Abstractions;
+using Zeus.Handlers.Bot.Abstractions;
 
-namespace Zeus.v2.Handlers.Bot.Context
+namespace Zeus.Handlers.Bot.Context
 {
     public class BotActionContextInitBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {

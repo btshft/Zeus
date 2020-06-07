@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Telegram.Bot.Types;
 
-namespace Zeus.v2.Shared.Extensions
+namespace Zeus.Shared.Extensions
 {
     public static class TelegramTypesExtensions
     {
