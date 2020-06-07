@@ -12,7 +12,6 @@ using Zeus.Handlers.Bot.Actions.Subscribe;
 using Zeus.Handlers.Bot.Actions.Subscriptions;
 using Zeus.Handlers.Bot.Actions.Unsubscribe;
 using Zeus.Handlers.Bot.Notifications;
-using Zeus.v2;
 
 namespace Zeus.Handlers.Bot.Updates
 {
@@ -39,7 +38,8 @@ namespace Zeus.Handlers.Bot.Updates
                 await _mediator.Send(actionRequest, cancellationToken);
             }
 
-            if (request.Update.Type != UpdateType.Message)
+            if (request.Update.Type != UpdateType.Message ||
+                request.Update.Message.Type != MessageType.Text)
             {
                 await _mediator.Publish(new BotUnsupportedUpdateReceived(request.Update), cancellationToken);
                 return;

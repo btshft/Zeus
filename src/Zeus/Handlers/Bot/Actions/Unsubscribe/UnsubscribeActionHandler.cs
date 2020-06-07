@@ -8,7 +8,6 @@ using Zeus.Handlers.Bot.Abstractions;
 using Zeus.Handlers.Bot.Reply;
 using Zeus.Localization;
 using Zeus.Storage.Stores.Abstractions;
-using Zeus.v2;
 
 namespace Zeus.Handlers.Bot.Actions.Unsubscribe
 {

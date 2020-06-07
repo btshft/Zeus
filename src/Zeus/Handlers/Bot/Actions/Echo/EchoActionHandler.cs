@@ -9,7 +9,6 @@ using Telegram.Bot.Types.Enums;
 using Zeus.Handlers.Bot.Abstractions;
 using Zeus.Localization;
 using Zeus.Shared.Extensions;
-using Zeus.v2;
 
 namespace Zeus.Handlers.Bot.Actions.Echo
 {

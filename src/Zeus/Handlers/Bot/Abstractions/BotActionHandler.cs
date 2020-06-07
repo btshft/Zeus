@@ -3,7 +3,6 @@ using Microsoft.Extensions.Logging;
 using Telegram.Bot;
 using Zeus.Handlers.Bot.Actions;
 using Zeus.Localization;
-using Zeus.v2;
 
 namespace Zeus.Handlers.Bot.Abstractions
 {

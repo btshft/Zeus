@@ -11,7 +11,6 @@ using Zeus.Handlers.Bot.Reply;
 using Zeus.Localization;
 using Zeus.Shared.Extensions;
 using Zeus.Storage.Stores.Abstractions;
-using Zeus.v2;
 
 namespace Zeus.Handlers.Bot.Actions.Subscriptions
 {

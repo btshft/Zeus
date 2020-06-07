@@ -14,7 +14,7 @@ services:
     command: "agent -server -ui -node=server-1 -bootstrap-expect=1 -client=0.0.0.0"
 
   zeus-bot:
-    image: docker.pkg.github.com/btshft/zeus/bot:develop
+    image: docker.pkg.github.com/btshft/zeus/zeus-bot:develop
     ports:
       - 5050:80
     environment:
