@@ -7,11 +7,11 @@ Telegram bot for [Prometheus](https://prometheus.io/) alerts. Bot provides a fle
 Work in progress. 
 
 ## Features
-1. Channels & Subscriptions. Publish alerts to different channels using signle app, manage channel subscriptions from Telegram using commands.
-2. Docker ready. Easy to start using app with Docker.
-3. Localization (only russian now).
-4. Message template customization. Rich and simple template language, customized templates for different locales and channels.
-5. Transparent API. Debug and test alerts even without Alertmanager via Swagger.
+1. **Channels & Subscriptions**. Publish alerts to different channels using signle app, manage channel subscriptions from Telegram using commands.
+2. **Docker ready**. Easy to start using app with Docker.
+3. **Localization** (only russian now).
+4. **Message template customization**. Rich and simple template language, customized templates for different locales and channels.
+5. **Transparent API**. Debug and test alerts even without Alertmanager via Swagger.
 
 ## Quickstart
 See [examples]() directory to get started with Zeus.
