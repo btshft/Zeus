@@ -1,9 +1,6 @@
 name: Development (Docker)
-
 on:
   push:
-    branches: [ develop ]
-  pull_request:
     branches: [ develop ]
 
 jobs:
@@ -19,6 +16,6 @@ jobs:
         dockerfile: "./src/Zeus/Dockerfile"
         username: btshft
         password: ${{ secrets.GITHUB_TOKEN }}
-        repository: btshft/zeus/bot
+        repository: btshft/zeus/zeus-bot
         registry: docker.pkg.github.com
         tag_with_ref: true
