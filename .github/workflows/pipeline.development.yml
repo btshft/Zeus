@@ -17,9 +17,8 @@ jobs:
       with:
         path: "./src"
         dockerfile: "./src/Zeus/Dockerfile"
-        username: ${{ secrets.GH_DOCKER_REGISTRY_PASSWORD }}
-        password: ${{ secrets.GH_DOCKER_REGISTRY_USERNAME }}
+        username: btshft
+        password: ${{ secrets.GITHUB_TOKEN }}
         repository: docker.pkg.github.com/btshft/zeus/bot
-        tag_with_ref: true
-        tags: latest
         registry: docker.pkg.github.com
+        tag_with_ref: true
