@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  zeus-bot:
-    image: ${DOCKER_REGISTRY-}zeusbot
-    build:
-      context: .
-      dockerfile: Zeus.v2/Dockerfile
