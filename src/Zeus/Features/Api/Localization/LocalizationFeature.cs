@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
@@ -28,7 +29,7 @@ namespace Zeus.Features.Api.Localization
 
             services.AddLocalization(o =>
             {
-                o.ResourcesPath = "Localization\\Resources";
+                o.ResourcesPath = Path.Combine("Localization", "Resources");
             });
 
             services.TryAddTransient(typeof(IMessageLocalizer<>), typeof(MessageLocalizer<>));
