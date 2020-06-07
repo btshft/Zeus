@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  zeus-bot:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - 5000:80
