@@ -33,6 +33,8 @@ namespace Zeus.Features.Api.Swagger
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerGenOptions>();
             services.AddSwaggerGen(s =>
             {
+                s.OperationFilter<SwaggerDefaultValues>();
+
                 var includeDocsTypesMarkers = new[]
                 {
                     typeof(CallbackController),
