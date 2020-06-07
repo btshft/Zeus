@@ -14,7 +14,7 @@ Work in progress.
 5. **Transparent API**. Debug and test alerts even without Alertmanager via Swagger.
 
 ## Quickstart
-See [examples]() directory to get started with Zeus.
+See [examples](https://github.com/btshft/Zeus/tree/develop/examples) directory to get started with Zeus.
 
 ## Commands
 1. `/echo` - displays information about incoming request. Use this command to get Telegram metadata like chat or user identifier.
