@@ -1,9 +1,5 @@
 name: Development (Docker)
 
-defaults:
-  run:
-    working-directory: "./src"
-
 on:
   push:
     branches: [ develop ]
@@ -19,7 +15,8 @@ jobs:
     - name: Docker Build & Publish
       uses: docker/build-push-action@v1.1.0
       with:
-        dockerfile: "Zeus/Dockerfile"
+        path: "./src"
+        dockerfile: "./src/Zeus/Dockerfile"
         username: ${{ secrets.GH_DOCKER_REGISTRY_PASSWORD }}
         password: ${{ secrets.GH_DOCKER_REGISTRY_USERNAME }}
         repository: docker.pkg.github.com/btshft/zeus/bot
