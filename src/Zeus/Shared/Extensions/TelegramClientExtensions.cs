@@ -14,12 +14,12 @@ namespace Zeus.Shared.Extensions
     {
         public static async Task<Message[]> SendTextMessageSplitAsync(this ITelegramBotClient client, ChatId chatId,
             string text,
-            ParseMode parseMode = ParseMode.Default,
-            bool disableWebPagePreview = false,
-            bool disableNotification = false,
-            int replyToMessageId = 0,
-            IReplyMarkup replyMarkup = null,
-            CancellationToken cancellationToken = default(CancellationToken))
+            ParseMode parseMode = default,
+            bool disableWebPagePreview = default,
+            bool disableNotification = default,
+            int replyToMessageId = default,
+            IReplyMarkup replyMarkup = default,
+            CancellationToken cancellationToken = default)
         {
             const int maxLength = 4096;
             if (text.Length <= maxLength)
@@ -32,19 +32,20 @@ namespace Zeus.Shared.Extensions
 
             var texts = text.SplitBy(maxLength - 6).ToArray();
             var results = new List<Message>();
+            var delimiter = "...".Escape(parseMode);
 
             foreach (var (index, messagePart) in texts.Index())
             {
                 var isFirst = index == 0;
                 var isLast = index == texts.Length - 1;
                 var message = isFirst
-                    ? $"{messagePart}..."
+                    ? $"{messagePart}{delimiter}"
                     : isLast
-                        ? $"...{messagePart}"
-                        : $"...{messagePart}...";
+                        ? $"{delimiter}{messagePart}"
+                        : $"{delimiter}{messagePart}{delimiter}";
 
                 var messageIdToReply = replyToMessageId != 0 && isFirst ? replyToMessageId : 0;
-                var result = await client.SendTextMessageAsync(chatId, message.Escape(parseMode), parseMode, disableWebPagePreview,
+                var result = await client.SendTextMessageAsync(chatId, message, parseMode, disableWebPagePreview,
                     disableNotification, replyToMessageId: messageIdToReply, replyMarkup, cancellationToken);
 
                 results.Add(result);
