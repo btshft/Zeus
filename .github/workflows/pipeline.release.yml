@@ -1,7 +1,7 @@
 name: Release (Docker)
 on:
-  pull_request:
-    tags: v[0-0].[0-9]+.[0-9]+
+  push:
+    tags: v[0-9].[0-9]+.[0-9]+
 
 jobs:
   build:
