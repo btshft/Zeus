@@ -1,8 +1,10 @@
 name: Development (Docker)
 on:
   push:
-    branches: [ develop ]
-
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,4 +20,4 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
         repository: btshft/zeus/zeus-bot
         registry: docker.pkg.github.com
-        tag_with_ref: true
+        tags: build_$GITHUB_RUN_NUMBER
