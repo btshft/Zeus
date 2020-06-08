@@ -3,10 +3,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-using Zeus.v2.Shared.AppFeature;
-using Zeus.v2.Shared.Security.TrustedNetwork;
+using Zeus.Shared.AppFeature;
+using Zeus.Shared.Security.TrustedNetwork;
 
-namespace Zeus.v2.Features.Api.Authorization
+namespace Zeus.Features.Api.Authorization
 {
     public class AuthorizationFeature : AppFeature<AuthorizationFeatureOptions>
     {

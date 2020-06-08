@@ -1,7 +1,7 @@
 ﻿using System;
-using Zeus.v2.Handlers.Bot.Abstractions;
+using Zeus.Handlers.Bot.Abstractions;
 
-namespace Zeus.v2.Handlers.Bot.Actions.Subscribe
+namespace Zeus.Handlers.Bot.Actions.Subscribe
 {
     /// <summary>
     /// Subscribe to channel notifications.
@@ -22,15 +22,16 @@ namespace Zeus.v2.Handlers.Bot.Actions.Subscribe
             {
                 action = null;
 
-                var matchedByStart = message.StartsWith("/subscribe", StringComparison.InvariantCultureIgnoreCase);
-                if (!matchedByStart)
-                    return false;
-
                 var commandParts = message.Split(' ', count: 2, StringSplitOptions.RemoveEmptyEntries);
                 if (commandParts.Length < 2)
                     return false;
 
+                var command = commandParts[0].Trim();
                 var channel = commandParts[1].Trim();
+
+                var matchedByCommand = command.Equals("/subscribe", StringComparison.InvariantCultureIgnoreCase);
+                if (!matchedByCommand)
+                    return false;
 
                 action = new SubscribeAction(channel);
                 return true;

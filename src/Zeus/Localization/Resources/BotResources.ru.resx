@@ -118,33 +118,45 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CommandFailedUnexpectedly" xml:space="preserve">
-    <value>Не удалось выполнить команду из-за непредвиденной ошибки. Идентификатор трассировки '{0}'.</value>
+    <value>Не удалось выполнить запрос из-за непредвиденной ошибки ☹️
+Идентификатор трассировки '{0}'</value>
   </data>
   <data name="CommandNotSupportedOrIncomplete" xml:space="preserve">
-    <value>Команда не поддерживается или имеет неправильный формат.</value>
+    <value>Команда не поддерживается или имеет неправильный формат ☹️</value>
+  </data>
+  <data name="StartText" xml:space="preserve">
+    <value>Привет! Я занимаюсь отправкой уведомлений из [Alertmanager](https://prometheus.io/docs/alerting/alertmanager/) в Telegram.
+
+Вы можете использовать следующие команды:
+
+/echo - отображает сведения о запросе.
+/subscribe _channel_ - подписывает чат на получение уведомлений из канала _channel_. 
+/unsubscribe _channel_ - отписывает чат от уведомлений из канала _channel_.
+
+Подробнее про бота можете посмотреть в документации к [проекту](https://github.com/btshft/Zeus).</value>
   </data>
   <data name="SubscribeFailedAlreadySubscribed" xml:space="preserve">
-    <value>Вы уже подписаны на уведомления от указанного канала.</value>
+    <value>Вы уже подписаны на уведомления от указанного канала</value>
   </data>
   <data name="SubscribeFailedChannelNotFound" xml:space="preserve">
-    <value>Не удалось подписаться на уведомления. Канал с указанным именем не найден.</value>
+    <value>Не удалось подписаться на уведомления, канал не найден ☹️</value>
   </data>
   <data name="SubscribeSucceed" xml:space="preserve">
-    <value>Вы успешно подписались на уведомления.</value>
+    <value>Вы успешно подписались на уведомления!</value>
   </data>
   <data name="SubscriptionsChannelSubscribers" xml:space="preserve">
     <value>Подписчики канала '{0}'</value>
   </data>
   <data name="SubscriptionsNotFound" xml:space="preserve">
-    <value>Подписчики отсутствуют.</value>
+    <value>Подписчики отсутствуют</value>
   </data>
   <data name="UnsubscribeFailedChannelNotFound" xml:space="preserve">
-    <value>Не удалось отписаться от уведомлений. Канал с указанным именем не найден.</value>
+    <value>Не удалось отписаться от уведомлений, канал не найден ☹️</value>
   </data>
   <data name="UnsubscribeFailedNotSubscribed" xml:space="preserve">
-    <value>Вы не подписаны на указанный канал.</value>
+    <value>Вы не подписаны на указанный канал</value>
   </data>
   <data name="UnsubscribeSucceed" xml:space="preserve">
-    <value>Вы успешно отписались от уведомлений.</value>
+    <value>Вы успешно отписались от уведомлений</value>
   </data>
 </root>

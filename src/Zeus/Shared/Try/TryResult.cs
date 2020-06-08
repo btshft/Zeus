@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Zeus.v2.Shared.Try
+namespace Zeus.Shared.Try
 {
     public class TryResult
     {

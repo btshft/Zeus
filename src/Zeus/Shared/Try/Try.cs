@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Zeus.v2.Shared.Try
+namespace Zeus.Shared.Try
 {
     public static class Try
     {

@@ -4,10 +4,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-using Zeus.v2.Handlers.Bot.Authorization;
-using Zeus.v2.Shared.AppFeature;
+using Zeus.Handlers.Bot.Authorization;
+using Zeus.Shared.AppFeature;
 
-namespace Zeus.v2.Features.Bot.Authorize
+namespace Zeus.Features.Bot.Authorize
 {
     public class BotAuthorizationFeature : AppFeature<BotAuthorizationFeatureOptions>
     {

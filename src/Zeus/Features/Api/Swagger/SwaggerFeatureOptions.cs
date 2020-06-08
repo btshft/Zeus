@@ -1,4 +1,4 @@
-﻿namespace Zeus.v2.Features.Api.Swagger
+﻿namespace Zeus.Features.Api.Swagger
 {
     public class SwaggerFeatureOptions
     {

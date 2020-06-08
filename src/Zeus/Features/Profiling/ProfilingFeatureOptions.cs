@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Zeus.v2.Features.Profiling
+namespace Zeus.Features.Profiling
 {
     public class ProfilingFeatureOptions
     {

@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Zeus.v2.Shared.Extensions
+namespace Zeus.Shared.Extensions
 {
     public static class ServiceProviderExtensions
     {

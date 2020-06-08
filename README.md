@@ -1,8 +1,25 @@
-# Zeus
-Telegram bot for Prometheus alerts
+# About
+Telegram bot for [Prometheus](https://prometheus.io/) alerts. Bot provides a flexible and convenient way to send alerts to Telegram.
+
+![Development (Docker)](https://github.com/btshft/Zeus/workflows/Development%20(Docker)/badge.svg)
 
 ## Status
 Work in progress. 
+
+## Features
+1. **Channels & Subscriptions**. Publish alerts to different channels using signle app, manage channel subscriptions from Telegram using commands.
+2. **Docker ready**. Easy to start using application inside Docker.
+3. **Localization** (only russian now).
+4. **Message template customization**. Rich and simple template language, customized templates for different locales and channels.
+5. **Transparent API**. Debug and test alerts even without Alertmanager via Swagger.
+
+## Quickstart
+See [examples](https://github.com/btshft/Zeus/tree/develop/examples) directory to get started with Zeus.
+
+## Commands
+1. `/echo` - displays information about incoming request. Use this command to get Telegram metadata like chat or user identifier.
+2. `/subscribe {channel}` - subscribe current chat to receive notifications sent to the appropriate channel.
+3. `/unsubscribe {channel}` - unsubscribe current chat from receiving notifications.
 
 ## Third-party software
 1. [Telegram.Bot](https://github.com/TelegramBots/Telegram.Bot) - the Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. License: MIT

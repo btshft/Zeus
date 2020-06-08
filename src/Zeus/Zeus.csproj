@@ -38,17 +38,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Localization\Resources\BotResources.ru.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>BotResources.ru.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Update="Localization\Resources\BotResources.ru.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>BotResources.ru.Designer.cs</LastGenOutput>
+      <Generator></Generator>
     </EmbeddedResource>
   </ItemGroup>
 

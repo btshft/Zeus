@@ -1,7 +1,7 @@
 ﻿using Telegram.Bot.Types;
-using Zeus.v2.Handlers.Bot.Abstractions;
+using Zeus.Handlers.Bot.Abstractions;
 
-namespace Zeus.v2.Handlers.Bot.Actions
+namespace Zeus.Handlers.Bot.Actions
 {
     public class BotActionRequest<TAction> : IBotActionRequest
         where TAction : IBotAction

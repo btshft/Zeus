@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Zeus.v2.Shared.AppFeature;
-using Zeus.v2.Shared.AppFeature.Extensions;
-using Zeus.v2.Shared.Extensions;
+using Zeus.Shared.AppFeature;
+using Zeus.Shared.AppFeature.Extensions;
+using Zeus.Shared.Extensions;
 
-namespace Zeus.v2.Shared.Features.Extensions
+namespace Zeus.Shared.Features.Extensions
 {
     public static class ConfigurationAppFeatureBuilderExtensions
     {

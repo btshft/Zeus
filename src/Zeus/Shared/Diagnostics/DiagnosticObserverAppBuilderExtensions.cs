@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Zeus.v2.Shared.Diagnostics
+namespace Zeus.Shared.Diagnostics
 {
     public static class DiagnosticObserverAppBuilderExtensions
     {

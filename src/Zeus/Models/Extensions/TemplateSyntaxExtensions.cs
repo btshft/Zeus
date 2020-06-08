@@ -1,7 +1,7 @@
 ﻿using Telegram.Bot.Types.Enums;
 using Zeus.Storage.Models.Alerts;
 
-namespace Zeus.v2.Models.Extensions
+namespace Zeus.Models.Extensions
 {
     public static class TemplateSyntaxExtensions
     {

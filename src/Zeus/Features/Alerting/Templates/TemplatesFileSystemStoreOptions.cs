@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.IO;
 
-namespace Zeus.v2.Features.Alerting.Templates
+namespace Zeus.Features.Alerting.Templates
 {
     public class TemplatesFileSystemStoreOptions
     {

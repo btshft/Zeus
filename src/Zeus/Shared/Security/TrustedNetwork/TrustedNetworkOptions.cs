@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Zeus.v2.Shared.Security.TrustedNetwork
+namespace Zeus.Shared.Security.TrustedNetwork
 {
     /// <summary>
     /// Trusted network options.

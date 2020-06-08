@@ -1,0 +1,24 @@
+app:
+  environment: Production
+  settings:
+    bot:
+      token: "<bot token>"
+      administrators:
+        - <admin user id>
+
+    alerting:
+      templatesPath: "/app/templates"
+
+image:
+  repository: docker.pkg.github.com/btshft/zeus/zeus-bot
+  tag: develop
+  pullPolicy: IfNotPresent
+  pullSecret: regcred
+
+ingress:
+  host: zeus.local
+  path: /
+
+service:
+  type: ClusterIP
+  port: 80

@@ -5,7 +5,7 @@ using System.Reflection;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Zeus.v2.Shared.Mediatr
+namespace Zeus.Shared.Mediatr
 {
     public class RequestHandlerFinder : IRequestHandlerFinder
     {
@@ -17,18 +17,6 @@ namespace Zeus.v2.Shared.Mediatr
         public RequestHandlerFinder(IServiceCollection serviceCollection)
         {
             _serviceCollection = serviceCollection;
-        }
-
-        public Type FindHandlerType<TRequest>() 
-            where TRequest : IRequest
-        {
-            return TypeCache.GetOrAdd(typeof(TRequest), t =>
-            {
-                var descriptor = _serviceCollection
-                    .FirstOrDefault(s => s.ServiceType == typeof(IRequestHandler<TRequest>));
-
-                return descriptor?.ImplementationType;
-            });
         }
 
         /// <inheritdoc />

@@ -3,17 +3,18 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using Telegram.Bot;
 using Telegram.Bot.Types;
+using Zeus.Models.Extensions;
+using Zeus.Services.Telegram;
+using Zeus.Services.Templating;
+using Zeus.Shared.Exceptions;
+using Zeus.Shared.Extensions;
+using Zeus.Shared.Try;
 using Zeus.Storage.Models.Alerts;
 using Zeus.Storage.Stores.Abstractions;
-using Zeus.v2.Models.Extensions;
-using Zeus.v2.Services.Telegram.Messaging;
-using Zeus.v2.Services.Telegram.Messaging.Requests;
-using Zeus.v2.Services.Templating;
-using Zeus.v2.Shared.Exceptions;
-using Zeus.v2.Shared.Try;
 
-namespace Zeus.v2.Handlers.Webhook
+namespace Zeus.Handlers.Webhook
 {
     public class AlertManagerUpdateRequestHandler : AsyncRequestHandler<AlertManagerUpdateRequest>
     {
@@ -21,20 +22,20 @@ namespace Zeus.v2.Handlers.Webhook
         private readonly IChannelStore _channelStore;
         private readonly ITemplatesStore _templatesStore;
         private readonly ISubscriptionsStore _subscriptionsStore;
-        private readonly ITelegramMessageSender _messageSender;
+        private readonly ITelegramBotClient _botClient;
 
         public AlertManagerUpdateRequestHandler(
             ITemplateEngine templateEngine, 
             IChannelStore channelStore, 
             ITemplatesStore templatesStore,
-            ISubscriptionsStore subscriptionsStore,
-            ITelegramMessageSender messageSender)
+            ISubscriptionsStore subscriptionsStore, 
+            ITelegramBotClient botClient)
         {
             _templateEngine = templateEngine;
             _channelStore = channelStore;
             _templatesStore = templatesStore;
             _subscriptionsStore = subscriptionsStore;
-            _messageSender = messageSender;
+            _botClient = botClient;
         }
 
         /// <inheritdoc />
@@ -69,14 +70,15 @@ namespace Zeus.v2.Handlers.Webhook
             };
 
             var message = await _templateEngine.RenderAsync(template.Content, model, cancellationToken);
+            var parseMode = template.Syntax.ToParseMode();
+            var safeMessage = message.Escape(parseMode);
 
             var sendTasks = subscriptions
-                .Select(s => _messageSender.SendAsync(
-                    new TelegramMessageSendRequest(new ChatId(s.ChatId), message)
-                    {
-                        ParseMode = template.Syntax.ToParseMode(),
-                        DisableNotification = s.DisableNotifications
-                    }, cancellationToken));
+                .Select(s => _botClient
+                    .SendTextMessageSplitAsync(new ChatId(s.ChatId), 
+                        safeMessage, parseMode, 
+                        disableWebPagePreview: true, 
+                        disableNotification: s.DisableNotifications, cancellationToken: cancellationToken));
 
             var results = await Try.WhenAll(sendTasks);
             if (results.HasFaults())

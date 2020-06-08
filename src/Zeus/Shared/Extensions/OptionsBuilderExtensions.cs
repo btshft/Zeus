@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace Zeus.v2.Shared.Extensions
+namespace Zeus.Shared.Extensions
 {
     public static class OptionsBuilderExtensions
     {

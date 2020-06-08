@@ -5,9 +5,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Scriban;
-using Zeus.v2.Services.Templating.Exceptions;
+using Zeus.Services.Templating.Exceptions;
 
-namespace Zeus.v2.Services.Templating.Scriban
+namespace Zeus.Services.Templating.Scriban
 {
     public class ScribanTemplateEngine : ITemplateEngine
     {

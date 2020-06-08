@@ -15,11 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Storage", "Storage", "{6561
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zeus.Storage.Consul", "Zeus.Storage.Consul\Zeus.Storage.Consul.csproj", "{08764378-7555-4F2F-9E11-D3C5056C2378}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C8DA114F-F6C5-43E7-957B-F4A173D184E5}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zeus", "Zeus\Zeus.csproj", "{E52CE258-0304-4B48-A4BD-3791C8B35147}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".docker", ".docker", "{1189B3CB-37D0-45ED-80B6-24C9240535D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +31,6 @@ Global
 		{08764378-7555-4F2F-9E11-D3C5056C2378}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08764378-7555-4F2F-9E11-D3C5056C2378}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08764378-7555-4F2F-9E11-D3C5056C2378}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C8DA114F-F6C5-43E7-957B-F4A173D184E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C8DA114F-F6C5-43E7-957B-F4A173D184E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C8DA114F-F6C5-43E7-957B-F4A173D184E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C8DA114F-F6C5-43E7-957B-F4A173D184E5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E52CE258-0304-4B48-A4BD-3791C8B35147}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E52CE258-0304-4B48-A4BD-3791C8B35147}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E52CE258-0304-4B48-A4BD-3791C8B35147}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -50,7 +42,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D5B95751-4940-428F-8FE5-2153320AAA85} = {656173A1-3B53-4164-83AB-4B50B6436E7F}
 		{08764378-7555-4F2F-9E11-D3C5056C2378} = {656173A1-3B53-4164-83AB-4B50B6436E7F}
-		{C8DA114F-F6C5-43E7-957B-F4A173D184E5} = {1189B3CB-37D0-45ED-80B6-24C9240535D4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {20CDE66B-47DB-4106-AA07-D4627F9B3373}

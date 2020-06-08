@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
-using Zeus.v2.Shared.Exceptions;
+using Zeus.Shared.Exceptions;
 
-namespace Zeus.v2.Controllers
+namespace Zeus.Controllers
 {
     public class ErrorController : ControllerBase
     {

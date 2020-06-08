@@ -1,10 +1,12 @@
 ﻿using Telegram.Bot.Types;
 
-namespace Zeus.v2.Handlers.Bot.Context
+namespace Zeus.Handlers.Bot.Context
 {
     public class BotActionContext
     {
         public Update Update { get; set; }
+
+        public User Bot { get; set; }
 
         public string TraceId { get; set; }
 

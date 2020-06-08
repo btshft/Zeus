@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Zeus.v2.Features.Clients
+namespace Zeus.Features.Clients
 {
     public class ClientOptions
     {

@@ -1,7 +1,7 @@
 ﻿using System;
-using Zeus.v2.Handlers.Bot.Abstractions;
+using Zeus.Handlers.Bot.Abstractions;
 
-namespace Zeus.v2.Handlers.Bot.Actions.Echo
+namespace Zeus.Handlers.Bot.Actions.Echo
 {
     public class EchoAction : IBotAction
     {

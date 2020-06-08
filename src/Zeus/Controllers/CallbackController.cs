@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Telegram.Bot.Types;
-using Zeus.v2.Features.Api.Authorization;
-using Zeus.v2.Handlers.Bot.Updates;
-using Zeus.v2.Shared.Json;
-using Zeus.v2.Shared.Security.TrustedNetwork;
+using Zeus.Features.Api.Authorization;
+using Zeus.Handlers.Bot.Updates;
+using Zeus.Shared.Json;
+using Zeus.Shared.Security.TrustedNetwork;
 
-namespace Zeus.v2.Controllers
+namespace Zeus.Controllers
 {
     [ApiController, ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/callback")]

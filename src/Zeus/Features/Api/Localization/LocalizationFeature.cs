@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
@@ -7,10 +8,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-using Zeus.v2.Localization;
-using Zeus.v2.Shared.AppFeature;
+using Zeus.Localization;
+using Zeus.Shared.AppFeature;
 
-namespace Zeus.v2.Features.Api.Localization
+namespace Zeus.Features.Api.Localization
 {
     public class LocalizationFeature : AppFeature<LocalizationFeatureOptions>
     {
@@ -28,7 +29,7 @@ namespace Zeus.v2.Features.Api.Localization
 
             services.AddLocalization(o =>
             {
-                o.ResourcesPath = "Localization\\Resources";
+                o.ResourcesPath = Path.Combine("Localization", "Resources");
             });
 
             services.TryAddTransient(typeof(IMessageLocalizer<>), typeof(MessageLocalizer<>));

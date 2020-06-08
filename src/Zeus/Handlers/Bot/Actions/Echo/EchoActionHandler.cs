@@ -6,11 +6,11 @@ using Microsoft.Extensions.Logging;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using Zeus.v2.Handlers.Bot.Abstractions;
-using Zeus.v2.Localization;
-using Zeus.v2.Shared.Extensions;
+using Zeus.Handlers.Bot.Abstractions;
+using Zeus.Localization;
+using Zeus.Shared.Extensions;
 
-namespace Zeus.v2.Handlers.Bot.Actions.Echo
+namespace Zeus.Handlers.Bot.Actions.Echo
 {
     [AllowAnonymous]
     public class EchoActionHandler : BotActionHandler<EchoAction>

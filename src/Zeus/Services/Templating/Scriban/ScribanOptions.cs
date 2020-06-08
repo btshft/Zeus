@@ -1,7 +1,7 @@
 ﻿using Scriban.Parsing;
 using Scriban.Runtime;
 
-namespace Zeus.v2.Services.Templating.Scriban
+namespace Zeus.Services.Templating.Scriban
 {
     public class ScribanOptions
     {

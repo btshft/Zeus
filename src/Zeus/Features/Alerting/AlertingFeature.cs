@@ -4,15 +4,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Zeus.Services.Templating;
+using Zeus.Services.Templating.Scriban;
+using Zeus.Shared.AppFeature;
+using Zeus.Shared.Extensions;
 using Zeus.Storage.Consul;
 using Zeus.Storage.Stores.Abstractions;
-using Zeus.v2.Services.Templating;
-using Zeus.v2.Services.Templating.Scriban;
-using Zeus.v2.Shared.AppFeature;
-using Zeus.v2.Shared.Extensions;
-using Zeus.v2.Stores.Default;
+using Zeus.Stores.Default;
 
-namespace Zeus.v2.Features.Alerting
+namespace Zeus.Features.Alerting
 {
     public class AlertingFeature : AppFeature<AlertingFeatureOptions>
     {

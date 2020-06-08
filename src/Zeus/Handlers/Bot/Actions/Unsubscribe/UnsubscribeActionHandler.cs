@@ -4,14 +4,14 @@ using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using Zeus.Handlers.Bot.Abstractions;
+using Zeus.Handlers.Bot.Reply;
+using Zeus.Localization;
 using Zeus.Storage.Stores.Abstractions;
-using Zeus.v2.Handlers.Bot.Abstractions;
-using Zeus.v2.Handlers.Bot.Reply;
-using Zeus.v2.Localization;
 
-namespace Zeus.v2.Handlers.Bot.Actions.Unsubscribe
+namespace Zeus.Handlers.Bot.Actions.Unsubscribe
 {
-    [AllowReply]
+    [ReplyOnException]
     public class UnsubscribeActionHandler : BotActionHandler<UnsubscribeAction>
     {
         private readonly IChannelStore _channelStore;

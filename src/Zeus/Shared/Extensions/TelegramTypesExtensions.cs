@@ -1,7 +1,8 @@
 ﻿using Newtonsoft.Json;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 
-namespace Zeus.v2.Shared.Extensions
+namespace Zeus.Shared.Extensions
 {
     public static class TelegramTypesExtensions
     {
@@ -11,6 +12,13 @@ namespace Zeus.v2.Shared.Extensions
                 return "null";
 
             return JsonConvert.SerializeObject(update, Formatting.Indented);
+        }
+
+        public static bool IsCommand(this Update update)
+        {
+            return update.Type == UpdateType.Message &&
+                   update.Message.Type == MessageType.Text &&
+                   update.Message.Text.StartsWith('/');
         }
     }
 }

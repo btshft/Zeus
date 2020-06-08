@@ -1,4 +1,4 @@
-﻿namespace Zeus.v2.Features.Api.Authorization
+﻿namespace Zeus.Features.Api.Authorization
 {
     public static class AuthPolicies
     {

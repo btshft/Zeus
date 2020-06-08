@@ -1,13 +1,12 @@
 using System;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
-using Zeus.v2.Shared.Serilog.Enrichers;
+using Zeus.Shared.Serilog.Enrichers;
 
-namespace Zeus.v2
+namespace Zeus
 {
     public class Program
     {
@@ -15,25 +14,22 @@ namespace Zeus.v2
 
         public static int Main(string[] args)
         {
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-                .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information)
-                .MinimumLevel.Override("System", LogEventLevel.Warning)
-                .MinimumLevel.Override("Microsoft.AspNetCore.Authentication", LogEventLevel.Information)
+            var logger = new LoggerConfiguration()
+                .MinimumLevel.Information()
                 .Enrich.FromLogContext()
                 .WriteTo.Console(outputTemplate: LogTemplate, theme: AnsiConsoleTheme.Code)
                 .CreateLogger();
 
             try
             {
-                Log.Information("Starting host...");
+                logger.Information("Starting host...");
                 CreateHostBuilder(args).Build().Run();
+                logger.Information("Stopping host...");
                 return 0;
             }
             catch (Exception ex)
             {
-                Log.Fatal(ex, "Host terminated unexpectedly.");
+                logger.Fatal(ex, "Host terminated unexpectedly.");
                 return 1;
             }
             finally

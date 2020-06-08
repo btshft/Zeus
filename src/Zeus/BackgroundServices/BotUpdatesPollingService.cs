@@ -5,10 +5,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Telegram.Bot;
 using Telegram.Bot.Extensions.Polling;
-using Zeus.v2.Clients.Callback;
-using Zeus.v2.Shared.Extensions;
+using Zeus.Clients.Callback;
+using Zeus.Shared.Extensions;
 
-namespace Zeus.v2.BackgroundServices
+namespace Zeus.BackgroundServices
 {
     public class BotUpdatesPollingService : BackgroundService
     {

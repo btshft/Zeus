@@ -9,12 +9,12 @@ using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using Telegram.Bot.Types;
+using Zeus.Controllers;
+using Zeus.Shared.AppFeature;
 using Zeus.Storage.Models.External;
-using Zeus.v2.Controllers;
-using Zeus.v2.Shared.AppFeature;
 using File = System.IO.File;
 
-namespace Zeus.v2.Features.Api.Swagger
+namespace Zeus.Features.Api.Swagger
 {
     public class SwaggerFeature : AppFeature<SwaggerFeatureOptions>
     {
@@ -33,6 +33,8 @@ namespace Zeus.v2.Features.Api.Swagger
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerGenOptions>();
             services.AddSwaggerGen(s =>
             {
+                s.OperationFilter<SwaggerDefaultValues>();
+
                 var includeDocsTypesMarkers = new[]
                 {
                     typeof(CallbackController),

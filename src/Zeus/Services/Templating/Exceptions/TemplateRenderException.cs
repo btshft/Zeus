@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Zeus.v2.Services.Templating.Exceptions
+namespace Zeus.Services.Templating.Exceptions
 {
     [Serializable]
     public class TemplateRenderException : Exception

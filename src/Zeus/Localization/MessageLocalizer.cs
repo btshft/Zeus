@@ -5,7 +5,7 @@ using System.Linq;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 
-namespace Zeus.v2.Localization
+namespace Zeus.Localization
 {
     public class MessageLocalizer<TResource> : IMessageLocalizer<TResource>
     {

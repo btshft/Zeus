@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Telegram.Bot.Types;
 
-namespace Zeus.v2.Handlers.Bot.Abstractions
+namespace Zeus.Handlers.Bot.Abstractions
 {
     public interface IBotActionRequest : IRequest
     {

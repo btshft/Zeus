@@ -1,4 +1,4 @@
-﻿namespace Zeus.v2.Features.Api
+﻿namespace Zeus.Features.Api
 {
     /// <summary>
     /// Api options.

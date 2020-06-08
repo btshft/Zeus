@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Zeus.v2.Shared.Exceptions;
-using Zeus.v2.Shared.Extensions;
+using Zeus.Shared.Exceptions;
+using Zeus.Shared.Extensions;
 
-namespace Zeus.v2.Shared.AppFeature.Extensions
+namespace Zeus.Shared.AppFeature.Extensions
 {
     public static class AppFeatureApplicationBuilderExtensions
     {

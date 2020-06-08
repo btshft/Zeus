@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Zeus.v2.Shared.Extensions
+namespace Zeus.Shared.Extensions
 {
     public static class EnumerableExtensions
     {

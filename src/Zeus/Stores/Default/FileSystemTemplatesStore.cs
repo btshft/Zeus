@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Zeus.Storage.Models.Alerts;
 using Zeus.Storage.Stores.Abstractions;
 
-namespace Zeus.v2.Stores.Default
+namespace Zeus.Stores.Default
 {
     public class FileSystemTemplatesStore : ITemplatesStore
     {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 
-namespace Zeus.v2.Features.Api.Localization
+namespace Zeus.Features.Api.Localization
 {
     public class LocalizationFeatureOptions
     {

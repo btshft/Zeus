@@ -1,4 +1,4 @@
-﻿namespace Zeus.v2.Handlers.Bot.Context
+﻿namespace Zeus.Handlers.Bot.Context
 {
     public interface IBotActionContextAccessor
     {

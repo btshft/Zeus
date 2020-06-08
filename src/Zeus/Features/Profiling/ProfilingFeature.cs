@@ -5,13 +5,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
-using Zeus.v2.Features.Profiling.Behaviors;
-using Zeus.v2.Features.Profiling.Decorators;
-using Zeus.v2.Features.Profiling.Diagnostics;
-using Zeus.v2.Shared.AppFeature;
-using Zeus.v2.Shared.Diagnostics;
+using Zeus.Features.Profiling.Behaviors;
+using Zeus.Features.Profiling.Decorators;
+using Zeus.Features.Profiling.Diagnostics;
+using Zeus.Shared.AppFeature;
+using Zeus.Shared.Diagnostics;
 
-namespace Zeus.v2.Features.Profiling
+namespace Zeus.Features.Profiling
 {
     public class ProfilingFeature : AppFeature<ProfilingFeatureOptions>
     {

@@ -2,9 +2,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Zeus.v2.Shared.AppFeature.Internal;
+using Zeus.Shared.AppFeature.Internal;
 
-namespace Zeus.v2.Shared.AppFeature.Extensions
+namespace Zeus.Shared.AppFeature.Extensions
 {
     public static class AppFeatureServiceCollectionExtensions
     {

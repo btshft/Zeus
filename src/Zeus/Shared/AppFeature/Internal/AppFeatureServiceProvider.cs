@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Zeus.v2.Shared.AppFeature.Internal
+namespace Zeus.Shared.AppFeature.Internal
 {
     internal class AppFeatureServiceProvider : IServiceProvider
     {

@@ -4,18 +4,18 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["Zeus.v2/Zeus.v2.csproj", "Zeus.v2/"]
+COPY ["Zeus/Zeus.csproj", "Zeus/"]
 COPY ["Zeus.Storage.Consul/Zeus.Storage.Consul.csproj", "Zeus.Storage.Consul/"]
 COPY ["Zeus.Storage/Zeus.Storage.csproj", "Zeus.Storage/"]
-RUN dotnet restore "Zeus.v2/Zeus.v2.csproj"
+RUN dotnet restore "Zeus/Zeus.csproj"
 COPY . .
-WORKDIR "/src/Zeus.v2"
-RUN dotnet build "Zeus.v2.csproj" -c Release -o /app/build
+WORKDIR "/src/Zeus"
+RUN dotnet build "Zeus.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Zeus.v2.csproj" -c Release -o /app/publish
+RUN dotnet publish "Zeus.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Zeus.v2.dll"]
+ENTRYPOINT ["dotnet", "Zeus.dll"]
