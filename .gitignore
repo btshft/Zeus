@@ -375,3 +375,4 @@ Thumbs.db
 !.gitattributes
 !.templates/
 !.dockerignore
+!.helmignore

@@ -1,0 +1,8 @@
+apiVersion: v1
+name: zeus
+version: 0.0.1
+appVersion: 0.0.1
+description: Telegram bot for Prometheus alerts.
+home: https://github.com/btshft/Zeus
+sources:
+- https://github.com/btshft/Zeus
