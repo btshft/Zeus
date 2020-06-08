@@ -1,7 +1,7 @@
-# About
+# Zeus ![Docker Image Version (latest semver)](https://img.shields.io/docker/v/bitshift/zeus)
 Telegram bot for [Prometheus](https://prometheus.io/) alerts. Bot provides a flexible and convenient way to send alerts to Telegram.
 
-![Development (Docker)](https://github.com/btshft/Zeus/workflows/Development%20(Docker)/badge.svg)
+![Release (Docker)](https://github.com/btshft/Zeus/workflows/Release%20(Docker)/badge.svg) ![Development (Docker)](https://github.com/btshft/Zeus/workflows/Development%20(Docker)/badge.svg)
 
 ## Status
 Work in progress. 
