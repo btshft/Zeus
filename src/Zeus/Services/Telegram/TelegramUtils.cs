@@ -5,7 +5,7 @@ namespace Zeus.Services.Telegram
 {
     public static class TelegramUtils
     {
-        private static readonly Regex MarkdownEscapeRegEx = new Regex(@"(?<link>\[[^\][]*]\(http[^()]*\))|(?<characters>[-.+?^$[\](){}\\])",
+        private static readonly Regex MarkdownEscapeRegEx = new Regex(@"(?<link>\[[^\][]*]\(http[^()]*\))|(?<characters>[-.+!?^$[\](){}\\])",
             RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
 
         public static string Escape(string text, ParseMode parseMode)
