@@ -10,10 +10,9 @@ app:
       templatesPath: "/app/templates"
 
 image:
-  repository: docker.pkg.github.com/btshft/zeus/zeus-bot
-  tag: develop
+  repository: bitshift/zeus
+  tag: v0.0.1
   pullPolicy: IfNotPresent
-  pullSecret: regcred
 
 ingress:
   host: zeus.local
