@@ -3,9 +3,9 @@ using System.Net;
 using System.Threading.Tasks;
 using Consul;
 
-namespace Zeus.Storage.Consul
+namespace Zeus.Storage.Consul.Internal
 {
-    internal static partial class QueryResultExtensions
+    internal static class QueryResultExtensions
     {
         public static T Unwrap<T>(this QueryResult<T> queryResult)
         {

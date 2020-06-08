@@ -3,6 +3,7 @@ using Consul;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
+using Zeus.Storage.Consul.Store;
 using Zeus.Storage.Stores.Abstractions;
 
 namespace Zeus.Storage.Consul

@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Consul;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
+using Zeus.Storage.Consul.Internal;
 using Zeus.Storage.Models.Alerts;
 using Zeus.Storage.Stores.Abstractions;
 
-namespace Zeus.Storage.Consul
+namespace Zeus.Storage.Consul.Store
 {
     /// <summary>
-    /// Consul subscriotion store.
+    /// Consul subscription store.
     /// </summary>
     internal class ConsulSubscriptionsStore : ISubscriptionsStore
     {
@@ -38,57 +37,36 @@ namespace Zeus.Storage.Consul
             CancellationToken cancellation = default)
         {
             var key = GetSubscriptionsKey(channel);
-            var subscriptions = await _consulClient.KV.List(key, cancellation).UnwrapAsync();
-            if (subscriptions == null)
-                return Array.Empty<AlertsSubscription>();
+            var options = _optionsProvider.Value;
 
-            var resultSubscriptions = new List<AlertsSubscription>(subscriptions.Length);
-            foreach (var subscription in subscriptions)
-            {
-                var jsonContent = Encoding.UTF8.GetString(subscription.Value);
-                var subscriptionTyped =
-                    JsonConvert.DeserializeObject<AlertsSubscription>(jsonContent,
-                        _optionsProvider.Value.SerializerSettings);
+            var subscriptions = await _consulClient.KV.ListAsync<AlertsSubscription>(
+                key, options.SerializerSettings, cancellation).UnwrapAsync();
 
-                resultSubscriptions.Add(subscriptionTyped);
-            }
-
-            return resultSubscriptions;
+            return subscriptions.Select(s => s.Value).ToArray();
         }
 
         /// <inheritdoc />
         public async Task<IReadOnlyCollection<AlertsSubscription>> GetAllAsync(CancellationToken cancellation = default)
         {
             var key = GetSubscriptionsKey();
-            var subscriptions = await _consulClient.KV.List(key, cancellation).UnwrapAsync();
+            var options = _optionsProvider.Value;
 
-            var resultSubscriptions = new List<AlertsSubscription>(subscriptions.Length);
-            foreach (var subscription in subscriptions)
-            {
-                var jsonContent = Encoding.UTF8.GetString(subscription.Value);
-                var subscriptionTyped =
-                    JsonConvert.DeserializeObject<AlertsSubscription>(jsonContent,
-                        _optionsProvider.Value.SerializerSettings);
+            var subscriptions = await _consulClient.KV.ListAsync<AlertsSubscription>(
+                key, options.SerializerSettings, cancellation).UnwrapAsync();
 
-                resultSubscriptions.Add(subscriptionTyped);
-            }
-
-            return resultSubscriptions;
+            return subscriptions.Select(s => s.Value).ToArray();
         }
 
         /// <inheritdoc />
         public async Task<AlertsSubscription> GetAsync(long chatId, string channel, CancellationToken cancellation = default)
         {
             var key = GetSubscriptionKey(channel, chatId);
-            var result = await _consulClient.KV.List(key, cancellation).UnwrapAsync();
-            if (result == null || result.Length == 0) 
-                return null;
+            var options = _optionsProvider.Value;
 
-            var subscriptionBytes = result.First().Value;
-            var subscriptionJson = Encoding.UTF8.GetString(subscriptionBytes);
+            var subscriptions = await _consulClient.KV.ListAsync<AlertsSubscription>(
+                key, options.SerializerSettings, cancellation).UnwrapAsync();
 
-            return JsonConvert.DeserializeObject<AlertsSubscription>(subscriptionJson,
-                _optionsProvider.Value.SerializerSettings);
+            return subscriptions.First();
         }
 
         /// <inheritdoc />
@@ -106,15 +84,9 @@ namespace Zeus.Storage.Consul
                 throw new ArgumentNullException(nameof(subscription));
 
             var key = GetSubscriptionKey(subscription.Channel, subscription.ChatId);
+            var options = _optionsProvider.Value;
 
-            var jsonString = JsonConvert.SerializeObject(subscription, _optionsProvider.Value.SerializerSettings);
-            var utf8Bytes = Encoding.UTF8.GetBytes(jsonString);
-
-            var result = await _consulClient.KV.Put(new KVPair(key)
-            {
-                Value = utf8Bytes
-            }, cancellation);
-
+            var result = await _consulClient.KV.PutAsync(key, subscription, options.SerializerSettings, cancellation);
             if (!result.Response)
                 throw new ConsulRequestException(
                     $"Unable to store subscription (chat: {subscription.ChatId}; channel: {subscription.Channel})",

@@ -19,18 +19,6 @@ namespace Zeus.Shared.Mediatr
             _serviceCollection = serviceCollection;
         }
 
-        public Type FindHandlerType<TRequest>() 
-            where TRequest : IRequest
-        {
-            return TypeCache.GetOrAdd(typeof(TRequest), t =>
-            {
-                var descriptor = _serviceCollection
-                    .FirstOrDefault(s => s.ServiceType == typeof(IRequestHandler<TRequest>));
-
-                return descriptor?.ImplementationType;
-            });
-        }
-
         /// <inheritdoc />
         public Type FindHandlerType(Type requestType)
         {
