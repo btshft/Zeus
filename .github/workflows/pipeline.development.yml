@@ -20,4 +20,4 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
         repository: btshft/zeus/zeus-bot
         registry: docker.pkg.github.com
-        tags: build_$GITHUB_RUN_NUMBER
+        tags: build_${{ env.GITHUB_RUN_NUMBER }}
