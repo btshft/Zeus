@@ -11,6 +11,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       name: Checkout
+    - name: Run tests
+      working-directory: "./src"
+      run: dotnet test --verbosity normal
     - name: Docker Build & Publish
       uses: docker/build-push-action@v1.1.0
       with:
