@@ -4,7 +4,6 @@ using MediatR;
 using Microsoft.Extensions.Localization;
 using Telegram.Bot;
 using Telegram.Bot.Types;
-using Telegram.Bot.Types.Enums;
 using Zeus.Handlers.Bot.Abstractions;
 using Zeus.Handlers.Bot.Actions;
 using Zeus.Handlers.Bot.Actions.Echo;

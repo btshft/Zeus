@@ -1,10 +1,7 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Http;
-using Telegram.Bot;
-using Telegram.Bot.Types;
 using Zeus.Handlers.Bot.Abstractions;
 
 namespace Zeus.Handlers.Bot.Context

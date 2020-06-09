@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Zeus.Shared.Exceptions;
 
 namespace Zeus.Shared.Validation
@@ -14,85 +13,35 @@ namespace Zeus.Shared.Validation
             if (instance == null)
                 throw new ArgumentNullException(nameof(instance));
 
-            var results = new List<ValidationResult>();
-            if (TryValidateRecursive(instance, ref results))
+            var context = new ValidationContext(instance);
+            var validationResults = new List<ValidationResult>();
+
+            if (Validator.TryValidateObject(instance, context, validationResults, validateAllProperties: true))
                 return;
 
-            var errors = results.Where(s => !string.IsNullOrEmpty(s.ErrorMessage))
+            var flatResults = new List<ValidationResult>();
+            Flatten(validationResults, ref flatResults);
+
+            var errors = flatResults.Where(s => !string.IsNullOrEmpty(s.ErrorMessage))
                 .Select(s => s.ErrorMessage);
 
             var errorMessage = string.Join(';', errors);
             throw new ConfigurationException($"Errors occured while validating object '{instance.GetType().Name}': {errorMessage}");
         }
 
-        private static bool TryValidateRecursive(object instance, ref List<ValidationResult> results)
+        private static void Flatten(IEnumerable<ValidationResult> results, ref List<ValidationResult> output)
         {
-            if (instance == null)
-                throw new ArgumentNullException(nameof(instance));
+            if (output == null)
+                output = new List<ValidationResult>();
 
-            if (results == null)
-                results = new List<ValidationResult>();
-
-            var validationContext = new ValidationContext(instance);
-            var isValid = Validator.TryValidateObject(instance, validationContext, results, validateAllProperties: true);
-
-            var properties = instance.GetType()
-                .GetProperties()
-                .Where(prop => prop.CanRead && prop.GetIndexParameters().Length == 0)
-                .Where(prop => CanValidate(prop.PropertyType))
-                .ToArray();
-
-            foreach (var property in properties)
+            foreach (var result in results)
             {
-                var value = property.GetValue(instance);
-                if (value == null)
-                    continue;
+                output.Add(result);
 
-                var enumerable = value as IEnumerable<object> ?? new[] { value };
-
-                foreach (var toValidate in enumerable)
+                if (result is CompositeValidationResult composite)
                 {
-                    var nestedResults = new List<ValidationResult>();
-                    if (TryValidateRecursive(toValidate, ref nestedResults))
-                    {
-                        continue;
-                    }
-
-                    isValid = false;
-
-                    results.AddRange(nestedResults
-                        .Select(result => new ValidationResult(
-                            result.ErrorMessage, result.MemberNames
-                                .Select(x => property.Name + '.' + x))));
+                    Flatten(composite.InnerResults, ref output);
                 }
-            }
-
-
-            return isValid;
-        }
-
-        /// <summary>
-        /// Returns whether the given <paramref name="type"/> can be validated
-        /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static bool CanValidate(Type type)
-        {
-            while (true)
-            {
-                if (type == null) 
-                    return false;
-
-                if (type == typeof(string))
-                    return false;
-
-                if (type.IsValueType) 
-                    return false;
-
-                if (!type.IsArray || !type.HasElementType) 
-                    return true;
-
-                var elementType = type.GetElementType();
-                type = elementType;
             }
         }
     }

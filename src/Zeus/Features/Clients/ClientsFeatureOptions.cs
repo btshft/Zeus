@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Zeus.Shared.Validation;
 
 namespace Zeus.Features.Clients
 {
@@ -7,7 +8,7 @@ namespace Zeus.Features.Clients
         /// <summary>
         /// Callback client options.
         /// </summary>
-        [Required]
+        [Required, ValidateObject]
         public ClientOptions Callback { get; set; }
     }
 }
