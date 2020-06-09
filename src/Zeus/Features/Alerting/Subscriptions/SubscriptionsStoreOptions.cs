@@ -8,5 +8,8 @@ namespace Zeus.Features.Alerting.Subscriptions
 
         [ValidateObject]
         public SubscriptionsConsulStoreOptions Consul { get; set; }
+
+        [ValidateObject]
+        public SubscriptionsFasterStoreOptions Faster { get; set; }
     }
 }

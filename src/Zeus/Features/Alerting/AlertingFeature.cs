@@ -11,6 +11,8 @@ using Zeus.Services.Templating.Scriban;
 using Zeus.Shared.AppFeature;
 using Zeus.Shared.Extensions;
 using Zeus.Storage.Consul;
+using Zeus.Storage.Faster;
+using Zeus.Storage.Faster.Options;
 using Zeus.Storage.Stores.Abstractions;
 using Zeus.Stores.Default;
 
@@ -46,6 +48,11 @@ namespace Zeus.Features.Alerting
             {
                 services.AddConsulSubscriptions(Configuration.CreateBinder<ConsulOptions>(
                     "Alerting:Subscriptions:Store:Consul", required: true));
+            }
+            else if (options.Subscriptions.Store.Faster != null)
+            {
+                services.AddFasterSubscriptions(Configuration.CreateBinder<FasterStoreOptions>(
+                    "Alerting:Subscriptions:Store:Faster", required: true));
             }
 
             if (options.Channels.Store.Predefined != null)

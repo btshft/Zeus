@@ -17,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zeus.Storage.Consul", "Zeus
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zeus", "Zeus\Zeus.csproj", "{E52CE258-0304-4B48-A4BD-3791C8B35147}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zeus.Storage.Faster", "Zeus.Storage.Faster\Zeus.Storage.Faster.csproj", "{9F317192-F0FD-4475-8D65-43E027027B1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeus.Storage.Faster.Tests", "Zeus.Storage.Faster.Tests\Zeus.Storage.Faster.Tests.csproj", "{9280FAAE-CEDF-4B4F-BE83-8259F4F09682}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,14 @@ Global
 		{E52CE258-0304-4B48-A4BD-3791C8B35147}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E52CE258-0304-4B48-A4BD-3791C8B35147}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E52CE258-0304-4B48-A4BD-3791C8B35147}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F317192-F0FD-4475-8D65-43E027027B1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F317192-F0FD-4475-8D65-43E027027B1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F317192-F0FD-4475-8D65-43E027027B1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F317192-F0FD-4475-8D65-43E027027B1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9280FAAE-CEDF-4B4F-BE83-8259F4F09682}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9280FAAE-CEDF-4B4F-BE83-8259F4F09682}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9280FAAE-CEDF-4B4F-BE83-8259F4F09682}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9280FAAE-CEDF-4B4F-BE83-8259F4F09682}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +54,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D5B95751-4940-428F-8FE5-2153320AAA85} = {656173A1-3B53-4164-83AB-4B50B6436E7F}
 		{08764378-7555-4F2F-9E11-D3C5056C2378} = {656173A1-3B53-4164-83AB-4B50B6436E7F}
+		{9F317192-F0FD-4475-8D65-43E027027B1B} = {656173A1-3B53-4164-83AB-4B50B6436E7F}
+		{9280FAAE-CEDF-4B4F-BE83-8259F4F09682} = {656173A1-3B53-4164-83AB-4B50B6436E7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {20CDE66B-47DB-4106-AA07-D4627F9B3373}

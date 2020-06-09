@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -34,6 +34,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Zeus.Storage.Consul\Zeus.Storage.Consul.csproj" />
+    <ProjectReference Include="..\Zeus.Storage.Faster\Zeus.Storage.Faster.csproj" />
     <ProjectReference Include="..\Zeus.Storage\Zeus.Storage.csproj" />
   </ItemGroup>
 
@@ -41,11 +42,5 @@
     <EmbeddedResource Update="Localization\Resources\BotResources.ru.resx">
       <Generator></Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="_templates\_default.ru.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 </Project>
