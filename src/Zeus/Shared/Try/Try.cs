@@ -9,18 +9,13 @@ namespace Zeus.Shared.Try
     {
         public static Task<TryResult<T>[]> WhenAll<T>(IEnumerable<Task<T>> tasks)
         {
-            return Task.WhenAll(tasks.Select(async t =>
-            {
-                try
-                {
-                    var result = await t;
-                    return new TryResult<T>(result);
-                }
-                catch (Exception e)
-                {
-                    return new TryResult<T>(e);
-                }
-            }));
+            var wrappedTasks = tasks.Select(
+                task => task.ContinueWith(
+                    t => t.IsFaulted
+                        ? new TryResult<T>(t.Exception)
+                        : new TryResult<T>(t.Result)));
+
+            return Task.WhenAll(wrappedTasks);
         }
 
         public static async Task<TryResult> ExecuteAsync(Func<Task> asyncAction)

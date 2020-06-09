@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using MediatR;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Zeus.Handlers.Webhook;
 using Zeus.Services.Templating;
 using Zeus.Services.Templating.Scriban;
 using Zeus.Shared.AppFeature;
@@ -49,6 +51,8 @@ namespace Zeus.Features.Alerting
             if (options.Channels.Store.Predefined != null)
                 services.AddSingleton<IChannelStore>(sp => new InMemoryChannelStore(
                     options.Channels.Store.Predefined));
+
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(WrapAlertManagerUpdateExceptionsBehavior<,>));
         }
 
         /// <inheritdoc />

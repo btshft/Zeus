@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Extensions.Options;
+using Zeus.Shared.Validation;
 
 namespace Zeus.Shared.AppFeature.Internal
 {
@@ -17,6 +18,9 @@ namespace Zeus.Shared.AppFeature.Internal
             {
                 var options = new TOptions();
                 configureOptions(options);
+
+                DataAnnotationsValidator.EnsureValid(options);
+
                 return options;
             });
         }

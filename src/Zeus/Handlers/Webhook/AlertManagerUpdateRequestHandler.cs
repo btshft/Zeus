@@ -83,7 +83,10 @@ namespace Zeus.Handlers.Webhook
             var results = await Try.WhenAll(sendTasks);
             if (results.HasFaults())
             {
-                var exception = new AggregateException(results.Select(s => s.Exception));
+                var exceptions = results.Where(s => s.IsFaulted)
+                    .Select(s => s.Exception);
+
+                var exception = new AggregateException(exceptions);
                 throw exception;
             }
         }

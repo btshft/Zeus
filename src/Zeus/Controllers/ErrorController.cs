@@ -26,6 +26,7 @@ namespace Zeus.Controllers
                     ConflictException _ => HttpStatusCode.Conflict,
                     NotFoundException _ => HttpStatusCode.NotFound,
                     UnauthorizedAccessException _ => HttpStatusCode.Unauthorized,
+                    AlertManagerUpdateException _ => HttpStatusCode.BadRequest,
                     _ => HttpStatusCode.InternalServerError
                 };
             }
