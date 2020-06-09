@@ -38,6 +38,7 @@ namespace Zeus.Features.Api
             services.AddControllers()
                 .AddJsonOptions(o =>
                 {
+                    o.JsonSerializerOptions.IgnoreNullValues = true;
                     o.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                 });
         }
