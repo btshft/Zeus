@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,8 +23,13 @@ namespace Zeus.Shared.AppFeature
             Options = options;
         }
 
-        public abstract void Configure(IServiceCollection services, IAppFeatureCollection features);
+        public virtual void Configure(IServiceCollection services, IAppFeatureCollection features)
+        { }
 
-        public abstract void Use(IApplicationBuilder builder);
+        public virtual void Use(IApplicationBuilder builder)
+        { }
+
+        public virtual void Map(IEndpointRouteBuilder endpoints)
+        { }
     }
 }

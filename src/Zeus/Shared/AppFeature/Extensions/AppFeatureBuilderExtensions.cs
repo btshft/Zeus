@@ -15,10 +15,16 @@ namespace Zeus.Shared.AppFeature.Extensions
             where TFeature : class, IAppFeature<TOptions> 
             where TOptions : class, new()
         {
-            var options = (IOptions<TOptions>) new AppFeatureOptions<TOptions>(configure);
-            var feature = ActivatorUtilities.CreateInstance<TFeature>(builder.ServiceProvider, options);
+            var options = new AppFeatureOptions<TOptions>(configure);
+            var feature = ActivatorUtilities.CreateInstance<TFeature>(builder.ServiceProvider, (IOptions<TOptions>) options);
 
             feature.Configure(builder.Services, builder);
+
+            var subscriptions = builder.ServiceProvider.GetRequiredService<AppFeatureEventSubscriptions>();
+            foreach (var subscription in subscriptions.Get<TFeature, TOptions>())
+            {
+                subscription.Notify(options.Value);
+            }
 
             builder.Services.TryAddSingleton(feature);
             builder.Services.AddOptions<TOptions>()
@@ -40,10 +46,16 @@ namespace Zeus.Shared.AppFeature.Extensions
             if (!predicate())
                 return builder;
 
-            var options = (IOptions<TOptions>) new AppFeatureOptions<TOptions>(configure);
-            var feature = ActivatorUtilities.CreateInstance<TFeature>(builder.ServiceProvider, options);
+            var options = new AppFeatureOptions<TOptions>(configure);
+            var feature = ActivatorUtilities.CreateInstance<TFeature>(builder.ServiceProvider, (IOptions<TOptions>) options);
 
             feature.Configure(builder.Services, builder);
+
+            var subscriptions = builder.ServiceProvider.GetRequiredService<AppFeatureEventSubscriptions>();
+            foreach (var subscription in subscriptions.Get<TFeature, TOptions>())
+            {
+                subscription.Notify(options.Value);
+            }
 
             builder.Services.TryAddSingleton(feature);
             builder.Services.AddOptions<TOptions>()
@@ -55,6 +67,17 @@ namespace Zeus.Shared.AppFeature.Extensions
                 logger.LogInformation($"Pipeline: Feature '{typeof(TFeature).Name}' registered successfully");
 
             return builder;
+        }
+
+        public static IAppFeatureCollection WhenConfigured<TFeature, TOptions>(this IAppFeatureCollection features,
+            Action<TOptions> callback)
+            where TFeature : class, IAppFeature<TOptions>
+            where TOptions : class, new()
+        {
+            var subscriptions = features.ServiceProvider.GetRequiredService<AppFeatureEventSubscriptions>();
+            subscriptions.Add(new AppFeatureSubscription<TFeature, TOptions>(callback));
+
+            return features;
         }
     }
 }

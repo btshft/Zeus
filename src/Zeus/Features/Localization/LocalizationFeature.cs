@@ -11,7 +11,7 @@ using Microsoft.Extensions.Options;
 using Zeus.Localization;
 using Zeus.Shared.AppFeature;
 
-namespace Zeus.Features.Api.Localization
+namespace Zeus.Features.Localization
 {
     public class LocalizationFeature : AppFeature<LocalizationFeatureOptions>
     {

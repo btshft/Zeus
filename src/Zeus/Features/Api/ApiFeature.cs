@@ -1,11 +1,10 @@
 ﻿using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-using Zeus.Features.Api.Authorization;
-using Zeus.Features.Api.Localization;
 using Zeus.Features.Api.Swagger;
 using Zeus.Shared.AppFeature;
 using Zeus.Shared.AppFeature.Extensions;
@@ -23,8 +22,7 @@ namespace Zeus.Features.Api
         /// <inheritdoc />
         public override void Configure(IServiceCollection services, IAppFeatureCollection features)
         {
-            features.AddFromConfiguration<LocalizationFeature, LocalizationFeatureOptions>("Api:Localization")
-                .AddFromConfiguration<AuthorizationFeature, AuthorizationFeatureOptions>("Api:Authorization", required: false)
+            features
                 .AddFromConfiguration<SwaggerFeature, SwaggerFeatureOptions>("Api:Swagger", required: false);
 
             services
@@ -46,18 +44,13 @@ namespace Zeus.Features.Api
         /// <inheritdoc />
         public override void Use(IApplicationBuilder builder)
         {
-            builder.UseExceptionHandler("/error");
-
-            builder
-                .UseFeature<LocalizationFeature>();
-
-            builder.UseRouting();
-            builder.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-
             builder.UseFeature<SwaggerFeature>(required: false);
+        }
+
+        /// <inheritdoc />
+        public override void Map(IEndpointRouteBuilder endpoints)
+        {
+            endpoints.MapControllers();
         }
     }
 }

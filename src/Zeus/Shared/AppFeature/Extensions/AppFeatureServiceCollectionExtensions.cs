@@ -13,7 +13,13 @@ namespace Zeus.Shared.AppFeature.Extensions
             IConfiguration configuration,
             ILoggerFactory loggerFactory)
         {
-            return new AppFeatureCollection(services, new AppFeatureServiceProvider(environment, configuration, loggerFactory));
+
+            var provider = new AppFeatureServiceProvider(environment, configuration, loggerFactory);
+            var subscriptions = new AppFeatureEventSubscriptions(provider);
+
+            provider.AddService(subscriptions);
+
+            return new AppFeatureCollection(services, provider);
         }
     }
 }

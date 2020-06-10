@@ -9,11 +9,12 @@ using Zeus.Features.Alerting;
 using Zeus.Features.Api;
 using Zeus.Features.Bot;
 using Zeus.Features.Clients;
+using Zeus.Features.HealthCheck;
+using Zeus.Features.Localization;
 using Zeus.Features.Profiling;
 using Zeus.Handlers.Webhook;
 using Zeus.Shared.AppFeature.Extensions;
 using Zeus.Shared.Features.Extensions;
-using Zeus.Shared.Serilog;
 
 namespace Zeus
 {
@@ -34,6 +35,8 @@ namespace Zeus
             services.AddMediatR(typeof(AlertManagerUpdateRequestHandler));
 
             services.AddFeatures(Environment, Configuration, new SerilogLoggerFactory(Log.Logger))
+                .AddFromConfiguration<HealthChecksFeature, HealthChecksFeatureOptions>("HealthChecks", required: false)
+                .AddFromConfiguration<LocalizationFeature, LocalizationFeatureOptions>("Localization")
                 .AddFromConfiguration<ApiFeature, ApiFeatureOptions>("Api")
                 .AddFromConfiguration<AlertingFeature, AlertingFeatureOptions>("Alerting")
                 .AddFromConfiguration<ClientsFeature, ClientsFeatureOptions>("Clients")
@@ -43,9 +46,18 @@ namespace Zeus
 
         public void Configure(IApplicationBuilder app)
         {
-            app.UseMiddleware<EnrichLogContextMiddleware>();
+            app.UseExceptionHandler("/error");
 
+            app.UseFeature<LocalizationFeature>();
             app.UseFeature<ProfilingFeature>(required: false);
+
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapFeature<HealthChecksFeature>(required: false);
+                endpoints.MapFeature<ApiFeature>();
+            });
+
             app.UseFeature<ApiFeature>();
         }
     }
