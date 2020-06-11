@@ -10,6 +10,5 @@ extraction:
       all_solutions: false
       solution: 
         - src/Zeus.sln
-      msbuild:
-        configuration: release
-        platform: Any CPU
+      dotnet:
+        version: 3.1.301
