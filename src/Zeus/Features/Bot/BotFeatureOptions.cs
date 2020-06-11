@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Zeus.Features.Bot
 {
@@ -9,6 +10,17 @@ namespace Zeus.Features.Bot
         /// </summary>
         [Required(ErrorMessage = "Bot token is not set", AllowEmptyStrings = false)]
         public string Token { get; set; }
+
+        /// <summary>
+        /// Time wait before next try to get bot-updates if circuit breaks.
+        /// </summary>
+        public TimeSpan PollingDurationOfBreak { get; set; } 
+            = TimeSpan.FromSeconds(15);
+
+        /// <summary>
+        /// Attempts before break the circuit.
+        /// </summary>
+        public int PollingAttemptsBeforeBreaking { get; set; } = 5;
 
         /// <summary>
         /// Proxy options.

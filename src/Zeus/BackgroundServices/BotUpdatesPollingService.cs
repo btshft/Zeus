@@ -3,9 +3,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Telegram.Bot;
-using Telegram.Bot.Extensions.Polling;
+using Telegram.Bot.Types.Enums;
 using Zeus.Clients.Callback;
+using Zeus.Services.Telegram.Polling;
 using Zeus.Shared.Extensions;
 
 namespace Zeus.BackgroundServices
@@ -14,17 +14,16 @@ namespace Zeus.BackgroundServices
     {
         private readonly ILogger<BotUpdatesPollingService> _logger;
         private readonly ICallbackClient _callbackClient;
-
-        private readonly Lazy<QueuedUpdateReceiver> _receiverProvider;
+        private readonly IPollingUpdatesReceiver _receiver;
 
         public BotUpdatesPollingService(
-            ITelegramBotClient client,
             ILogger<BotUpdatesPollingService> logger, 
-            ICallbackClient callbackClient)
+            ICallbackClient callbackClient, 
+            IPollingUpdatesReceiver receiver)
         {
             _logger = logger;
             _callbackClient = callbackClient;
-            _receiverProvider = new Lazy<QueuedUpdateReceiver>(() => new QueuedUpdateReceiver(client));
+            _receiver = receiver;
         }
 
         /// <inheritdoc />
@@ -36,9 +35,10 @@ namespace Zeus.BackgroundServices
                 return Task.CompletedTask;
             }
 
-            var receiver = _receiverProvider.Value;
-
-            receiver.StartReceiving(errorHandler: HandleException, cancellationToken: cancellationToken);
+            _receiver.StartReceiving(
+                allowedUpdates: new[] { UpdateType.Message }, 
+                errorHandler: HandleException, 
+                cancellationToken: cancellationToken);
 
             return base.StartAsync(cancellationToken);
         }
@@ -46,18 +46,14 @@ namespace Zeus.BackgroundServices
         /// <inheritdoc />
         public override Task StopAsync(CancellationToken cancellationToken)
         {
-            if (_receiverProvider.IsValueCreated)
-                _receiverProvider.Value.StopReceiving();
-
+            _receiver.StopReceiving();
             return base.StopAsync(cancellationToken);
         }
 
         /// <inheritdoc />
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            var receiver = _receiverProvider.Value;
-
-            await foreach (var update in receiver.YieldUpdatesAsync().WithCancellation(stoppingToken))
+            await foreach (var update in _receiver.YieldUpdatesAsync(stoppingToken))
             {
                 try
                 {
