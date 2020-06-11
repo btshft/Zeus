@@ -1,0 +1,16 @@
+path_classifiers:
+  docs:
+    - "*.md"
+  test:
+    - "**/*.Tests"
+
+extraction:
+  csharp:
+    index:
+      all_solutions: false:
+    solution:
+      - src/Zeus.sln
+    msbuild:
+      configuration: release
+      platform: Any CPU
+    
