@@ -21,7 +21,7 @@ updates:
       - "nuget"
 
   - package-ecosystem: "docker"
-    directory: "/"
+    directory: "/src/Zeus"
     schedule:
       interval: "daily"
     commit-message:
