@@ -3,14 +3,13 @@ path_classifiers:
     - "*.md"
   test:
     - "**/*.Tests"
-
-extraction:
+    
+extraction: 
   csharp:
     index:
-      all_solutions: false:
-    solution:
-      - src/Zeus.sln
-    msbuild:
-      configuration: release
-      platform: Any CPU
-    
+      all_solutions: false
+      solution: 
+        - src/Zeus.sln
+      msbuild:
+        configuration: release
+        platform: Any CPU
