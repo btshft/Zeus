@@ -45,6 +45,7 @@ namespace Zeus.Storage.Faster.Store.Internal
             public static StoreContext Null = new StoreContext();
         }
 
+        // ReSharper disable RedundantAssignment
         public class StoreFunctions : IFunctions<KeyHolder, ValueHolder, ValueHolder, ValueHolder, StoreContext>
         {
             private readonly ILogger<FasterStore<TKey, TValue>> _logger;
@@ -61,14 +62,17 @@ namespace Zeus.Storage.Faster.Store.Internal
                 if (!_logger.IsEnabled(LogLevel.Trace))
                     return;
 
+                string outputJson = "unknown", keyJson = "unknown";
+
                 try
                 {
-                    var keyJson = key.Key != null ? JsonSerializer.Serialize(key.Key) : "null";
-                    var outputJson = output.Value != null ? JsonSerializer.Serialize(output.Value) : "null";
-
+                    keyJson = key.Key != null ? JsonSerializer.Serialize(key.Key) : "null";
+                    outputJson = output.Value != null ? JsonSerializer.Serialize(output.Value) : "null";
+                }
+                finally
+                {
                     _logger.LogTrace($"Read completed, key: '{keyJson}', output: '{outputJson}'");
-                } catch 
-                { }
+                }
             }
 
             /// <inheritdoc />
@@ -77,15 +81,17 @@ namespace Zeus.Storage.Faster.Store.Internal
                 if (!_logger.IsEnabled(LogLevel.Trace)) 
                     return;
 
+                string valueJson = "unknown", keyJson = "unknown";
+
                 try
                 {
-                    var keyJson = key.Key != null ? JsonSerializer.Serialize(key.Key) : "null";
-                    var valueJson = value.Value != null ? JsonSerializer.Serialize(value.Value) : "null";
-
+                    keyJson = key.Key != null ? JsonSerializer.Serialize(key.Key) : "null";
+                    valueJson = value.Value != null ? JsonSerializer.Serialize(value.Value) : "null";
+                }
+                finally
+                {
                     _logger.LogTrace($"Upsert completed, key: '{keyJson}', input: '{valueJson}'");
                 }
-                catch
-                { }
             }
 
             /// <inheritdoc />
@@ -99,13 +105,16 @@ namespace Zeus.Storage.Faster.Store.Internal
                 if (!_logger.IsEnabled(LogLevel.Trace))
                     return;
 
+                var keyJson = "unkown";
+
                 try
                 {
-                    var keyJson = key.Key != null ? JsonSerializer.Serialize(key.Key) : "null";
+                    keyJson = key.Key != null ? JsonSerializer.Serialize(key.Key) : "null";
+                }
+                finally
+                {
                     _logger.LogTrace($"Delete completed, key: '{keyJson}'");
                 }
-                catch
-                { }
             }
 
             /// <inheritdoc />
@@ -158,5 +167,6 @@ namespace Zeus.Storage.Faster.Store.Internal
                 return true;
             }
         }
+        // ReSharper restore RedundantAssignment
     }
 }

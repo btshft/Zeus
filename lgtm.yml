@@ -4,6 +4,14 @@ path_classifiers:
   test:
     - "**/*.Tests"
     
+queries:
+  - include:
+      tags:
+        - "security"
+        - "efficiency"
+        - "exceptions"
+        - "reliabitility"
+
 extraction: 
   csharp:
     index:

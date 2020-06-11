@@ -213,11 +213,11 @@ namespace Zeus.Storage.Faster.Store.Internal
                     ? token : (Guid?) null;
             });
 
-            if (!checkpoint.HasValue)
-                throw new FasterStoreException("Unable to commit changes, device is busy");
-
             return Task.Run(async () =>
             {
+                if (!checkpoint.HasValue)
+                    throw new FasterStoreException("Unable to commit changes, device is busy");
+
                 await CleanupAsync(checkpoint.Value);
 
             }, cancellation);
