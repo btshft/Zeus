@@ -1,19 +1,14 @@
 ﻿using System.Net.Http;
-using MediatR;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Telegram.Bot;
 using Zeus.BackgroundServices;
-using Zeus.Features.Bot.Authorize;
 using Zeus.Handlers.Bot.Context;
-using Zeus.Handlers.Bot.Reply;
 using Zeus.Services.Telegram.Polling;
 using Zeus.Shared.AppFeature;
 using Zeus.Shared.Extensions;
-using Zeus.Shared.Features.Extensions;
 using Zeus.Shared.Mediatr;
 
 namespace Zeus.Features.Bot
@@ -28,7 +23,7 @@ namespace Zeus.Features.Bot
 
 
         /// <inheritdoc />
-        public override void Configure(IServiceCollection services, IAppFeatureCollection features)
+        protected override void ConfigureFeature(IServiceCollection services, IAppFeatureCollection features)
         {
             const string clientName = "telegram.client";
 
@@ -57,18 +52,7 @@ namespace Zeus.Features.Bot
 
             services.AddTransient<IBotActionContextAccessor, BotActionContextAccessor>();
             services.AddTransient<IBotUserProvider, BotUserProvider>();
-            services.AddSingleton<IPollingUpdatesReceiver, PollingUpdatesReceiver>();
-
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(BotActionContextInitBehavior<,>));
-            features.AddFromConfiguration<BotAuthorizationFeature, BotAuthorizationFeatureOptions>(
-                "Bot:Authorization", required: true);
-
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ReplyOnExceptionBehavior<,>));
-        }
-
-        /// <inheritdoc />
-        public override void Use(IApplicationBuilder builder)
-        {
+            services.AddSingleton<IBotPollingUpdatesReceiver, BotPollingUpdatesReceiver>();
         }
     }
 }

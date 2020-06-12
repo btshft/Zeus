@@ -12,13 +12,13 @@ namespace Zeus.Storage.Models.Alerts
         /// <summary>
         /// Alerts.
         /// </summary>
-        public AlertManagerUpdate.Alert[] Alerts { get; set; } 
-            = Array.Empty<AlertManagerUpdate.Alert>();
+        public AlertManagerWebhookUpdate.Alert[] Alerts { get; set; } 
+            = Array.Empty<AlertManagerWebhookUpdate.Alert>();
 
         /// <summary>
         /// Alert status.
         /// </summary>
-        public AlertManagerUpdate.AlertStatus Status { get; set; }
+        public AlertManagerWebhookUpdate.AlertStatus Status { get; set; }
 
         /// <summary>
         /// Annotations.

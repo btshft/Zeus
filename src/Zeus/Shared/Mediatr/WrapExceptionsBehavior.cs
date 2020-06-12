@@ -1,16 +1,32 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.ExceptionServices;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 
 namespace Zeus.Shared.Mediatr
 {
-    public abstract class WrapExceptionsBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    public class WrapExceptionsBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
+        protected IRequestHandlerFinder Finder { get; }
+
+        public WrapExceptionsBehavior(IRequestHandlerFinder finder)
+        {
+            Finder = finder;
+        }
+
         /// <inheritdoc />
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
-            if (!CanWrap(request))
+            var handlerType = Finder.FindHandlerTypeByRequest(typeof(TRequest));
+            var handleExceptionAttribute = handlerType.GetCustomAttributes()
+                .Where(a => a is WrapExceptionsBaseAttribute)
+                .Cast<WrapExceptionsBaseAttribute>()
+                .FirstOrDefault();
+
+            if (handleExceptionAttribute == null)
                 return await next();
 
             try
@@ -19,17 +35,13 @@ namespace Zeus.Shared.Mediatr
             }
             catch (Exception e)
             {
-                var resultException = Wrap(request, e);
+                var resultException = handleExceptionAttribute.Wrap(e, request);
                 if (resultException != null)
-                    throw resultException;
+                    ExceptionDispatchInfo.Throw(resultException);
 
                 // Throw if cant wrap
                 throw;
             }
         }
-
-        protected abstract bool CanWrap(TRequest request);
-
-        protected abstract Exception Wrap(TRequest request, Exception source);
     }
 }

@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Zeus.Storage.Models.External;
 
-namespace Zeus.Handlers.Webhook
+namespace Zeus.Handlers.Alerting.Webhook
 {
     public class AlertManagerUpdateRequest : IRequest
     {
-        public AlertManagerUpdateRequest(string channel, AlertManagerUpdate update)
+        public AlertManagerUpdateRequest(string channel, AlertManagerWebhookUpdate update)
         {
             Update = update;
             Channel = channel;
@@ -13,6 +13,6 @@ namespace Zeus.Handlers.Webhook
 
         public string Channel { get; }
 
-        public AlertManagerUpdate Update { get; }
+        public AlertManagerWebhookUpdate Update { get; }
     }
 }

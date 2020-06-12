@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Zeus.Storage.Models.External
 {
-    public class AlertManagerUpdate
+    public class AlertManagerWebhookUpdate
     {
         [JsonPropertyName("version")]
         public string Version { get; set; }

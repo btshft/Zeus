@@ -21,11 +21,11 @@ namespace Zeus.Shared.AppFeature.Extensions
                 return endpoints;
             }
 
-            feature.Map(endpoints);
+            var enabled = feature.Map(endpoints);
 
             var logger = endpoints.ServiceProvider.GetLogger<TFeature>();
-            if (logger != null)
-                logger.LogInformation($"Endpoints: Feature '{typeof(TFeature).Name}' endpoint registered");
+            if (enabled)
+                logger?.LogInformation($"Endpoints: Feature '{typeof(TFeature).Name}' endpoint registered");
 
             return endpoints;
         }

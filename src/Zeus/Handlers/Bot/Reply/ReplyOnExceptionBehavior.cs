@@ -53,7 +53,7 @@ namespace Zeus.Handlers.Bot.Reply
                 try
                 {
                     var context = _contextAccessor.Context;
-                    var handlerType = _handlerFinder.FindHandlerType(request.GetType());
+                    var handlerType = _handlerFinder.FindHandlerTypeByRequest(request.GetType());
                     var replyAllowed = handlerType.GetCustomAttribute<ReplyOnExceptionAttribute>(inherit: false) != null;
 
                     if (replyAllowed && (context.IsAuthorized || context.IsAnonymous))

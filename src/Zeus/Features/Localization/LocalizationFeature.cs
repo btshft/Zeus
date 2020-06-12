@@ -23,7 +23,7 @@ namespace Zeus.Features.Localization
         }
 
         /// <inheritdoc />
-        public override void Configure(IServiceCollection services, IAppFeatureCollection features)
+        protected override void ConfigureFeature(IServiceCollection services, IAppFeatureCollection features)
         {
             var options = Options.Value;
 
@@ -52,7 +52,7 @@ namespace Zeus.Features.Localization
         }
 
         /// <inheritdoc />
-        public override void Use(IApplicationBuilder builder)
+        protected override void UseFeature(IApplicationBuilder builder)
         {
             builder.UseRequestLocalization();
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Zeus.Shared.Validation;
 
 namespace Zeus.Features.Bot
 {
@@ -28,6 +29,12 @@ namespace Zeus.Features.Bot
         public ProxyOptions Proxy { get; set; }
 
         /// <summary>
+        /// Authorization options.
+        /// </summary>
+        [Required, ValidateObject]
+        public AuthorizationFeatureOptions Authorization { get; set; }
+
+        /// <summary>
         /// Proxy options.
         /// </summary>
         public class ProxyOptions
@@ -49,6 +56,21 @@ namespace Zeus.Features.Bot
         public enum ProxyType
         {
             Http, Socks5
+        }
+
+        public class AuthorizationFeatureOptions
+        {
+            [Required, ValidateObject]
+            public TrustedUsersOptions TrustedUsers { get; set; }
+
+            public class TrustedUsersOptions
+            {
+                /// <summary>
+                /// Users identifiers.
+                /// </summary>
+                [Required]
+                public int[] AdministratorIds { get; set; } = Array.Empty<int>();
+            }
         }
     }
 }

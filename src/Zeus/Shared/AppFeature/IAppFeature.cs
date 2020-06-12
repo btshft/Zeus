@@ -6,9 +6,9 @@ namespace Zeus.Shared.AppFeature
 {
     public interface IAppFeature
     {
-        void Configure(IServiceCollection services, IAppFeatureCollection features);
-        void Use(IApplicationBuilder builder);
-        void Map(IEndpointRouteBuilder endpoints);
+        bool Configure(IServiceCollection services, IAppFeatureCollection features);
+        bool Use(IApplicationBuilder builder);
+        bool Map(IEndpointRouteBuilder endpoints);
     }
 
     public interface IAppFeature<TOptions> : IAppFeature

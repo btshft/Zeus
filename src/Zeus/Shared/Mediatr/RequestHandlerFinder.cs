@@ -20,7 +20,7 @@ namespace Zeus.Shared.Mediatr
         }
 
         /// <inheritdoc />
-        public Type FindHandlerType(Type requestType)
+        public Type FindHandlerTypeByRequest(Type requestType)
         {
             if (requestType == null)
                 throw new ArgumentNullException(nameof(requestType));

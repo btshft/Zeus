@@ -17,11 +17,12 @@ using Zeus.Features.HealthCheck.Checks;
 using Zeus.Features.HealthCheck.Services;
 using Zeus.Shared.AppFeature;
 using Zeus.Shared.AppFeature.Extensions;
+using Zeus.Shared.Features.Optional;
 using Zeus.Shared.Utils;
 
 namespace Zeus.Features.HealthCheck
 {
-    public class HealthChecksFeature : AppFeature<HealthChecksFeatureOptions>
+    public class HealthChecksFeature : OptionalFeature<HealthChecksFeatureOptions>
     {
         public HealthChecksFeature(
             IConfiguration configuration, 
@@ -31,11 +32,8 @@ namespace Zeus.Features.HealthCheck
         }
 
         /// <inheritdoc />
-        public override void Configure(IServiceCollection services, IAppFeatureCollection features)
+        protected override void ConfigureFeature(IServiceCollection services, IAppFeatureCollection features)
         {
-            if (!Options.Value.Enabled)
-                return;
-
             var options = Options.Value;
 
             services.TryAddSingleton<IHealthCheckResponseWriter, SystemJsonHealthCheckResponseWriter>();
@@ -83,16 +81,8 @@ namespace Zeus.Features.HealthCheck
         }
 
         /// <inheritdoc />
-        public override void Use(IApplicationBuilder builder)
+        protected override void MapFeature(IEndpointRouteBuilder endpoints)
         {
-        }
-
-        /// <inheritdoc />
-        public override void Map(IEndpointRouteBuilder endpoints)
-        {
-            if (!Options.Value.Enabled)
-                return;
-
             var writer = endpoints.ServiceProvider.GetRequiredService<IHealthCheckResponseWriter>();
 
             endpoints.MapHealthChecks("/health", new HealthCheckOptions

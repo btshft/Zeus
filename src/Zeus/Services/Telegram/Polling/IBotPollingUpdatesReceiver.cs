@@ -7,7 +7,7 @@ using Telegram.Bot.Types.Enums;
 
 namespace Zeus.Services.Telegram.Polling
 {
-    public interface IPollingUpdatesReceiver
+    public interface IBotPollingUpdatesReceiver
     {
         void StartReceiving(
             UpdateType[] allowedUpdates = default,

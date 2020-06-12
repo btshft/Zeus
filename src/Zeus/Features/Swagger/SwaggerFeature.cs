@@ -11,12 +11,13 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 using Telegram.Bot.Types;
 using Zeus.Controllers;
 using Zeus.Shared.AppFeature;
+using Zeus.Shared.Features.Optional;
 using Zeus.Storage.Models.External;
 using File = System.IO.File;
 
 namespace Zeus.Features.Api.Swagger
 {
-    public class SwaggerFeature : AppFeature<SwaggerFeatureOptions>
+    public class SwaggerFeature : OptionalFeature<SwaggerFeatureOptions>
     {
         public SwaggerFeature(IConfiguration configuration, IHostEnvironment environment, IOptions<SwaggerFeatureOptions> options) 
             : base(configuration, environment, options)
@@ -24,12 +25,8 @@ namespace Zeus.Features.Api.Swagger
         }
 
         /// <inheritdoc />
-        public override void Configure(IServiceCollection services, IAppFeatureCollection features)
+        protected override void ConfigureFeature(IServiceCollection services, IAppFeatureCollection features)
         {
-            var options = Options.Value;
-            if (!options.Enabled)
-                return;
-
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerGenOptions>();
             services.AddSwaggerGen(s =>
             {
@@ -38,7 +35,7 @@ namespace Zeus.Features.Api.Swagger
                 var includeDocsTypesMarkers = new[]
                 {
                     typeof(CallbackController),
-                    typeof(AlertManagerUpdate),
+                    typeof(AlertManagerWebhookUpdate),
                     typeof(Update)
                 };
 
@@ -54,12 +51,8 @@ namespace Zeus.Features.Api.Swagger
         }
 
         /// <inheritdoc />
-        public override void Use(IApplicationBuilder builder)
+        protected override void UseFeature(IApplicationBuilder builder)
         {
-            var options = Options.Value;
-            if (!options.Enabled)
-                return;
-
             var provider = builder.ApplicationServices.GetRequiredService<IApiVersionDescriptionProvider>();
 
             builder.UseSwagger();

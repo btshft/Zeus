@@ -14,12 +14,12 @@ namespace Zeus.BackgroundServices
     {
         private readonly ILogger<BotUpdatesPollingService> _logger;
         private readonly ICallbackClient _callbackClient;
-        private readonly IPollingUpdatesReceiver _receiver;
+        private readonly IBotPollingUpdatesReceiver _receiver;
 
         public BotUpdatesPollingService(
             ILogger<BotUpdatesPollingService> logger, 
             ICallbackClient callbackClient, 
-            IPollingUpdatesReceiver receiver)
+            IBotPollingUpdatesReceiver receiver)
         {
             _logger = logger;
             _callbackClient = callbackClient;

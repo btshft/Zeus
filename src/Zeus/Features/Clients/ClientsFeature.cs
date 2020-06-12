@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -17,7 +16,7 @@ namespace Zeus.Features.Clients
         }
 
         /// <inheritdoc />
-        public override void Configure(IServiceCollection services, IAppFeatureCollection features)
+        protected override void ConfigureFeature(IServiceCollection services, IAppFeatureCollection features)
         {
             services.AddHttpClient<ICallbackClient, CallbackClient>()
                 .ConfigureHttpClient((sp, cl) =>
@@ -26,11 +25,6 @@ namespace Zeus.Features.Clients
                     cl.BaseAddress = new Uri(options.Callback.BaseUrl);
                     cl.Timeout = options.Callback.Timeout;
                 });
-        }
-
-        /// <inheritdoc />
-        public override void Use(IApplicationBuilder builder)
-        {
         }
     }
 }

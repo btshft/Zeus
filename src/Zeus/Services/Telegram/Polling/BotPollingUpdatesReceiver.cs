@@ -16,20 +16,20 @@ using Zeus.Features.Bot;
 
 namespace Zeus.Services.Telegram.Polling
 {
-    public class PollingUpdatesReceiver : IDisposable, IPollingUpdatesReceiver
+    public class BotPollingUpdatesReceiver : IDisposable, IBotPollingUpdatesReceiver
     {
         private readonly ITelegramBotClient _client;
         private readonly object _lock;
         private readonly Channel<Update> _updatesChannel;
-        private readonly ILogger<PollingUpdatesReceiver> _logger;
+        private readonly ILogger<BotPollingUpdatesReceiver> _logger;
         private readonly IOptions<BotFeatureOptions> _botOptions;
 
         private bool _isReceiving;
         private CancellationTokenSource _pauseTokenSource;
 
-        public PollingUpdatesReceiver(
+        public BotPollingUpdatesReceiver(
             ITelegramBotClient client, 
-            ILogger<PollingUpdatesReceiver> logger, 
+            ILogger<BotPollingUpdatesReceiver> logger, 
             IOptions<BotFeatureOptions> botOptions)
         {
             _client = client;

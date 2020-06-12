@@ -3,39 +3,39 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Telegram.Bot;
-using Telegram.Bot.Types;
+using Zeus.Handlers.Alerting.Send;
 using Zeus.Models.Extensions;
 using Zeus.Services.Telegram;
 using Zeus.Services.Templating;
 using Zeus.Shared.Exceptions;
-using Zeus.Shared.Extensions;
+using Zeus.Shared.Mediatr;
 using Zeus.Shared.Try;
 using Zeus.Storage.Models.Alerts;
 using Zeus.Storage.Stores.Abstractions;
 
-namespace Zeus.Handlers.Webhook
+namespace Zeus.Handlers.Alerting.Webhook
 {
+    [WrapExceptions]
     public class AlertManagerUpdateRequestHandler : AsyncRequestHandler<AlertManagerUpdateRequest>
     {
         private readonly ITemplateEngine _templateEngine;
         private readonly IChannelStore _channelStore;
         private readonly ITemplatesStore _templatesStore;
         private readonly ISubscriptionsStore _subscriptionsStore;
-        private readonly ITelegramBotClient _botClient;
+        private readonly IMediator _mediator;
 
         public AlertManagerUpdateRequestHandler(
             ITemplateEngine templateEngine, 
             IChannelStore channelStore, 
             ITemplatesStore templatesStore,
             ISubscriptionsStore subscriptionsStore, 
-            ITelegramBotClient botClient)
+            IMediator mediator)
         {
             _templateEngine = templateEngine;
             _channelStore = channelStore;
             _templatesStore = templatesStore;
             _subscriptionsStore = subscriptionsStore;
-            _botClient = botClient;
+            _mediator = mediator;
         }
 
         /// <inheritdoc />
@@ -74,11 +74,8 @@ namespace Zeus.Handlers.Webhook
             var safeMessage = message.Escape(parseMode);
 
             var sendTasks = subscriptions
-                .Select(s => _botClient
-                    .SendTextMessageSplitAsync(new ChatId(s.ChatId), 
-                        safeMessage, parseMode, 
-                        disableWebPagePreview: true, 
-                        disableNotification: s.DisableNotifications, cancellationToken: cancellationToken));
+                .Select(s => _mediator
+                    .Send(new SendAlertRequest(s, safeMessage, parseMode, request.Update), cancellationToken));
 
             var results = await Try.WhenAll(sendTasks);
             if (results.HasFaults())
@@ -88,6 +85,15 @@ namespace Zeus.Handlers.Webhook
 
                 var exception = new AggregateException(exceptions);
                 throw exception;
+            }
+        }
+
+        public class WrapExceptionsAttribute : WrapExceptionsBaseAttribute
+        {
+            /// <inheritdoc />
+            public override Exception Wrap(Exception source, object request)
+            {
+                return new AlertManagerUpdateException("Exception occured while handling alertmanager webhook request", source);
             }
         }
     }

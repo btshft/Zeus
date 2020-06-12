@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Zeus.Handlers.Webhook;
+using Zeus.Handlers.Alerting.Webhook;
 using Zeus.Storage.Models.External;
 
 namespace Zeus.Controllers
@@ -19,7 +19,7 @@ namespace Zeus.Controllers
         }
 
         [HttpPost("{channel}")]
-        public async Task<IActionResult> Handle([FromRoute] string channel, [FromBody] AlertManagerUpdate update, CancellationToken cancellation = default)
+        public async Task<IActionResult> Handle([FromRoute] string channel, [FromBody] AlertManagerWebhookUpdate update, CancellationToken cancellation = default)
         {
             var request = new AlertManagerUpdateRequest(channel, update);
             await _mediator.Send(request, cancellation);

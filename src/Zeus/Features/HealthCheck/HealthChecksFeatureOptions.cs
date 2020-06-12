@@ -1,14 +1,18 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Zeus.Shared.Features.Optional;
 
 namespace Zeus.Features.HealthCheck
 {
-    public class HealthChecksFeatureOptions
+    public class HealthChecksFeatureOptions : OptionalFeatureOptions
     {
-        public bool AllowCachingResponses { get; set; }
+        public HealthChecksFeatureOptions()
+        {
+            Enabled = true;
+        }
 
-        public bool Enabled { get; set; } = true;
+        public bool AllowCachingResponses { get; set; }
 
         [Required]
         public HealthCheckOptions Telegram { get; set; } = new HealthCheckOptions

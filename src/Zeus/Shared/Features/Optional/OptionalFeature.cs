@@ -6,11 +6,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Zeus.Shared.AppFeature;
 using Zeus.Shared.Extensions;
 
-namespace Zeus.Shared.AppFeature
+namespace Zeus.Shared.Features.Optional
 {
-    public abstract class AppFeature : IAppFeature
+    public abstract class OptionalFeature<TOptions> : IAppFeature<TOptions> 
+        where TOptions : OptionalFeatureOptions, new()
     {
         private readonly MethodHolder _methodHolder;
 
@@ -18,18 +20,24 @@ namespace Zeus.Shared.AppFeature
 
         protected IHostEnvironment Environment { get; }
 
-        protected AppFeature(IConfiguration configuration, IHostEnvironment environment)
+        protected IOptions<TOptions> Options { get; }
+
+        protected OptionalFeature(IConfiguration configuration, IHostEnvironment environment, IOptions<TOptions> options)
         {
             Configuration = configuration;
             Environment = environment;
+            Options = options;
             _methodHolder = new MethodHolder(GetType());
         }
 
         /// <inheritdoc />
         public bool Use(IApplicationBuilder builder)
         {
-            UseFeature(builder);
-            return _methodHolder.UseFeature.IsOverriden();
+            if (Options.Value.Enabled)
+                UseFeature(builder);
+
+            var isOverriden = _methodHolder.UseFeature.IsOverriden();
+            return Options.Value.Enabled && isOverriden;
         }
 
         protected virtual void UseFeature(IApplicationBuilder builder) { }
@@ -37,8 +45,11 @@ namespace Zeus.Shared.AppFeature
         /// <inheritdoc />
         public bool Map(IEndpointRouteBuilder endpoints)
         {
-            MapFeature(endpoints);
-            return _methodHolder.MapFeature.IsOverriden();
+            if (Options.Value.Enabled)
+                MapFeature(endpoints);
+
+            var isOverriden = _methodHolder.MapFeature.IsOverriden();
+            return Options.Value.Enabled && isOverriden;
         }
 
         protected virtual void MapFeature(IEndpointRouteBuilder endpoints) { }
@@ -46,8 +57,11 @@ namespace Zeus.Shared.AppFeature
         /// <inheritdoc />
         public bool Configure(IServiceCollection services, IAppFeatureCollection features)
         {
-            ConfigureFeature(services, features);
-            return _methodHolder.ConfigureFeature.IsOverriden();
+            if (Options.Value.Enabled)
+                ConfigureFeature(services, features);
+
+            var isOverriden = _methodHolder.ConfigureFeature.IsOverriden();
+            return Options.Value.Enabled && isOverriden;
         }
 
         protected virtual void ConfigureFeature(IServiceCollection services, IAppFeatureCollection features) { }
@@ -58,9 +72,9 @@ namespace Zeus.Shared.AppFeature
             {
                 var typeInfo = sourceType.GetTypeInfo();
 
-                UseFeature = typeInfo.GetDeclaredMethod(nameof(AppFeature.UseFeature));
-                MapFeature = typeInfo.GetDeclaredMethod(nameof(AppFeature.MapFeature));
-                ConfigureFeature = typeInfo.GetDeclaredMethod(nameof(AppFeature.ConfigureFeature));
+                UseFeature = typeInfo.GetDeclaredMethod(nameof(OptionalFeature<TOptions>.UseFeature));
+                MapFeature = typeInfo.GetDeclaredMethod(nameof(OptionalFeature<TOptions>.MapFeature));
+                ConfigureFeature = typeInfo.GetDeclaredMethod(nameof(OptionalFeature<TOptions>.ConfigureFeature));
             }
 
             public MethodInfo UseFeature { get; }
@@ -68,18 +82,6 @@ namespace Zeus.Shared.AppFeature
             public MethodInfo MapFeature { get; }
 
             public MethodInfo ConfigureFeature { get; }
-        }
-    }
-
-    public abstract class AppFeature<TOptions> : AppFeature, IAppFeature<TOptions>
-        where TOptions : class, new()
-    {
-        protected IOptions<TOptions> Options { get; }
-
-        protected AppFeature(IConfiguration configuration, IHostEnvironment environment, IOptions<TOptions> options)
-            : base(configuration, environment)
-        {
-            Options = options;
         }
     }
 }

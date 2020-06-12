@@ -21,11 +21,11 @@ namespace Zeus.Shared.AppFeature.Extensions
                 return builder;
             }
 
-            feature.Use(builder);
-
+            var enabled = feature.Use(builder);
             var logger = builder.ApplicationServices.GetLogger<TFeature>();
-            if (logger != null)
-                logger.LogInformation($"Feature '{typeof(TFeature).Name}' enabled");
+
+            if (enabled)
+                logger?.LogInformation($"Feature '{typeof(TFeature).Name}' enabled");
 
             return builder;
         }
