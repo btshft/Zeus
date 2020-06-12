@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Zeus.Storage.Faster.Serialization
+namespace Zeus.Storage.Faster.Utils
 {
     internal static class StreamExtensions
     {

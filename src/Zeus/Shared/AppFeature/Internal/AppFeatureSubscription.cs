@@ -2,6 +2,7 @@
 
 namespace Zeus.Shared.AppFeature.Internal
 {
+    // ReSharper disable once UnusedTypeParameter
     internal class AppFeatureSubscription<TFeature, TOptions>
         where TFeature : class, IAppFeature<TOptions>
         where TOptions : class, new()

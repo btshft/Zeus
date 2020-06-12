@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using FASTER.core;
 using Zeus.Storage.Faster.Serialization;
+using Zeus.Storage.Faster.Utils;
 
 namespace Zeus.Storage.Faster.Store.Internal
 {

@@ -11,6 +11,7 @@ namespace Zeus.Shared.AppFeature
         bool Map(IEndpointRouteBuilder endpoints);
     }
 
+    // ReSharper disable once UnusedTypeParameter
     public interface IAppFeature<TOptions> : IAppFeature
         where TOptions : class
     { }

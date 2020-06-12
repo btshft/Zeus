@@ -6,7 +6,6 @@ using Serilog;
 using Serilog.Extensions.Logging;
 using Zeus.Features.Alerting;
 using Zeus.Features.Api;
-using Zeus.Features.Api.Swagger;
 using Zeus.Features.Bot;
 using Zeus.Features.Clients;
 using Zeus.Features.HealthCheck;
@@ -14,6 +13,7 @@ using Zeus.Features.Localization;
 using Zeus.Features.Mediatr;
 using Zeus.Features.Metrics;
 using Zeus.Features.Profiling;
+using Zeus.Features.Swagger;
 using Zeus.Shared.AppFeature.Extensions;
 using Zeus.Shared.Features.Extensions;
 

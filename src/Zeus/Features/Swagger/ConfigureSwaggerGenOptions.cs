@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Zeus.Features.Api.Swagger
+namespace Zeus.Features.Swagger
 {
     internal class ConfigureSwaggerGenOptions : IConfigureOptions<SwaggerGenOptions>
     {

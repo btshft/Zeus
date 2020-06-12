@@ -52,7 +52,7 @@ namespace Zeus.Shared.AppFeature.Extensions
                 }
             }
 
-            builder.Services.TryAddSingleton<TFeature>(feature);
+            builder.Services.TryAddSingleton(feature);
             builder.Services.AddOptions<TOptions>()
                 .Configure(configure)
                 .ValidateDataAnnotations();

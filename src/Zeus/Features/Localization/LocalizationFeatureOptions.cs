@@ -16,7 +16,8 @@ namespace Zeus.Features.Localization
 
             try
             {
-                var cultureInfo = new CultureInfo(culture);
+                // ReSharper disable once ObjectCreationAsStatement
+                new CultureInfo(culture);
             }
             catch (Exception e)
             {

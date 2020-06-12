@@ -10,6 +10,7 @@ using Microsoft.Extensions.Options;
 using Polly;
 using Zeus.Storage.Faster.Options;
 using Zeus.Storage.Faster.Serialization;
+using Zeus.Storage.Faster.Utils;
 
 namespace Zeus.Storage.Faster.Store.Internal
 {

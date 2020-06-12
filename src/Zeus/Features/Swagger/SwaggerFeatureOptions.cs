@@ -1,6 +1,6 @@
 ﻿using Zeus.Shared.Features.Optional;
 
-namespace Zeus.Features.Api.Swagger
+namespace Zeus.Features.Swagger
 {
     public class SwaggerFeatureOptions : OptionalFeatureOptions
     {

@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using FASTER.core;
+using Zeus.Storage.Faster.Utils;
 
 namespace Zeus.Storage.Faster.Serialization
 {

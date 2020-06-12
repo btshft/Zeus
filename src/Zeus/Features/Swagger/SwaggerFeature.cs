@@ -15,7 +15,7 @@ using Zeus.Shared.Features.Optional;
 using Zeus.Storage.Models.External;
 using File = System.IO.File;
 
-namespace Zeus.Features.Api.Swagger
+namespace Zeus.Features.Swagger
 {
     public class SwaggerFeature : OptionalFeature<SwaggerFeatureOptions>
     {
