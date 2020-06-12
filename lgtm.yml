@@ -3,6 +3,9 @@ path_classifiers:
     - "*.md"
   test:
     - "**/*.Tests"
+  generated:
+    - "**/bin/"
+    - "**/obj/"
     
 queries:
   - include:
