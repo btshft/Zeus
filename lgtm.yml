@@ -6,6 +6,8 @@ path_classifiers:
   generated:
     - "**/bin/"
     - "**/obj/"
+  template:
+    - "**/_templates/"
     
 queries:
   - include:
