@@ -44,6 +44,21 @@ namespace Zeus.Stores.Default
             }
         }
 
+        public Task<IReadOnlyCollection<AlertsSubscription>> GetAsync(long chatId, CancellationToken cancellation = default)
+        {
+            _lock.EnterReadLock();
+            try
+            {
+                return Task.FromResult<IReadOnlyCollection<AlertsSubscription>>(_subscriptions
+                    .Where(s => s.ChatId == chatId)
+                    .ToArray());
+            }
+            finally
+            {
+                _lock.ExitReadLock();
+            }
+        }
+
         /// <inheritdoc />
         public Task<IReadOnlyCollection<AlertsSubscription>> GetAllAsync(CancellationToken cancellation = default)
         {

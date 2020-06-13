@@ -24,6 +24,9 @@ namespace Zeus.Handlers.Bot.Actions.Subscribe
 
                 var commandParts = message.Split(' ', count: 2, StringSplitOptions.RemoveEmptyEntries);
                 if (commandParts.Length < 2)
+                    commandParts = message.Split('@', count: 2, StringSplitOptions.RemoveEmptyEntries);
+
+                if (commandParts.Length != 2)
                     return false;
 
                 var command = commandParts[0].Trim();
@@ -33,7 +36,7 @@ namespace Zeus.Handlers.Bot.Actions.Subscribe
                 if (!matchedByCommand)
                     return false;
 
-                action = new SubscribeAction(channel);
+                action = new SubscribeAction(channel.ToLowerInvariant());
                 return true;
             }
         }

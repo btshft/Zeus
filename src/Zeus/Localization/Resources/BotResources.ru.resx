@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Channels" xml:space="preserve">
+    <value>Для подписки доступны следующие каналы:</value>
+  </data>
+  <data name="ChannelsNotFound" xml:space="preserve">
+    <value>Доступные для подписки каналы не найдены ☹️</value>
+  </data>
+  <data name="ChatSubscriptions" xml:space="preserve">
+    <value>Вы подписаны на следующие каналы</value>
+  </data>
+  <data name="ChatSubscriptionsNotFound" xml:space="preserve">
+    <value>Вы не подписаны ни на один из каналов уведомлений. Вы можете узнать о доступных для подписки каналов с помощью команды /channels.</value>
+  </data>
   <data name="CommandFailedUnexpectedly" xml:space="preserve">
     <value>Не удалось выполнить запрос из-за непредвиденной ошибки ☹️
 Идентификатор трассировки '{0}'</value>
@@ -143,12 +155,6 @@
   </data>
   <data name="SubscribeSucceed" xml:space="preserve">
     <value>Вы успешно подписались на уведомления!</value>
-  </data>
-  <data name="SubscriptionsChannelSubscribers" xml:space="preserve">
-    <value>Подписчики канала '{0}'</value>
-  </data>
-  <data name="SubscriptionsNotFound" xml:space="preserve">
-    <value>Подписчики отсутствуют</value>
   </data>
   <data name="UnsubscribeFailedChannelNotFound" xml:space="preserve">
     <value>Не удалось отписаться от уведомлений, канал не найден ☹️</value>

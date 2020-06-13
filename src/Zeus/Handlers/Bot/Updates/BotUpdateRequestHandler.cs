@@ -6,9 +6,11 @@ using Telegram.Bot;
 using Telegram.Bot.Types;
 using Zeus.Handlers.Bot.Abstractions;
 using Zeus.Handlers.Bot.Actions;
+using Zeus.Handlers.Bot.Actions.Channels;
 using Zeus.Handlers.Bot.Actions.Echo;
 using Zeus.Handlers.Bot.Actions.Start;
 using Zeus.Handlers.Bot.Actions.Subscribe;
+using Zeus.Handlers.Bot.Actions.Subscriptions;
 using Zeus.Handlers.Bot.Actions.Unsubscribe;
 using Zeus.Handlers.Bot.Context;
 using Zeus.Handlers.Bot.Notifications;
@@ -49,9 +51,11 @@ namespace Zeus.Handlers.Bot.Updates
 
             var parser = BotActionParser.Builder()
                 .WhenParsed<SubscribeAction.Format, SubscribeAction>(SendActionRequest)
+                .WhenParsed<ChannelsAction.Format, ChannelsAction>(SendActionRequest)
                 .WhenParsed<EchoAction.Format, EchoAction>(SendActionRequest)
                 .WhenParsed<UnsubscribeAction.Format, UnsubscribeAction>(SendActionRequest)
                 .WhenParsed<StartAction.Format, StartAction>(SendActionRequest)
+                .WhenParsed<SubscriptionsAction.Format, SubscriptionsAction>(SendActionRequest)
                 .Create();
 
             var bot = await _botUserProvider.GetAsync(cancellationToken);

@@ -45,6 +45,20 @@ namespace Zeus.Storage.Consul.Store
             return subscriptions.Select(s => s.Value).ToArray();
         }
 
+        public async Task<IReadOnlyCollection<AlertsSubscription>> GetAsync(long chatId, CancellationToken cancellation = default)
+        {
+            var key = GetSubscriptionsKey();
+            var options = _optionsProvider.Value;
+
+            var subscriptions = await _consulClient.KV.ListAsync<AlertsSubscription>(
+                key, options.SerializerSettings, cancellation).UnwrapAsync();
+
+            return subscriptions
+                .Select(s => s.Value)
+                .Where(s => s.ChatId == chatId)
+                .ToArray();
+        }
+
         /// <inheritdoc />
         public async Task<IReadOnlyCollection<AlertsSubscription>> GetAllAsync(CancellationToken cancellation = default)
         {

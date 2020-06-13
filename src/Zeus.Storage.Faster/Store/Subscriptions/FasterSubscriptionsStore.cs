@@ -34,6 +34,18 @@ namespace Zeus.Storage.Faster.Store.Subscriptions
         }
 
         /// <inheritdoc />
+        public async Task<IReadOnlyCollection<AlertsSubscription>> GetAsync(long chatId, CancellationToken cancellation = default)
+        {
+            var subscriptions = await _store
+                .Where(kv =>
+                    kv.Value.ChatId == chatId)
+                .Select(kv => kv.Value)
+                .ToArrayAsync(cancellation);
+
+            return subscriptions;
+        }
+
+        /// <inheritdoc />
         public async Task<IReadOnlyCollection<AlertsSubscription>> GetAllAsync(CancellationToken cancellation = default)
         {
             return await _store.Select(s => s.Value)

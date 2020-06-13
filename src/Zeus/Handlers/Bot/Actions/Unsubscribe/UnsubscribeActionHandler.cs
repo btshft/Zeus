@@ -33,14 +33,12 @@ namespace Zeus.Handlers.Bot.Actions.Unsubscribe
         protected override async Task Handle(BotActionRequest<UnsubscribeAction> request, CancellationToken cancellationToken)
         {
             var chat = request.Update.Message.Chat;
-            var messageId = request.Update.Message.MessageId;
 
             var channel = await _channelStore.GetAsync(request.Action.Channel, cancellationToken);
             if (channel == null)
             {
                 var message = Localizer.GetString(BotResources.UnsubscribeFailedChannelNotFound);
-                await Bot.SendTextMessageAsync(new ChatId(chat.Id), message, replyToMessageId: messageId,
-                    cancellationToken: cancellationToken);
+                await Bot.SendTextMessageAsync(new ChatId(chat.Id), message, cancellationToken: cancellationToken);
 
                 return;
             }
@@ -49,8 +47,7 @@ namespace Zeus.Handlers.Bot.Actions.Unsubscribe
             if (existingSubscription == null)
             {
                 var message = Localizer.GetString(BotResources.UnsubscribeFailedNotSubscribed);
-                await Bot.SendTextMessageAsync(new ChatId(chat.Id), message, replyToMessageId: messageId,
-                    cancellationToken: cancellationToken);
+                await Bot.SendTextMessageAsync(new ChatId(chat.Id), message, cancellationToken: cancellationToken);
 
                 return;
             }

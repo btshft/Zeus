@@ -13,12 +13,18 @@ namespace Zeus.Storage.Models.Alerts
         /// Unique channel name.
         /// </summary>
         [Required(AllowEmptyStrings = false, ErrorMessage = "Channel name is not provided")]
+        [RegularExpression("^[a-zA-Z0-9]{2,}(?:-?[a-zA-Z0-9])*$", ErrorMessage = "Channel name is invalid. Expected format '{1}'")]
         public string Name { get; set; }
 
         /// <summary>
         /// Is channel enabled.
         /// </summary>
         public bool Enabled { get; set; } = true;
+
+        /// <summary>
+        /// Channel description.
+        /// </summary>
+        public string Description { get; set; }
 
         public sealed class NameEqualityComparer : IEqualityComparer<AlertsChannel>
         {
