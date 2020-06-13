@@ -14,6 +14,7 @@ using Zeus.Features.Mediatr;
 using Zeus.Features.Metrics;
 using Zeus.Features.Profiling;
 using Zeus.Features.Swagger;
+using Zeus.Middleware;
 using Zeus.Shared.AppFeature.Extensions;
 using Zeus.Shared.Features.Extensions;
 
@@ -49,6 +50,7 @@ namespace Zeus
         public void Configure(IApplicationBuilder app)
         {
             app.UseExceptionHandler("/error");
+            app.UseMiddleware<LogRequestResponseMiddleware>();
 
             app.UseFeature<LocalizationFeature>();
             app.UseFeature<ProfilingFeature>(required: false);

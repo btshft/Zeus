@@ -5,7 +5,7 @@ using Murmur;
 
 namespace Zeus.Storage.Faster.Utils
 {
-    public static class MurMur3
+    internal static class MurMur3
     {
         private static readonly Lazy<HashAlgorithm> AlgorithmProvider = new Lazy<HashAlgorithm>(
             () => MurmurHash.Create128());

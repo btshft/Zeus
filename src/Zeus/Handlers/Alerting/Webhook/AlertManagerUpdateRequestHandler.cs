@@ -62,7 +62,7 @@ namespace Zeus.Handlers.Alerting.Webhook
             var model = new AlertsTemplateModel
             {
                 Status = request.Update.Status,
-                Alerts = request.Update.Alerts,
+                Alerts = request.Update.Alerts.Normalize(),
                 CommonAnnotations = request.Update.CommonAnnotations,
                 CommonLabels = request.Update.CommonLabels,
                 GroupKey = request.Update.GroupKey,
