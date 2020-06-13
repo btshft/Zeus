@@ -8,7 +8,7 @@ Work in progress. Not ready for production usage.
 
 | Release (Preview)  |  Development | Code quality |
 |---|---|---|
-|  ![Release (Docker)](https://github.com/btshft/Zeus/workflows/Release%20(Docker)/badge.svg) | ![Development (Docker)](https://github.com/btshft/Zeus/workflows/Development%20(Docker)/badge.svg)  | [![Total alerts](https://img.shields.io/lgtm/alerts/g/btshft/Zeus.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/btshft/Zeus/alerts/) |
+|  ![Release (Docker)](https://github.com/btshft/Zeus/workflows/Release%20(Docker)/badge.svg) | ![Development (Docker)](https://github.com/btshft/Zeus/workflows/Development%20(Docker)/badge.svg)  | [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=btshft_Zeus&metric=alert_status)](https://sonarcloud.io/dashboard?id=btshft_Zeus) |
 
 ## Features
 1. **Channels & Subscriptions**. Publish alerts to different channels using signle app, manage channel subscriptions from Telegram using commands.
