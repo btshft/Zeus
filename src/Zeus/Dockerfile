@@ -7,6 +7,7 @@ WORKDIR /src
 COPY ["Zeus/Zeus.csproj", "Zeus/"]
 COPY ["Zeus.Storage.Consul/Zeus.Storage.Consul.csproj", "Zeus.Storage.Consul/"]
 COPY ["Zeus.Storage/Zeus.Storage.csproj", "Zeus.Storage/"]
+COPY ["Zeus.Storage.Faster/Zeus.Storage.Faster.csproj", "Zeus.Storage.Faster/"]
 RUN dotnet restore "Zeus/Zeus.csproj"
 COPY . .
 WORKDIR "/src/Zeus"
