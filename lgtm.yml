@@ -3,19 +3,14 @@ path_classifiers:
     - "*.md"
   test:
     - "**/*.Tests"
-  generated:
-    - "**/bin/"
-    - "**/obj/"
   template:
     - "**/_templates/"
     
 queries:
-  - include:
+  - exclude:
       tags:
-        - "security"
-        - "efficiency"
-        - "exceptions"
-        - "reliabitility"
+        - "readability"
+        - "testability"
 
 extraction: 
   csharp:
