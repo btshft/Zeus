@@ -10,7 +10,12 @@
     <NoWarn>1591</NoWarn>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
     <UserSecretsId>9c98ca0f-0bc8-45c5-819e-2c0f5f8bf1fc</UserSecretsId>
+    <CodeAnalysisRuleSet>..\.sonarlint\btshft_zeuscsharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\.sonarlint\btshft_zeus\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="App.Metrics" Version="4.0.0" />

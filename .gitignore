@@ -377,3 +377,5 @@ Thumbs.db
 !.dockerignore
 !.helmignore
 !.github
+!.azure
+!.sonarlint

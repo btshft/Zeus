@@ -7,7 +7,12 @@
 
   <PropertyGroup>
     <NoWarn>1591</NoWarn>
+    <CodeAnalysisRuleSet>..\.sonarlint\btshft_zeuscsharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\.sonarlint\btshft_zeus\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+  </ItemGroup>
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
