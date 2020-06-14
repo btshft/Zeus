@@ -1,0 +1,16 @@
+path_classifiers:
+  docs:
+    - "*.md"
+  test:
+    - "**/*.Tests"
+  template:
+    - "**/_templates/"
+
+extraction: 
+  csharp:
+    index:
+      all_solutions: false
+      solution: 
+        - src/Zeus.sln
+      dotnet:
+        version: 3.1.301
