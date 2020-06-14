@@ -6,9 +6,9 @@ Telegram bot for [Prometheus](https://prometheus.io/) alerts. Bot provides a fle
 ## Status
 Work in progress. Not ready for production usage.
 
-| Release (Preview)  |  Development | Code quality |
-|---|---|---|
-|  ![Release (Docker)](https://github.com/btshft/Zeus/workflows/Release%20(Docker)/badge.svg) | ![Development (Docker)](https://github.com/btshft/Zeus/workflows/Development%20(Docker)/badge.svg)  | [![Total alerts](https://img.shields.io/lgtm/alerts/g/btshft/Zeus.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/btshft/Zeus/alerts/) |
+|  Development | Code quality |
+|---|---|
+|  [![Build Status](https://dev.azure.com/btshft/Zeus/_apis/build/status/Development?branchName=master)](https://dev.azure.com/btshft/Zeus/_build/latest?definitionId=1&branchName=master)| [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=btshft_Zeus&metric=alert_status)](https://sonarcloud.io/dashboard?id=btshft_Zeus) |
 
 ## Features
 1. **Channels & Subscriptions**. Publish alerts to different channels using signle app, manage channel subscriptions from Telegram using commands.
