@@ -1,15 +1,5 @@
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    commit-message:
-      prefix: "github-actions"
-    labels:
-      - "dependencies"
-      - "github-actions"
-
   - package-ecosystem: "nuget"
     directory: "/src"
     schedule:
@@ -29,5 +19,3 @@ updates:
     labels:
       - "dependencies"
       - "docker"
-
-  
