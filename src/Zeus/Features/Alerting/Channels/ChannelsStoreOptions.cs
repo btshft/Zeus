@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
 using Zeus.Shared.Validation;
 using Zeus.Storage.Models.Alerts;
 

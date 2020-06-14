@@ -1,23 +1,10 @@
-﻿using System;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using FASTER.core;
 using Microsoft.Extensions.Logging;
 
 namespace Zeus.Storage.Faster.Store.Internal
 {
-    public class FasterStoreException : Exception
-    {
-        internal FasterStoreException(string message)
-            : base(message)
-        {
-        }
-
-        internal FasterStoreException(string message, Exception innerException)
-            : base(message, innerException)
-        {
-        }
-    }
-
     internal partial class FasterStore<TKey, TValue>
     {
         public struct ValueHolder
@@ -42,7 +29,7 @@ namespace Zeus.Storage.Faster.Store.Internal
 
         public class StoreContext
         {
-            public static StoreContext Null = new StoreContext();
+            public static readonly StoreContext Null = new StoreContext();
         }
 
         // ReSharper disable RedundantAssignment
@@ -66,8 +53,8 @@ namespace Zeus.Storage.Faster.Store.Internal
 
                 try
                 {
-                    keyJson = key.Key != null ? JsonSerializer.Serialize(key.Key) : "null";
-                    outputJson = output.Value != null ? JsonSerializer.Serialize(output.Value) : "null";
+                    keyJson = key.Key != null ? JsonSerializer.Serialize(key.Key) : keyJson;
+                    outputJson = output.Value != null ? JsonSerializer.Serialize(output.Value) : outputJson;
                 }
                 finally
                 {
@@ -85,8 +72,8 @@ namespace Zeus.Storage.Faster.Store.Internal
 
                 try
                 {
-                    keyJson = key.Key != null ? JsonSerializer.Serialize(key.Key) : "null";
-                    valueJson = value.Value != null ? JsonSerializer.Serialize(value.Value) : "null";
+                    keyJson = key.Key != null ? JsonSerializer.Serialize(key.Key) : keyJson;
+                    valueJson = value.Value != null ? JsonSerializer.Serialize(value.Value) : valueJson;
                 }
                 finally
                 {
@@ -97,6 +84,7 @@ namespace Zeus.Storage.Faster.Store.Internal
             /// <inheritdoc />
             public void RMWCompletionCallback(ref KeyHolder key, ref ValueHolder input, StoreContext ctx, Status status)
             {
+                // Method intentionally left empty.
             }
 
             /// <inheritdoc />
@@ -105,11 +93,11 @@ namespace Zeus.Storage.Faster.Store.Internal
                 if (!_logger.IsEnabled(LogLevel.Trace))
                     return;
 
-                var keyJson = "unkown";
+                var keyJson = "unknown";
 
                 try
                 {
-                    keyJson = key.Key != null ? JsonSerializer.Serialize(key.Key) : "null";
+                    keyJson = key.Key != null ? JsonSerializer.Serialize(key.Key) : keyJson;
                 }
                 finally
                 {

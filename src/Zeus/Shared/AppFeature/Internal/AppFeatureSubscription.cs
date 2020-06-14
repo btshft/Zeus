@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Zeus.Shared.AppFeature.Internal
 {
+    [SuppressMessage("Major Code Smell", "S2326:Unused type parameters should be removed", Justification = "Used for DI")]
     // ReSharper disable once UnusedTypeParameter
     internal class AppFeatureSubscription<TFeature, TOptions>
         where TFeature : class, IAppFeature<TOptions>
@@ -19,4 +21,4 @@ namespace Zeus.Shared.AppFeature.Internal
             _subscriber(options);
         }
     }
-}
+}  

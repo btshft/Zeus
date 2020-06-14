@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FASTER.core;
-using Zeus.Storage.Faster.Serialization;
 using Zeus.Storage.Faster.Utils;
 
 namespace Zeus.Storage.Faster.Store.Internal
@@ -149,18 +148,62 @@ namespace Zeus.Storage.Faster.Store.Internal
 
         internal class IteratorStoreFunctions : IFunctions<KeyHolder, ValueHolder, ValueHolder, ValueHolder, StoreContext>
         {
-            public void CheckpointCompletionCallback(string sessionId, CommitPoint commitPoint) { }
-            public void ConcurrentReader(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value, ref ValueHolder dst) { }
-            public bool ConcurrentWriter(ref KeyHolder key, ref ValueHolder src, ref ValueHolder dst) { dst = src; return true; }
-            public void CopyUpdater(ref KeyHolder key, ref ValueHolder input, ref ValueHolder oldValue, ref ValueHolder newValue) { }
-            public void InitialUpdater(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value) { }
-            public bool InPlaceUpdater(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value) { return true; }
-            public void ReadCompletionCallback(ref KeyHolder key, ref ValueHolder input, ref ValueHolder output, StoreContext ctx, Status status) { }
-            public void RMWCompletionCallback(ref KeyHolder key, ref ValueHolder input, StoreContext ctx, Status status) { }
-            public void SingleReader(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value, ref ValueHolder dst) { }
+            public void CheckpointCompletionCallback(string sessionId, CommitPoint commitPoint)
+            {
+                // Method intentionally left empty.
+            }
+
+            public void ConcurrentReader(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value, ref ValueHolder dst)
+            {
+                // Method intentionally left empty.
+            }
+
+            public bool ConcurrentWriter(ref KeyHolder key, ref ValueHolder src, ref ValueHolder dst)
+            {
+                dst = src; return true;
+            }
+
+            public void CopyUpdater(ref KeyHolder key, ref ValueHolder input, ref ValueHolder oldValue, ref ValueHolder newValue)
+            {
+                // Method intentionally left empty.
+            }
+
+            public void InitialUpdater(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value)
+            {
+                // Method intentionally left empty.
+            }
+
+            public bool InPlaceUpdater(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value)
+            {
+                return true;
+            }
+
+            public void ReadCompletionCallback(ref KeyHolder key, ref ValueHolder input, ref ValueHolder output, StoreContext ctx, Status status)
+            {
+                // Method intentionally left empty.
+            }
+
+            public void RMWCompletionCallback(ref KeyHolder key, ref ValueHolder input, StoreContext ctx, Status status)
+            {
+                // Method intentionally left empty.
+            }
+
+            public void SingleReader(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value, ref ValueHolder dst)
+            {
+                // Method intentionally left empty.
+            }
+
             public void SingleWriter(ref KeyHolder key, ref ValueHolder src, ref ValueHolder dst) { dst = src; }
-            public void UpsertCompletionCallback(ref KeyHolder key, ref ValueHolder value, StoreContext ctx) { }
-            public void DeleteCompletionCallback(ref KeyHolder key, StoreContext ctx) { }
+
+            public void UpsertCompletionCallback(ref KeyHolder key, ref ValueHolder value, StoreContext ctx)
+            {
+                // Method intentionally left empty.
+            }
+
+            public void DeleteCompletionCallback(ref KeyHolder key, StoreContext ctx)
+            {
+                // Method intentionally left empty.
+            }
         }
     }
 }

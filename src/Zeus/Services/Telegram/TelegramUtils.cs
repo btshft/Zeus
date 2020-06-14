@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using Telegram.Bot.Types.Enums;
 
 namespace Zeus.Services.Telegram
@@ -6,7 +7,7 @@ namespace Zeus.Services.Telegram
     public static class TelegramUtils
     {
         private static readonly Regex MarkdownEscapeRegEx = new Regex(@"(?<link>\[[^\][]*]\(http[^()]*\))|(?<characters>[-.+!?^$[\](){}\\])",
-            RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
+            RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.IgnoreCase, matchTimeout: TimeSpan.FromSeconds(30));
 
         public static string Escape(string text, ParseMode parseMode)
         {

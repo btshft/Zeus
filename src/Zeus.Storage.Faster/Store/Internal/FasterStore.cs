@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -9,11 +10,11 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Polly;
 using Zeus.Storage.Faster.Options;
-using Zeus.Storage.Faster.Serialization;
 using Zeus.Storage.Faster.Utils;
 
 namespace Zeus.Storage.Faster.Store.Internal
 {
+    [SuppressMessage("Major Code Smell", "S3881:\"IDisposable\" should be implemented correctly", Justification = "Not contains unmanaged resources")]
     internal partial class FasterStore<TKey, TValue> : IDisposable, IAsyncEnumerable<KeyValuePair<TKey, TValue>>
     {
         private const long StoreSize = 1L << 20;
