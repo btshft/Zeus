@@ -60,7 +60,7 @@ namespace Zeus
             {
                 endpoints.MapFeature<HealthChecksFeature>(required: false);
                 endpoints.MapFeature<ApiFeature>();
-                endpoints.MapFeature<MetricsFeature>();
+                endpoints.MapFeature<MetricsFeature>(required: false);
             });
 
             app.UseFeature<SwaggerFeature>();
