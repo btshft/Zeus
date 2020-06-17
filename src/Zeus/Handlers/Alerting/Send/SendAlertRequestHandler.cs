@@ -3,19 +3,19 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Telegram.Bot.Types;
-using Zeus.Services.Telegram.Consumers;
+using Zeus.Handlers.Bot.Consumers;
 using Zeus.Shared.Exceptions;
 using Zeus.Shared.Mediatr;
-using Zeus.Shared.Transport;
+using Zeus.Transport;
 
 namespace Zeus.Handlers.Alerting.Send
 {
     [WrapExceptions]
     public class SendAlertRequestHandler : AsyncRequestHandler<SendAlertRequest>
     {
-        private readonly ITransport<SendTextMessageRequest> _sendMessageTransport;
+        private readonly ITransport<SendTelegramReply> _sendMessageTransport;
 
-        public SendAlertRequestHandler(ITransport<SendTextMessageRequest> sendMessageTransport)
+        public SendAlertRequestHandler(ITransport<SendTelegramReply> sendMessageTransport)
         {
             _sendMessageTransport = sendMessageTransport;
         }
@@ -26,7 +26,7 @@ namespace Zeus.Handlers.Alerting.Send
             var chatId = new ChatId(request.Subscription.ChatId);
             var text = request.Text;
 
-            await _sendMessageTransport.SendAsync(new SendTextMessageRequest(chatId, text)
+            await _sendMessageTransport.SendAsync(new SendTelegramReply(chatId, text)
             {
                 DisableWebPagePreview = true,
                 ParseMode = request.ParseMode,

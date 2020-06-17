@@ -5,13 +5,13 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Telegram.Bot;
 using Zeus.BackgroundServices;
+using Zeus.Handlers.Bot.Consumers;
 using Zeus.Handlers.Bot.Context;
-using Zeus.Services.Telegram.Consumers;
 using Zeus.Services.Telegram.Polling;
 using Zeus.Shared.AppFeature;
 using Zeus.Shared.Extensions;
 using Zeus.Shared.Mediatr;
-using Zeus.Shared.Transport.InMemory;
+using Zeus.Transport.InMemory;
 
 namespace Zeus.Features.Bot
 {
@@ -56,8 +56,8 @@ namespace Zeus.Features.Bot
             services.AddTransient<IBotUserProvider, BotUserProvider>();
             services.AddSingleton<IBotPollingUpdatesReceiver, BotPollingUpdatesReceiver>();
 
-            services.AddInMemoryTransport<SendTextMessageRequest>()
-                .AddInMemoryTransportConsumer<SendTextMessageRequest, SendTextMessageRequestConsumer>();
+            services.AddInMemoryTransport<SendTelegramReply>()
+                .AddInMemoryTransportConsumer<SendTelegramReply, SendTelegramReplyConsumer>();
         }
     }
 }

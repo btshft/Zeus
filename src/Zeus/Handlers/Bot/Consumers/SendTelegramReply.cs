@@ -1,11 +1,11 @@
 ﻿using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
-namespace Zeus.Services.Telegram.Consumers
+namespace Zeus.Handlers.Bot.Consumers
 {
-    public class SendTextMessageRequest
+    public class SendTelegramReply
     {
-        public SendTextMessageRequest(ChatId chatId, string text)
+        public SendTelegramReply(ChatId chatId, string text)
         {
             ChatId = chatId;
             Text = text;

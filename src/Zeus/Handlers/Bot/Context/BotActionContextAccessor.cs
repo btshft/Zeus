@@ -9,7 +9,7 @@ namespace Zeus.Handlers.Bot.Context
 
         public BotActionContext Context
         {
-            get => CurrentContext.Value.Context;
+            get => CurrentContext.Value?.Context;
             set
             {
                 var holder = CurrentContext.Value;

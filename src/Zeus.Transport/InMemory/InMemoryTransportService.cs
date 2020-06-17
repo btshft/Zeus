@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Zeus.Shared.Transport.InMemory
+namespace Zeus.Transport.InMemory
 {
     internal class InMemoryTransportService<T> : BackgroundService
     {

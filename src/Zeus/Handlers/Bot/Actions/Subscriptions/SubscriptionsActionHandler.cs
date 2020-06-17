@@ -3,28 +3,26 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Telegram.Bot;
 using Telegram.Bot.Types;
 using Zeus.Handlers.Bot.Abstractions;
-using Zeus.Handlers.Bot.Reply;
+using Zeus.Handlers.Bot.Consumers;
 using Zeus.Localization;
 using Zeus.Shared.Extensions;
 using Zeus.Storage.Stores.Abstractions;
+using Zeus.Transport;
 
 namespace Zeus.Handlers.Bot.Actions.Subscriptions
 {
-    [ReplyOnException]
     public class SubscriptionsActionHandler : BotActionHandler<SubscriptionsAction>
     {
         private readonly ISubscriptionsStore _subscriptionsStore;
 
         /// <inheritdoc />
-        public SubscriptionsActionHandler
-            (ITelegramBotClient bot, 
-            IMessageLocalizer<BotResources> localizer,
-            ILoggerFactory loggerFactory,
-            ISubscriptionsStore subscriptionsStore) 
-            : base(bot, localizer, loggerFactory)
+        public SubscriptionsActionHandler(
+            IMessageLocalizer<BotResources> localizer, 
+            ILoggerFactory loggerFactory, 
+            ITransport<SendTelegramReply> reply, 
+            ISubscriptionsStore subscriptionsStore) : base(localizer, loggerFactory, reply)
         {
             _subscriptionsStore = subscriptionsStore;
         }
@@ -38,7 +36,8 @@ namespace Zeus.Handlers.Bot.Actions.Subscriptions
             if (subscriptions.Count < 1)
             {
                 var notSubscribedText = Localizer.GetString(BotResources.ChatSubscriptionsNotFound);
-                await Bot.SendTextMessageAsync(new ChatId(chatId), notSubscribedText, cancellationToken: cancellationToken);
+                await Reply.SendAsync(new SendTelegramReply(new ChatId(chatId), notSubscribedText), cancellationToken);
+
                 return;
             }
 
@@ -49,8 +48,8 @@ namespace Zeus.Handlers.Bot.Actions.Subscriptions
             foreach (var (index, subscription) in subscriptions.Index())
                 messageBuilder.AppendLine($"{index + 1}. {subscription.Channel} (/unsubscribe@{subscription.Channel})");
 
-            await Bot.SendTextMessageSplitAsync(new ChatId(chatId), messageBuilder.ToString(),
-                cancellationToken: cancellationToken);
+            await Reply.SendAsync(new SendTelegramReply(new ChatId(chatId), messageBuilder.ToString()),
+                cancellationToken);
         }
     }
 }

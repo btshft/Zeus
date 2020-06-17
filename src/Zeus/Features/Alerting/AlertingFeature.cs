@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Zeus.Handlers.Alerting.Consumers;
 using Zeus.Services.Templating;
 using Zeus.Services.Templating.Scriban;
 using Zeus.Shared.AppFeature;
@@ -12,6 +13,7 @@ using Zeus.Storage.Faster;
 using Zeus.Storage.Faster.Options;
 using Zeus.Storage.Stores.Abstractions;
 using Zeus.Stores.Default;
+using Zeus.Transport.InMemory;
 
 namespace Zeus.Features.Alerting
 {
@@ -32,6 +34,10 @@ namespace Zeus.Features.Alerting
 
             services.AddOptions<ScribanOptions>()
                 .ValidateDataAnnotations();
+
+            services
+                .AddInMemoryTransport<SendTelegramAlert>()
+                .AddInMemoryTransportConsumer<SendTelegramAlert, SendTelegramAlertConsumer>();
 
             services.TryAddSingleton<ITemplateEngine, ScribanTemplateEngine>();
             services.AddSingleton<ITemplatesStore>(

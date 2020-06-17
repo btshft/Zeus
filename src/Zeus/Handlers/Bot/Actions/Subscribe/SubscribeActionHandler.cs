@@ -2,29 +2,28 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Telegram.Bot;
 using Telegram.Bot.Types;
 using Zeus.Handlers.Bot.Abstractions;
-using Zeus.Handlers.Bot.Reply;
+using Zeus.Handlers.Bot.Consumers;
 using Zeus.Localization;
 using Zeus.Storage.Models.Alerts;
 using Zeus.Storage.Stores.Abstractions;
+using Zeus.Transport;
 
 namespace Zeus.Handlers.Bot.Actions.Subscribe
 {
-    [ReplyOnException]
     public class SubscribeActionHandler : BotActionHandler<SubscribeAction>
     {
         private readonly ISubscriptionsStore _subscriptionsStore;
         private readonly IChannelStore _channelStore;
 
+        /// <inheritdoc />
         public SubscribeActionHandler(
-            ITelegramBotClient bot,
             IMessageLocalizer<BotResources> localizer,
-            ILoggerFactory loggerFactory, 
-            ISubscriptionsStore subscriptionsStore,
-            IChannelStore channelStore) 
-            : base(bot, localizer, loggerFactory)
+            ILoggerFactory loggerFactory,
+            ITransport<SendTelegramReply> reply, 
+            ISubscriptionsStore subscriptionsStore, 
+            IChannelStore channelStore) : base(localizer, loggerFactory, reply)
         {
             _subscriptionsStore = subscriptionsStore;
             _channelStore = channelStore;
@@ -39,7 +38,8 @@ namespace Zeus.Handlers.Bot.Actions.Subscribe
             if (channel == null)
             {
                 var message = Localizer.GetString(BotResources.SubscribeFailedChannelNotFound);
-                await Bot.SendTextMessageAsync(new ChatId(chat.Id), message, cancellationToken: cancellationToken);
+                await Reply.SendAsync(new SendTelegramReply(new ChatId(chat.Id), message),
+                    cancellationToken);
 
                 return;
             }
@@ -48,7 +48,7 @@ namespace Zeus.Handlers.Bot.Actions.Subscribe
             if (subscriptionExists)
             {
                 var message = Localizer.GetString(BotResources.SubscribeFailedAlreadySubscribed);
-                await Bot.SendTextMessageAsync(new ChatId(chat.Id), message, cancellationToken: cancellationToken);
+                await Reply.SendAsync(new SendTelegramReply(new ChatId(chat.Id), message), cancellationToken);
 
                 return;
             }
@@ -65,8 +65,7 @@ namespace Zeus.Handlers.Bot.Actions.Subscribe
             await _subscriptionsStore.StoreAsync(subscription, cancellationToken);
 
             var replyMessage = Localizer.GetString(BotResources.SubscribeSucceed);
-            await Bot.SendTextMessageAsync(new ChatId(chat.Id), replyMessage,
-                cancellationToken: cancellationToken);
+            await Reply.SendAsync(new SendTelegramReply(new ChatId(chat.Id), replyMessage), cancellationToken);
         }
     }
 }

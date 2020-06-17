@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace Zeus.Shared.Transport
+namespace Zeus.Transport
 {
     public interface ITransport<in T>
     {

@@ -9,8 +9,8 @@ using Zeus.Shared.Extensions;
 namespace Zeus.Handlers.Logging
 {
     public class BotNotificationsLoggingHandler : 
-        INotificationHandler<BotUnknownCommandReceived>, 
-        INotificationHandler<BotUnsupportedUpdateReceived>
+        INotificationHandler<BotReceivedUnknownCommand>, 
+        INotificationHandler<BotReceivedUnsupportedUpdate>
     {
         private readonly ILogger<BotNotificationsLoggingHandler> _logger;
 
@@ -20,14 +20,14 @@ namespace Zeus.Handlers.Logging
         }
 
         /// <inheritdoc />
-        public Task Handle(BotUnknownCommandReceived notification, CancellationToken cancellationToken)
+        public Task Handle(BotReceivedUnknownCommand notification, CancellationToken cancellationToken)
         {
             _logger.LogInformation($"Unknown or incomplete command received. Update: {Environment.NewLine}{notification.Update.ToJson()}");
             return Task.CompletedTask;
         }
 
         /// <inheritdoc />
-        public Task Handle(BotUnsupportedUpdateReceived notification, CancellationToken cancellationToken)
+        public Task Handle(BotReceivedUnsupportedUpdate notification, CancellationToken cancellationToken)
         {
             _logger.LogInformation($"Unsupported update received. Update: {Environment.NewLine}{notification.Update.ToJson()}");
             return Task.CompletedTask;

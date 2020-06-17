@@ -3,12 +3,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Telegram.Bot;
 using Telegram.Bot.Types;
 using Zeus.Handlers.Bot.Abstractions;
+using Zeus.Handlers.Bot.Consumers;
 using Zeus.Localization;
 using Zeus.Shared.Extensions;
 using Zeus.Storage.Stores.Abstractions;
+using Zeus.Transport;
 
 namespace Zeus.Handlers.Bot.Actions.Channels
 {
@@ -17,13 +18,13 @@ namespace Zeus.Handlers.Bot.Actions.Channels
         private readonly IChannelStore _channelStore;
         private readonly ISubscriptionsStore _subscriptionsStore;
 
+        /// <inheritdoc />
         public ChannelsActionHandler(
-            ITelegramBotClient bot, 
-            IMessageLocalizer<BotResources> localizer,
-            ILoggerFactory loggerFactory,
-            IChannelStore channelStore, 
-            ISubscriptionsStore subscriptionsStore) 
-            : base(bot, localizer, loggerFactory)
+            IMessageLocalizer<BotResources> localizer, 
+            ILoggerFactory loggerFactory, 
+            ITransport<SendTelegramReply> reply, 
+            IChannelStore channelStore,
+            ISubscriptionsStore subscriptionsStore) : base(localizer, loggerFactory, reply)
         {
             _channelStore = channelStore;
             _subscriptionsStore = subscriptionsStore;
@@ -38,7 +39,9 @@ namespace Zeus.Handlers.Bot.Actions.Channels
             if (channels.Count < 1)
             {
                 var notSubscribedText = Localizer.GetString(BotResources.ChannelsNotFound);
-                await Bot.SendTextMessageAsync(new ChatId(chatId), notSubscribedText, cancellationToken: cancellationToken);
+                var replyRequest = new SendTelegramReply(new ChatId(chatId), notSubscribedText);
+
+                await Reply.SendAsync(replyRequest, cancellationToken);
                 return;
             }
 
@@ -61,7 +64,7 @@ namespace Zeus.Handlers.Bot.Actions.Channels
                 messageBuilder.AppendLine($"{index + 1}. {channel.Name}{descriptionSuffix}{subscribeSuffix}");
             }
 
-            await Bot.SendTextMessageSplitAsync(new ChatId(chatId), messageBuilder.ToString(), cancellationToken: cancellationToken);
+            await Reply.SendAsync(new SendTelegramReply(new ChatId(chatId), messageBuilder.ToString()), cancellationToken);
         }
     }
 }

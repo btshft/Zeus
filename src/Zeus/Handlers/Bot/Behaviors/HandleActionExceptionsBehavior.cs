@@ -1,35 +1,30 @@
 ﻿using System;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Localization;
-using Telegram.Bot;
-using Telegram.Bot.Types;
 using Zeus.Handlers.Bot.Abstractions;
+using Zeus.Handlers.Bot.Consumers;
 using Zeus.Handlers.Bot.Context;
 using Zeus.Localization;
-using Zeus.Shared.Mediatr;
+using Zeus.Transport;
 
-namespace Zeus.Handlers.Bot.Reply
+namespace Zeus.Handlers.Bot.Behaviors
 {
-    public class ReplyOnExceptionBehavior<TRequest, TResult> : IPipelineBehavior<TRequest, TResult>
+    public class HandleActionExceptionsBehavior<TRequest, TResult> : IPipelineBehavior<TRequest, TResult>
     {
         private readonly IBotActionContextAccessor _contextAccessor;
-        private readonly ITelegramBotClient _bot;
+        private readonly ITransport<SendTelegramReply> _reply;
         private readonly IMessageLocalizer<BotResources> _localizer;
-        private readonly IRequestHandlerFinder _handlerFinder;
 
-        public ReplyOnExceptionBehavior(
-            IBotActionContextAccessor contextAccessor, 
-            ITelegramBotClient bot,
-            IMessageLocalizer<BotResources> localizer,
-            IRequestHandlerFinder handlerFinder)
+        public HandleActionExceptionsBehavior(
+            IBotActionContextAccessor contextAccessor,
+            IMessageLocalizer<BotResources> localizer, 
+            ITransport<SendTelegramReply> reply)
         {
             _contextAccessor = contextAccessor;
-            _bot = bot;
             _localizer = localizer;
-            _handlerFinder = handlerFinder;
+            _reply = reply;
         }
 
         /// <inheritdoc />
@@ -53,17 +48,13 @@ namespace Zeus.Handlers.Bot.Reply
                 try
                 {
                     var context = _contextAccessor.Context;
-                    var handlerType = _handlerFinder.FindHandlerTypeByRequest(request.GetType());
-                    var replyAllowed = handlerType.GetCustomAttribute<ReplyOnExceptionAttribute>(inherit: false) != null;
-
-                    if (replyAllowed && (context.IsAuthorized || context.IsAnonymous))
+                    if ((context.IsAuthorized || context.IsAnonymous))
                     {
                         var message = _localizer.GetString(BotResources.CommandFailedUnexpectedly, context.TraceId);
                         var messageId = botRequest.Message.MessageId;
                         var chatId = botRequest.Chat.Id;
 
-                        await _bot.SendTextMessageAsync(new ChatId(chatId), message, replyToMessageId: messageId,
-                            cancellationToken: cancellationToken);
+                        await _reply.SendAsync(new SendTelegramReply(chatId, message) { ReplyToMessageId = messageId }, cancellationToken);
                     }
                 }
                 catch (Exception inner)

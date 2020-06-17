@@ -26,8 +26,4 @@
     </AssemblyAttribute>
   </ItemGroup>
 
-  <ItemGroup>
-    <AdditionalFiles Include="..\.sonarlint\btshft_zeus\CSharp\SonarLint.xml" Link="SonarLint.xml" />
-  </ItemGroup>
-
 </Project>

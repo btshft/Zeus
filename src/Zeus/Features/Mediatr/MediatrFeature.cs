@@ -10,8 +10,8 @@ using Zeus.Features.Profiling;
 using Zeus.Features.Profiling.Behaviors;
 using Zeus.Handlers.Alerting.Webhook;
 using Zeus.Handlers.Bot.Authorization;
+using Zeus.Handlers.Bot.Behaviors;
 using Zeus.Handlers.Bot.Context;
-using Zeus.Handlers.Bot.Reply;
 using Zeus.Shared.AppFeature;
 using Zeus.Shared.AppFeature.Extensions;
 using Zeus.Shared.Mediatr;
@@ -42,7 +42,7 @@ namespace Zeus.Features.Mediatr
             {
                 services.AddTransient(typeof(IPipelineBehavior<,>), typeof(BotActionContextInitBehavior<,>));
                 services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizeBotActionRequestBehavior<,>));
-                services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ReplyOnExceptionBehavior<,>));
+                services.AddTransient(typeof(IPipelineBehavior<,>), typeof(HandleActionExceptionsBehavior<,>));
             }
 
             if (features.IsEnabled<MetricsFeature>())

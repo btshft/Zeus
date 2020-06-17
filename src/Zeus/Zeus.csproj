@@ -14,10 +14,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="..\.sonarlint\btshft_zeus\CSharp\SonarLint.xml" Link="SonarLint.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="App.Metrics" Version="4.0.0" />
     <PackageReference Include="App.Metrics.AspNetCore.Endpoints" Version="4.0.0" />
     <PackageReference Include="App.Metrics.Formatters.Prometheus" Version="4.0.0" />
@@ -46,6 +42,7 @@
     <ProjectReference Include="..\Zeus.Storage.Consul\Zeus.Storage.Consul.csproj" />
     <ProjectReference Include="..\Zeus.Storage.Faster\Zeus.Storage.Faster.csproj" />
     <ProjectReference Include="..\Zeus.Storage\Zeus.Storage.csproj" />
+    <ProjectReference Include="..\Zeus.Transport\Zeus.Transport.csproj" />
   </ItemGroup>
 
   <ItemGroup>

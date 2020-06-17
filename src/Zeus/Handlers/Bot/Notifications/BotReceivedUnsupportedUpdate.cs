@@ -3,9 +3,9 @@ using Telegram.Bot.Types;
 
 namespace Zeus.Handlers.Bot.Notifications
 {
-    public class BotUnsupportedUpdateReceived : INotification
+    public class BotReceivedUnsupportedUpdate : INotification
     {
-        public BotUnsupportedUpdateReceived(Update update)
+        public BotReceivedUnsupportedUpdate(Update update)
         {
             Update = update;
         }

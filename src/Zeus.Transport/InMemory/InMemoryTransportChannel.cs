@@ -1,6 +1,6 @@
 ﻿using System.Threading.Channels;
 
-namespace Zeus.Shared.Transport.InMemory
+namespace Zeus.Transport.InMemory
 {
     internal class InMemoryTransportChannel<T>
     {

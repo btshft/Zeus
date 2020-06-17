@@ -2,7 +2,7 @@
 using System.Threading.Channels;
 using System.Threading.Tasks;
 
-namespace Zeus.Shared.Transport.InMemory
+namespace Zeus.Transport.InMemory
 {
     internal class InMemoryTransport<T> : ITransport<T>
     {

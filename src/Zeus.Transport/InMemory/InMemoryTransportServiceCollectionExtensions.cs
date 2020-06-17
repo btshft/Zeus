@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 
-namespace Zeus.Shared.Transport.InMemory
+namespace Zeus.Transport.InMemory
 {
     public static class InMemoryTransportServiceCollectionExtensions
     {
