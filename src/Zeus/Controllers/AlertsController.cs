@@ -9,11 +9,11 @@ namespace Zeus.Controllers
 {
     [ApiController, ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/webhook/alerts")]
-    public class WebhookController : ControllerBase
+    public class AlertsController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public WebhookController(IMediator mediator)
+        public AlertsController(IMediator mediator)
         {
             _mediator = mediator;
         }

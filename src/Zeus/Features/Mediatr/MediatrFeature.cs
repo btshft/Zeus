@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Zeus.Features.Bot;
+using Zeus.Features.Localization;
 using Zeus.Features.Metrics;
 using Zeus.Features.Metrics.Behaviors;
 using Zeus.Features.Profiling;
@@ -28,7 +29,9 @@ namespace Zeus.Features.Mediatr
         protected override void ConfigureFeature(IServiceCollection services, IAppFeatureCollection features)
         {
             services.AddMediatR(typeof(AlertManagerUpdateRequestHandler));
+
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(WrapExceptionsBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LocalizationBehavior<,>));
 
             if (features.IsEnabled<ProfilingFeature>())
             {

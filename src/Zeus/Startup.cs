@@ -7,7 +7,7 @@ using Serilog.Extensions.Logging;
 using Zeus.Features.Alerting;
 using Zeus.Features.Api;
 using Zeus.Features.Bot;
-using Zeus.Features.Clients;
+using Zeus.Features.Cleanup;
 using Zeus.Features.HealthCheck;
 using Zeus.Features.Localization;
 using Zeus.Features.Mediatr;
@@ -40,9 +40,9 @@ namespace Zeus
                 .AddFromConfiguration<LocalizationFeature, LocalizationFeatureOptions>("Localization")
                 .AddFromConfiguration<SwaggerFeature, SwaggerFeatureOptions>("Swagger")
                 .AddFromConfiguration<AlertingFeature, AlertingFeatureOptions>("Alerting")
-                .AddFromConfiguration<ClientsFeature, ClientsFeatureOptions>("Clients")
                 .AddFromConfiguration<ProfilingFeature, ProfilingFeatureOptions>("Profiling", required: false)
                 .AddFromConfiguration<BotFeature, BotFeatureOptions>("Bot")
+                .AddFromConfiguration<CleanupFeature, CleanupFeatureOptions>("Cleanup", required: false)
                 .Add<ApiFeature>()
                 .Add<MediatrFeature>();
         }

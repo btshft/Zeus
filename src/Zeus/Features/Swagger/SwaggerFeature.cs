@@ -34,7 +34,7 @@ namespace Zeus.Features.Swagger
 
                 var includeDocsTypesMarkers = new[]
                 {
-                    typeof(CallbackController),
+                    typeof(BotController),
                     typeof(AlertManagerWebhookUpdate),
                     typeof(Update)
                 };

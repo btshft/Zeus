@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Http;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Routing;
@@ -12,13 +11,11 @@ using Microsoft.Extensions.Options;
 using Telegram.Bot;
 using Zeus.Features.Alerting;
 using Zeus.Features.Bot;
-using Zeus.Features.Clients;
 using Zeus.Features.HealthCheck.Checks;
 using Zeus.Features.HealthCheck.Services;
 using Zeus.Shared.AppFeature;
 using Zeus.Shared.AppFeature.Extensions;
 using Zeus.Shared.Features.Optional;
-using Zeus.Shared.Utils;
 
 namespace Zeus.Features.HealthCheck
 {
@@ -67,16 +64,6 @@ namespace Zeus.Features.HealthCheck
                         timeout: options.Telegram.Timeout);
 
                     builder.Add(registration);
-                })
-                .WhenConfigured<ClientsFeature, ClientsFeatureOptions>(o =>
-                {
-                    var url = UrlHelper.Combine(o.Callback.BaseUrl, "api/v1.0/callback/ping");
-                    var uri = new Uri(url, UriKind.Absolute);
-
-                    builder.AddUrlGroup(uri, HttpMethod.Get,
-                        name: "callback",
-                        failureStatus: options.Callback?.FailureStatus,
-                        timeout: options.Callback?.Timeout);
                 });
         }
 

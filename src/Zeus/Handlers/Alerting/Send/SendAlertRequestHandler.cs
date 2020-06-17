@@ -2,32 +2,36 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Telegram.Bot;
 using Telegram.Bot.Types;
+using Zeus.Services.Telegram.Consumers;
 using Zeus.Shared.Exceptions;
-using Zeus.Shared.Extensions;
 using Zeus.Shared.Mediatr;
+using Zeus.Shared.Transport;
 
 namespace Zeus.Handlers.Alerting.Send
 {
     [WrapExceptions]
     public class SendAlertRequestHandler : AsyncRequestHandler<SendAlertRequest>
     {
-        private readonly ITelegramBotClient _botClient;
+        private readonly ITransport<SendTextMessageRequest> _sendMessageTransport;
 
-        public SendAlertRequestHandler(ITelegramBotClient botClient)
+        public SendAlertRequestHandler(ITransport<SendTextMessageRequest> sendMessageTransport)
         {
-            _botClient = botClient;
+            _sendMessageTransport = sendMessageTransport;
         }
 
         /// <inheritdoc />
         protected override async Task Handle(SendAlertRequest request, CancellationToken cancellationToken)
         {
-            await _botClient
-                .SendTextMessageSplitAsync(new ChatId(request.Subscription.ChatId),
-                    request.Text, request.ParseMode,
-                    disableWebPagePreview: true,
-                    disableNotification: request.Subscription.DisableNotifications, cancellationToken: cancellationToken);
+            var chatId = new ChatId(request.Subscription.ChatId);
+            var text = request.Text;
+
+            await _sendMessageTransport.SendAsync(new SendTextMessageRequest(chatId, text)
+            {
+                DisableWebPagePreview = true,
+                ParseMode = request.ParseMode,
+                DisableNotification = request.Subscription.DisableNotifications
+            }, cancellationToken);
         }
 
         public class WrapExceptionsAttribute : WrapExceptionsBaseAttribute

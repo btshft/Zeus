@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Telegram.Bot.Types.Enums;
-using Zeus.Clients.Callback;
+using Zeus.Handlers.Bot.Updates;
 using Zeus.Services.Telegram.Polling;
 using Zeus.Shared.Extensions;
 
@@ -13,16 +14,16 @@ namespace Zeus.BackgroundServices
     public class BotUpdatesPollingService : BackgroundService
     {
         private readonly ILogger<BotUpdatesPollingService> _logger;
-        private readonly ICallbackClient _callbackClient;
+        private readonly IMediator _mediator;
         private readonly IBotPollingUpdatesReceiver _receiver;
 
         public BotUpdatesPollingService(
-            ILogger<BotUpdatesPollingService> logger, 
-            ICallbackClient callbackClient, 
+            ILogger<BotUpdatesPollingService> logger,
+            IMediator mediator, 
             IBotPollingUpdatesReceiver receiver)
         {
             _logger = logger;
-            _callbackClient = callbackClient;
+            _mediator = mediator;
             _receiver = receiver;
         }
 
@@ -57,11 +58,11 @@ namespace Zeus.BackgroundServices
             {
                 try
                 {
-                    await _callbackClient.HandleBotUpdateAsync(update, stoppingToken);
+                    await _mediator.Send(new BotUpdateRequest(update), cancellationToken: stoppingToken);
                 }
                 catch (Exception e)
                 {
-                    _logger.LogError(e, $"Exception occured while performing callback request. Update:{Environment.NewLine}{update.ToJson()}");
+                    _logger.LogError(e, $"Exception occured while processing bot update:{Environment.NewLine}{update.ToJson()}");
                 }
             }
         }

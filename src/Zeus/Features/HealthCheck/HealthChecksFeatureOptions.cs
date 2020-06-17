@@ -27,12 +27,6 @@ namespace Zeus.Features.HealthCheck
             Timeout = TimeSpan.FromSeconds(3)
         };
 
-        public HealthCheckOptions Callback { get; set; } = new HealthCheckOptions
-        {
-            FailureStatus = HealthStatus.Unhealthy,
-            Timeout = TimeSpan.FromSeconds(2)
-        };
-
         public class HealthCheckOptions
         {
             public TimeSpan? Timeout { get; set; }
