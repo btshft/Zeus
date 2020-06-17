@@ -13,26 +13,41 @@ namespace Zeus.Features.Bot
         public string Token { get; set; }
 
         /// <summary>
-        /// Time wait before next try to get bot-updates if circuit breaks.
-        /// </summary>
-        public TimeSpan PollingDurationOfBreak { get; set; } 
-            = TimeSpan.FromSeconds(15);
-
-        /// <summary>
-        /// Attempts before break the circuit.
-        /// </summary>
-        public int PollingAttemptsBeforeBreaking { get; set; } = 5;
-
-        /// <summary>
         /// Proxy options.
         /// </summary>
         public ProxyOptions Proxy { get; set; }
+
+        /// <summary>
+        /// Polling options.
+        /// </summary>
+        [Required, ValidateObject]
+        public PollingOptions Polling { get; set; } = new PollingOptions();
 
         /// <summary>
         /// Authorization options.
         /// </summary>
         [Required, ValidateObject]
         public AuthorizationFeatureOptions Authorization { get; set; }
+
+        public class PollingOptions
+        {
+            [Required]
+            public CircuitBreakerOptions CircuitBreaker { get; set; }
+
+            public class CircuitBreakerOptions
+            {
+                /// <summary>
+                /// Time wait before next try to get bot-updates if circuit breaks.
+                /// </summary>
+                public TimeSpan DurationOfBreak { get; set; }
+                    = TimeSpan.FromSeconds(15);
+
+                /// <summary>
+                /// Attempts before break the circuit.
+                /// </summary>
+                public int AttemptsBeforeBreaking { get; set; } = 5;
+            }
+        }
 
         /// <summary>
         /// Proxy options.

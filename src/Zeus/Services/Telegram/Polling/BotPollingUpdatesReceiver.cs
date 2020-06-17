@@ -88,8 +88,8 @@ namespace Zeus.Services.Telegram.Polling
             var breaker = Policy<Update[]>
                 .Handle<Exception>()
                 .CircuitBreakerAsync(
-                    handledEventsAllowedBeforeBreaking: _botOptions.Value.PollingAttemptsBeforeBreaking,
-                    durationOfBreak: _botOptions.Value.PollingDurationOfBreak,
+                    handledEventsAllowedBeforeBreaking: _botOptions.Value.Polling.CircuitBreaker.AttemptsBeforeBreaking,
+                    durationOfBreak: _botOptions.Value.Polling.CircuitBreaker.DurationOfBreak,
                     onBreak: (result, _1, _2) =>
                     {
                         _logger.LogInformation(result.Exception, "Telegram polling circuit broken");
@@ -123,8 +123,8 @@ namespace Zeus.Services.Telegram.Polling
 
                         if (breaker.CircuitState == CircuitState.Open)
                         {
-                            _logger.LogInformation($"Waiting '{_botOptions.Value.PollingDurationOfBreak}' because circuit is in open state");
-                            await Task.Delay(_botOptions.Value.PollingDurationOfBreak, pauseToken);
+                            _logger.LogInformation($"Waiting '{_botOptions.Value.Polling.CircuitBreaker.DurationOfBreak}' because circuit is in open state");
+                            await Task.Delay(_botOptions.Value.Polling.CircuitBreaker.DurationOfBreak, pauseToken);
                         }
 
                         var updates = await policy.ExecuteAsync(async (ctx) =>
