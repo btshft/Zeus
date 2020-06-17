@@ -14,6 +14,7 @@ using Zeus.Features.Mediatr;
 using Zeus.Features.Metrics;
 using Zeus.Features.Profiling;
 using Zeus.Features.Swagger;
+using Zeus.Features.Transport;
 using Zeus.Middleware;
 using Zeus.Shared.AppFeature.Extensions;
 using Zeus.Shared.Features.Extensions;
@@ -43,6 +44,7 @@ namespace Zeus
                 .AddFromConfiguration<ProfilingFeature, ProfilingFeatureOptions>("Profiling", required: false)
                 .AddFromConfiguration<BotFeature, BotFeatureOptions>("Bot")
                 .AddFromConfiguration<CleanupFeature, CleanupFeatureOptions>("Cleanup", required: false)
+                .AddFromConfiguration<TransportFeature, TransportFeatureOptions>("Transport", required: false, addAlways: true)
                 .Add<ApiFeature>()
                 .Add<MediatrFeature>();
         }

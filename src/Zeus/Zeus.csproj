@@ -42,6 +42,7 @@
     <ProjectReference Include="..\Zeus.Storage.Consul\Zeus.Storage.Consul.csproj" />
     <ProjectReference Include="..\Zeus.Storage.Faster\Zeus.Storage.Faster.csproj" />
     <ProjectReference Include="..\Zeus.Storage\Zeus.Storage.csproj" />
+    <ProjectReference Include="..\Zeus.Transport.Kafka\Zeus.Transport.Kafka.csproj" />
     <ProjectReference Include="..\Zeus.Transport\Zeus.Transport.csproj" />
   </ItemGroup>
 

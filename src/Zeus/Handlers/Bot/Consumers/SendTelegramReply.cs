@@ -5,15 +5,19 @@ namespace Zeus.Handlers.Bot.Consumers
 {
     public class SendTelegramReply
     {
-        public SendTelegramReply(ChatId chatId, string text)
+        public SendTelegramReply(long chatId, string text)
         {
             ChatId = chatId;
             Text = text;
         }
 
-        public ChatId ChatId { get; }
+        // ReSharper disable once UnusedMember.Global
+        public SendTelegramReply()
+        { }
 
-        public string Text { get; }
+        public long ChatId { get; set; }
+
+        public string Text { get; set; }
 
         public ParseMode ParseMode { get; set; } = ParseMode.Default;
 

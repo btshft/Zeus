@@ -36,7 +36,7 @@ namespace Zeus.Handlers.Bot.Actions.Subscriptions
             if (subscriptions.Count < 1)
             {
                 var notSubscribedText = Localizer.GetString(BotResources.ChatSubscriptionsNotFound);
-                await Reply.SendAsync(new SendTelegramReply(new ChatId(chatId), notSubscribedText), cancellationToken);
+                await Reply.SendAsync(new SendTelegramReply(chatId, notSubscribedText), cancellationToken);
 
                 return;
             }
@@ -48,7 +48,7 @@ namespace Zeus.Handlers.Bot.Actions.Subscriptions
             foreach (var (index, subscription) in subscriptions.Index())
                 messageBuilder.AppendLine($"{index + 1}. {subscription.Channel} (/unsubscribe@{subscription.Channel})");
 
-            await Reply.SendAsync(new SendTelegramReply(new ChatId(chatId), messageBuilder.ToString()),
+            await Reply.SendAsync(new SendTelegramReply(chatId, messageBuilder.ToString()),
                 cancellationToken);
         }
     }

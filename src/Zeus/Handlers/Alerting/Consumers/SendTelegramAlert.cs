@@ -5,15 +5,19 @@ namespace Zeus.Handlers.Alerting.Consumers
 {
     public class SendTelegramAlert 
     {
-        public SendTelegramAlert(ChatId chatId, string text)
+        public SendTelegramAlert(long chatId, string text)
         {
             ChatId = chatId;
             Text = text;
         }
 
-        public ChatId ChatId { get; }
+        // ReSharper disable once UnusedMember.Global
+        public SendTelegramAlert()
+        { }
 
-        public string Text { get; }
+        public long ChatId { get; set; }
+
+        public string Text { get; set; }
 
         public ParseMode ParseMode { get; set; } = ParseMode.Default;
 

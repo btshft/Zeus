@@ -24,7 +24,7 @@ namespace Zeus.Handlers.Bot.Actions.Start
         protected override async Task Handle(BotActionRequest<StartAction> request, CancellationToken cancellationToken)
         {
             var text = Localizer.GetString(BotResources.StartText);
-            var messageRequest = new SendTelegramReply(new ChatId(request.Chat.Id), text.EscapeMarkdown())
+            var messageRequest = new SendTelegramReply(request.Chat.Id, text.EscapeMarkdown())
             {
                 ParseMode = ParseMode.MarkdownV2,
                 DisableWebPagePreview = true

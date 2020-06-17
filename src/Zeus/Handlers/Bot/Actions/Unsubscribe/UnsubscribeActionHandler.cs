@@ -36,7 +36,7 @@ namespace Zeus.Handlers.Bot.Actions.Unsubscribe
             if (channel == null)
             {
                 var message = Localizer.GetString(BotResources.UnsubscribeFailedChannelNotFound);
-                await Reply.SendAsync(new SendTelegramReply(new ChatId(chat.Id), message), cancellationToken);
+                await Reply.SendAsync(new SendTelegramReply(chat.Id, message), cancellationToken);
 
                 return;
             }
@@ -45,7 +45,7 @@ namespace Zeus.Handlers.Bot.Actions.Unsubscribe
             if (existingSubscription == null)
             {
                 var message = Localizer.GetString(BotResources.UnsubscribeFailedNotSubscribed);
-                await Reply.SendAsync(new SendTelegramReply(new ChatId(chat.Id), message), cancellationToken);
+                await Reply.SendAsync(new SendTelegramReply(chat.Id, message), cancellationToken);
 
                 return;
             }
@@ -53,7 +53,7 @@ namespace Zeus.Handlers.Bot.Actions.Unsubscribe
             await _subscriptionsStore.RemoveAsync(existingSubscription, cancellationToken);
 
             var replyMessage = Localizer.GetString(BotResources.UnsubscribeSucceed);
-            await Reply.SendAsync(new SendTelegramReply(new ChatId(chat.Id), replyMessage), cancellationToken);
+            await Reply.SendAsync(new SendTelegramReply(chat.Id, replyMessage), cancellationToken);
         }
     }
 }

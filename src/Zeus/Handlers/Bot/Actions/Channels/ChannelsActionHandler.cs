@@ -39,7 +39,7 @@ namespace Zeus.Handlers.Bot.Actions.Channels
             if (channels.Count < 1)
             {
                 var notSubscribedText = Localizer.GetString(BotResources.ChannelsNotFound);
-                var replyRequest = new SendTelegramReply(new ChatId(chatId), notSubscribedText);
+                var replyRequest = new SendTelegramReply(chatId, notSubscribedText);
 
                 await Reply.SendAsync(replyRequest, cancellationToken);
                 return;
@@ -64,7 +64,7 @@ namespace Zeus.Handlers.Bot.Actions.Channels
                 messageBuilder.AppendLine($"{index + 1}. {channel.Name}{descriptionSuffix}{subscribeSuffix}");
             }
 
-            await Reply.SendAsync(new SendTelegramReply(new ChatId(chatId), messageBuilder.ToString()), cancellationToken);
+            await Reply.SendAsync(new SendTelegramReply(chatId, messageBuilder.ToString()), cancellationToken);
         }
     }
 }
