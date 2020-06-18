@@ -7,7 +7,6 @@
 
   <PropertyGroup>
     <NoWarn>1591</NoWarn>
-    <CodeAnalysisRuleSet>..\.sonarlint\btshft_zeuscsharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>

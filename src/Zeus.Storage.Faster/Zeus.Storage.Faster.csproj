@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-    <CodeAnalysisRuleSet>..\.sonarlint\btshft_zeuscsharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
