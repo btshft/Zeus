@@ -54,7 +54,7 @@ namespace Zeus.Features.Profiling.Decorators
             }
 
             /// <inheritdoc />
-            [Obsolete]
+            [Obsolete("This method is obsolete. Use `CurrentCulture` and `CurrentUICulture` instead.")]
             public IStringLocalizer WithCulture(CultureInfo culture)
             {
                 return _original.WithCulture(culture);

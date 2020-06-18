@@ -43,7 +43,7 @@ namespace Zeus.Storage.Faster.Store.Internal
 
             /// <inheritdoc />
             public void ReadCompletionCallback(ref KeyHolder key, ref ValueHolder input, ref ValueHolder output, StoreContext ctx,
-                Status status)
+                Status status) // lgtm[cs/too-many-ref-parameters]
             {
                 if (!_logger.IsEnabled(LogLevel.Trace))
                     return;
@@ -62,7 +62,7 @@ namespace Zeus.Storage.Faster.Store.Internal
             }
 
             /// <inheritdoc />
-            public void UpsertCompletionCallback(ref KeyHolder key, ref ValueHolder value, StoreContext ctx)
+            public void UpsertCompletionCallback(ref KeyHolder key, ref ValueHolder value, StoreContext ctx) // lgtm[cs/too-many-ref-parameters]
             {
                 if (!_logger.IsEnabled(LogLevel.Trace)) 
                     return;
@@ -81,7 +81,7 @@ namespace Zeus.Storage.Faster.Store.Internal
             }
 
             /// <inheritdoc />
-            public void RMWCompletionCallback(ref KeyHolder key, ref ValueHolder input, StoreContext ctx, Status status)
+            public void RMWCompletionCallback(ref KeyHolder key, ref ValueHolder input, StoreContext ctx, Status status) // lgtm[cs/too-many-ref-parameters]
             {
                 // Method intentionally left empty.
             }
@@ -111,44 +111,44 @@ namespace Zeus.Storage.Faster.Store.Internal
             }
 
             /// <inheritdoc />
-            public void InitialUpdater(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value)
+            public void InitialUpdater(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value) // lgtm[cs/too-many-ref-parameters]
             {
                 value = input;
             }
 
             /// <inheritdoc />
-            public void CopyUpdater(ref KeyHolder key, ref ValueHolder input, ref ValueHolder oldValue, ref ValueHolder newValue)
+            public void CopyUpdater(ref KeyHolder key, ref ValueHolder input, ref ValueHolder oldValue, ref ValueHolder newValue) // lgtm[cs/too-many-ref-parameters]
             {
                 newValue = oldValue;
             }
 
             /// <inheritdoc />
-            public bool InPlaceUpdater(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value)
+            public bool InPlaceUpdater(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value) // lgtm[cs/too-many-ref-parameters]
             {
                 value = input;
                 return true;
             }
 
             /// <inheritdoc />
-            public void SingleReader(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value, ref ValueHolder dst)
+            public void SingleReader(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value, ref ValueHolder dst) // lgtm[cs/too-many-ref-parameters]
             {
                 dst = value;
             }
 
             /// <inheritdoc />
-            public void ConcurrentReader(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value, ref ValueHolder dst)
+            public void ConcurrentReader(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value, ref ValueHolder dst) // lgtm[cs/too-many-ref-parameters]
             {
                 dst = value;
             }
 
             /// <inheritdoc />
-            public void SingleWriter(ref KeyHolder key, ref ValueHolder src, ref ValueHolder dst)
+            public void SingleWriter(ref KeyHolder key, ref ValueHolder src, ref ValueHolder dst) // lgtm[cs/too-many-ref-parameters]
             {
                 dst = src;
             }
 
             /// <inheritdoc />
-            public bool ConcurrentWriter(ref KeyHolder key, ref ValueHolder src, ref ValueHolder dst)
+            public bool ConcurrentWriter(ref KeyHolder key, ref ValueHolder src, ref ValueHolder dst) // lgtm[cs/too-many-ref-parameters]
             {
                 dst = src;
                 return true;

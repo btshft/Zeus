@@ -9,7 +9,7 @@ namespace Zeus.Transport.Kafka.Internal
         {
             var category = error switch
             {
-                _ when error.IsError => "Error",
+                _ when error.IsError => "Error", // lgtm[cs/constant-condition]
                 _ when error.IsBrokerError => "Broker error",
                 _ when error.IsLocalError => "Local error",
                 _ when error.IsFatal => "Fatal",

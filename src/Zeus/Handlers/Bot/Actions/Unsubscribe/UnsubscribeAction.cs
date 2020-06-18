@@ -21,19 +21,22 @@ namespace Zeus.Handlers.Bot.Actions.Unsubscribe
 
                 var commandParts = message.Split(' ', count: 2, StringSplitOptions.RemoveEmptyEntries);
                 if (commandParts.Length < 2)
-                    commandParts = message.Split('@', count: 2, StringSplitOptions.RemoveEmptyEntries);
+                    commandParts = message.Split('_', count: 2, StringSplitOptions.RemoveEmptyEntries);
 
                 if (commandParts.Length != 2)
                     return false;
 
-                var command = commandParts[0].Trim();
-                var channel = commandParts[1].Trim();
-
+                var command = commandParts[0];
                 var matchedByCommand = command.Equals("/unsubscribe", StringComparison.InvariantCultureIgnoreCase);
+
                 if (!matchedByCommand)
                     return false;
 
-                action = new UnsubscribeAction(channel.ToLowerInvariant());
+                var channel = commandParts[1]
+                    .ToLowerInvariant()
+                    .Replace('_', '-');
+
+                action = new UnsubscribeAction(channel);
                 return true;
             }
         }

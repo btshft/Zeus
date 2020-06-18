@@ -1,10 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace Zeus.Shared.Extensions
 {
     public static class StringExtensions
     {
+        public static StringBuilder AppendLines(this StringBuilder builder, int count)
+        {
+            var newLines = Enumerable.Range(0, count)
+                .Select(_ => Environment.NewLine);
+
+            return builder.AppendJoin(string.Empty, newLines);
+        }
+
         public static string ReplaceFirst(this string text, string search, string replace, StringComparison comparison = StringComparison.CurrentCulture)
         {
             if (text == null) 

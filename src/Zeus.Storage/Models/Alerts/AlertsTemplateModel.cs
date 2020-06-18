@@ -7,7 +7,7 @@ namespace Zeus.Storage.Models.Alerts
     /// <summary>
     /// Template model.
     /// </summary>
-    public class AlertsTemplateModel
+    public sealed class AlertsTemplateModel
     {
         /// <summary>
         /// Alerts.

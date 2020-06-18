@@ -5,7 +5,7 @@ namespace Zeus.Storage.Models.Alerts
     /// <summary>
     /// Alerts subscription.
     /// </summary>
-    public class AlertsSubscription : IEquatable<AlertsSubscription>
+    public sealed class AlertsSubscription : IEquatable<AlertsSubscription>
     {
         /// <summary>
         /// Chat id to send messages.

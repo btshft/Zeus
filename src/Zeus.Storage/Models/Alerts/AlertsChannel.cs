@@ -7,7 +7,7 @@ namespace Zeus.Storage.Models.Alerts
     /// <summary>
     /// Alerts channel.
     /// </summary>
-    public class AlertsChannel
+    public sealed class AlertsChannel
     {
         /// <summary>
         /// Unique channel name.

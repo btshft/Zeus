@@ -148,59 +148,59 @@ namespace Zeus.Storage.Faster.Store.Internal
 
         internal class IteratorStoreFunctions : IFunctions<KeyHolder, ValueHolder, ValueHolder, ValueHolder, StoreContext>
         {
-            public void CheckpointCompletionCallback(string sessionId, CommitPoint commitPoint)
+            public void CheckpointCompletionCallback(string sessionId, CommitPoint commitPoint) // lgtm[cs/too-many-ref-parameters]
             {
                 // Method intentionally left empty.
             }
 
-            public void ConcurrentReader(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value, ref ValueHolder dst)
+            public void ConcurrentReader(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value, ref ValueHolder dst) // lgtm[cs/too-many-ref-parameters]
             {
                 // Method intentionally left empty.
             }
 
-            public bool ConcurrentWriter(ref KeyHolder key, ref ValueHolder src, ref ValueHolder dst)
+            public bool ConcurrentWriter(ref KeyHolder key, ref ValueHolder src, ref ValueHolder dst) // lgtm[cs/too-many-ref-parameters]
             {
                 dst = src; return true;
             }
 
-            public void CopyUpdater(ref KeyHolder key, ref ValueHolder input, ref ValueHolder oldValue, ref ValueHolder newValue)
+            public void CopyUpdater(ref KeyHolder key, ref ValueHolder input, ref ValueHolder oldValue, ref ValueHolder newValue) // lgtm[cs/too-many-ref-parameters]
             {
                 // Method intentionally left empty.
             }
 
-            public void InitialUpdater(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value)
+            public void InitialUpdater(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value) // lgtm[cs/too-many-ref-parameters]
             {
                 // Method intentionally left empty.
             }
 
-            public bool InPlaceUpdater(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value)
+            public bool InPlaceUpdater(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value) // lgtm[cs/too-many-ref-parameters]
             {
                 return true;
             }
 
-            public void ReadCompletionCallback(ref KeyHolder key, ref ValueHolder input, ref ValueHolder output, StoreContext ctx, Status status)
+            public void ReadCompletionCallback(ref KeyHolder key, ref ValueHolder input, ref ValueHolder output, StoreContext ctx, Status status) // lgtm[cs/too-many-ref-parameters]
             {
                 // Method intentionally left empty.
             }
 
-            public void RMWCompletionCallback(ref KeyHolder key, ref ValueHolder input, StoreContext ctx, Status status)
+            public void RMWCompletionCallback(ref KeyHolder key, ref ValueHolder input, StoreContext ctx, Status status) // lgtm[cs/too-many-ref-parameters]
             {
                 // Method intentionally left empty.
             }
 
-            public void SingleReader(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value, ref ValueHolder dst)
+            public void SingleReader(ref KeyHolder key, ref ValueHolder input, ref ValueHolder value, ref ValueHolder dst) // lgtm[cs/too-many-ref-parameters]
             {
                 // Method intentionally left empty.
             }
 
-            public void SingleWriter(ref KeyHolder key, ref ValueHolder src, ref ValueHolder dst) { dst = src; }
+            public void SingleWriter(ref KeyHolder key, ref ValueHolder src, ref ValueHolder dst) { dst = src; } // lgtm[cs/too-many-ref-parameters]
 
-            public void UpsertCompletionCallback(ref KeyHolder key, ref ValueHolder value, StoreContext ctx)
+            public void UpsertCompletionCallback(ref KeyHolder key, ref ValueHolder value, StoreContext ctx) // lgtm[cs/too-many-ref-parameters]
             {
                 // Method intentionally left empty.
             }
 
-            public void DeleteCompletionCallback(ref KeyHolder key, StoreContext ctx)
+            public void DeleteCompletionCallback(ref KeyHolder key, StoreContext ctx) // lgtm[cs/too-many-ref-parameters]
             {
                 // Method intentionally left empty.
             }

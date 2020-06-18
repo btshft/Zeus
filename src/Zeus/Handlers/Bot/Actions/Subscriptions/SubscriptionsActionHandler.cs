@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Telegram.Bot.Types;
 using Zeus.Handlers.Bot.Abstractions;
 using Zeus.Handlers.Bot.Consumers;
 using Zeus.Localization;
@@ -43,10 +42,13 @@ namespace Zeus.Handlers.Bot.Actions.Subscriptions
 
             var subscribedText = Localizer.GetString(BotResources.ChatSubscriptions);
             var messageBuilder = new StringBuilder(subscribedText)
-                .AppendLine();
+                .AppendLines(count: 2);
 
             foreach (var (index, subscription) in subscriptions.Index())
-                messageBuilder.AppendLine($"{index + 1}. {subscription.Channel} (/unsubscribe@{subscription.Channel})");
+            {
+                var command = $"/unsubscribe_{subscription.Channel.Replace('-', '_')}";
+                messageBuilder.AppendLine($"{index + 1}. {subscription.Channel} ({command})");
+            }
 
             await Reply.SendAsync(new SendTelegramReply(chatId, messageBuilder.ToString()),
                 cancellationToken);

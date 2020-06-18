@@ -11,18 +11,20 @@ namespace Zeus.Shared.Diagnostics
         protected abstract bool IsMatch(string component);
 
         /// <inheritdoc />
-        void IObserver<DiagnosticListener>.OnNext(DiagnosticListener diagnosticListener)
+        void IObserver<DiagnosticListener>.OnNext(DiagnosticListener value)
         {
-            if (!IsMatch(diagnosticListener.Name)) 
+            if (!IsMatch(value.Name)) 
                 return;
 
-            var subscription = diagnosticListener.SubscribeWithAdapter(this);
+            var subscription = value.SubscribeWithAdapter(this);
             _subscriptions.Add(subscription);
         }
 
         /// <inheritdoc />
         void IObserver<DiagnosticListener>.OnError(Exception error)
-        { }
+        {
+            // We dont care about errors
+        }
 
         /// <inheritdoc />
         void IObserver<DiagnosticListener>.OnCompleted()

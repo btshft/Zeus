@@ -42,6 +42,10 @@ namespace Zeus.Features.Profiling.Diagnostics
         }
 
         [DiagnosticName("System.Net.Http.HttpRequestOut")]
-        public void Precondition() { }
+        public void Precondition()
+        {
+            // Fake listener for diagnostic activation
+            // https://github.com/dotnet/corefx/blob/master/src/System.Net.Http/src/HttpDiagnosticsGuide.md#events-flow-and-order
+        }
     } 
 }

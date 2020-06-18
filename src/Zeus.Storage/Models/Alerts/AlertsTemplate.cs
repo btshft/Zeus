@@ -3,7 +3,7 @@
     /// <summary>
     /// Alert template name.
     /// </summary>
-    public class AlertsTemplate
+    public sealed class AlertsTemplate
     {
         /// <summary>
         /// Template content.

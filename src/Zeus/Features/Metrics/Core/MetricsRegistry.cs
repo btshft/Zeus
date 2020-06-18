@@ -4,7 +4,7 @@ using App.Metrics.Gauge;
 
 namespace Zeus.Features.Metrics.Core
 {
-    public class MetricsRegistry
+    public static class MetricsRegistry
     {
         public static class Units
         {

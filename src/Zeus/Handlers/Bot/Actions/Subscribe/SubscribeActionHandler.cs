@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Telegram.Bot.Types;
 using Zeus.Handlers.Bot.Abstractions;
 using Zeus.Handlers.Bot.Consumers;
 using Zeus.Localization;

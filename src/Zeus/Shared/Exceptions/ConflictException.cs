@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Zeus.Shared.Exceptions
 {
+    [Serializable]
     public class ConflictException : Exception
     {
         public ConflictException()

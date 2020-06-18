@@ -61,7 +61,7 @@ namespace Zeus.Handlers.Bot.Updates
                 .Create();
 
             var bot = await _botUserProvider.GetAsync(cancellationToken);
-            var message = request.Update.Message.Text.ReplaceFirst($"@{bot.Username}", string.Empty);
+            var message = request.Update.Message.Text.ReplaceFirst($"@{bot.Username}", string.Empty).Trim();
 
             var parsed = await parser.ParseAsync(message, cancellationToken);
             if (!parsed)

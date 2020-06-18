@@ -17,7 +17,7 @@ namespace Zeus.Transport.Kafka.Internal
         /// <inheritdoc />
         public T Deserialize(ReadOnlySpan<byte> data, bool isNull, SerializationContext context)
         {
-            if (data == null || data.Length == 0)
+            if (data.Length == 0)
                 return default;
 
             var text = Encoding.UTF8.GetString(data);

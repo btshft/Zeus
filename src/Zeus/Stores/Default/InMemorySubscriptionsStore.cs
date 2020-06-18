@@ -60,13 +60,16 @@ namespace Zeus.Stores.Default
         }
 
         /// <inheritdoc />
-        public Task<IReadOnlyCollection<AlertsSubscription>> GetAllAsync(CancellationToken cancellation = default)
+        public Task<AlertsSubscription> GetAsync(long chatId, string channel, CancellationToken cancellation = default)
         {
+            if (channel == null)
+                throw new ArgumentNullException(nameof(channel));
+
             _lock.EnterReadLock();
             try
             {
-                var subscriptions = _subscriptions.ToArray();
-                return Task.FromResult<IReadOnlyCollection<AlertsSubscription>>(subscriptions);
+                var subscription = _subscriptions.FirstOrDefault(s => s.ChatId == chatId && s.Channel == channel);
+                return Task.FromResult(subscription);
             }
             finally
             {
@@ -75,16 +78,13 @@ namespace Zeus.Stores.Default
         }
 
         /// <inheritdoc />
-        public Task<AlertsSubscription> GetAsync(long chatId, string channel, CancellationToken cancellation = default)
+        public Task<IReadOnlyCollection<AlertsSubscription>> GetAllAsync(CancellationToken cancellation = default)
         {
-            if (channel == null) 
-                throw new ArgumentNullException(nameof(channel));
-
             _lock.EnterReadLock();
             try
             {
-                var subscription = _subscriptions.FirstOrDefault(s => s.ChatId == chatId && s.Channel == channel);
-                return Task.FromResult(subscription);
+                var subscriptions = _subscriptions.ToArray();
+                return Task.FromResult<IReadOnlyCollection<AlertsSubscription>>(subscriptions);
             }
             finally
             {

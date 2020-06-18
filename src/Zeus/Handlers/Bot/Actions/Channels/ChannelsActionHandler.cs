@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Telegram.Bot.Types;
 using Zeus.Handlers.Bot.Abstractions;
 using Zeus.Handlers.Bot.Consumers;
 using Zeus.Localization;
@@ -47,7 +46,7 @@ namespace Zeus.Handlers.Bot.Actions.Channels
 
             var subscribedText = Localizer.GetString(BotResources.Channels);
             var messageBuilder = new StringBuilder(subscribedText)
-                .AppendLine();
+                .AppendLines(count: 2);
 
             foreach (var (index, channel) in channels.Index())
             {
@@ -59,7 +58,7 @@ namespace Zeus.Handlers.Bot.Actions.Channels
 
                 var subscribeSuffix = userSubscribed 
                     ? string.Empty 
-                    : $" (/subscribe@{channel.Name})";
+                    : $" (/subscribe_{channel.Name.Replace('-', '_')})";
 
                 messageBuilder.AppendLine($"{index + 1}. {channel.Name}{descriptionSuffix}{subscribeSuffix}");
             }

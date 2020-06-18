@@ -44,7 +44,7 @@ namespace Zeus.Features.Transport
             KafkaOptions.TopicDefinition ConvertDefinition<TMessage>(
                 TransportFeatureOptions.KafkaTransportOptions.TransportOptions transportOptions)
             {
-                if (transportOptions == null || transportOptions.Enabled == false || transportOptions.AutoCreateTopic == null)
+                if (transportOptions == null || !transportOptions.Enabled || transportOptions.AutoCreateTopic == null)
                     return null;
 
                 return new KafkaOptions.TopicDefinition
