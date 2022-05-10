@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1.418-buster AS build
 WORKDIR /src
 COPY ["Zeus/Zeus.csproj", "Zeus/"]
 COPY ["Zeus.Storage.Consul/Zeus.Storage.Consul.csproj", "Zeus.Storage.Consul/"]
